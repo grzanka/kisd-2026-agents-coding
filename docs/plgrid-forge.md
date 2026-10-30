@@ -1,130 +1,130 @@
-# PLGrid Forge (llmlab) — reference for opencode
+# PLGrid Forge (llmlab) — using it from opencode
 
-Sources:
-- <https://guide.plgrid.pl/en/integrated-platforms/plgrid_forge> (official guide)
-- <https://github.com/groundnuty/plgrid-llmlab-opencode> (community opencode setup, unofficial; measurements dated 2026-09/10)
+PLGrid Forge is a service that runs large language models on the PLGrid
+supercomputers at ACK Cyfronet. It is hosted at <https://llmlab.plgrid.pl>.
+opencode can use it as its model provider, so your prompts and data are processed
+in Poland, on PLGrid hardware, and not by a commercial cloud.
 
-Facts below are copied from those sources. Re-check the model list before each lecture, because PLGrid adds and retires models.
+- Usage is paid in **credits** from a PLGrid **grant**. The more text the model
+  reads and writes, the more credits it uses.
+- PLGrid administrators cannot see your prompts or the answers.
 
-## What it is
+## 1. Get access
 
-PLGrid Forge is an inference service on PLGrid supercomputers (ACK Cyfronet). Model instances run on the supercomputer, and the service is hosted at <https://llmlab.plgrid.pl>.
+1. Have a PLGrid account and be a member of a team with a **grant** that has LLM
+   credits.
+2. Activate the service at <https://portal.plgrid.pl/services/111>.
+3. Open <https://llmlab.plgrid.pl>, go to **Grants → Generate API Key**.
 
-- It is **OpenAI-API compatible**, so opencode and any OpenAI client can use it.
-- It serves chat/text models, embedding models and vision-language models.
-- Usage is billed in **credits** from a PLGrid **grant**. Generated tokens are converted to credits, and the cost per 1M tokens depends on model size.
-- Privacy: PLGrid administrators cannot see request or response content, and no data leaves the inference servers.
+When you create the key:
 
-## Key facts
+- Give it any unique name.
+- Set a **monthly credit limit**. An agent can use many credits quickly, and the
+  limit protects you if the key leaks.
+- Copy the key right away. It is shown **only once**.
 
-| Item | Value |
-|---|---|
-| Web UI | `https://llmlab.plgrid.pl` |
-| Base URL (OpenAI-compatible) | `https://llmlab.plgrid.pl/api/v1` |
-| Chat completions | `https://llmlab.plgrid.pl/api/v1/chat/completions` |
-| Embeddings | `https://llmlab.plgrid.pl/api/v1/embeddings` |
-| List models (OpenAI format) | `https://llmlab.plgrid.pl/api/v1/models` |
-| List models (PLGrid format: status, credit cost, tags, `function_calling_supported`, `is_active`) | `https://llmlab.plgrid.pl/api/v1/models-plgrid-format` |
-| Model health | `https://llmlab.plgrid.pl/api/health` (optional `?model=<model_name>`) |
-| Create API key with a management key | `https://llmlab.plgrid.pl/api/v1/management/api_keys/create` |
-| Auth header | `Authorization: Bearer <API_key>` |
-| Other required header | `accept: application/json` |
-| Service activation | `https://portal.plgrid.pl/services/111` |
+<details>
+<summary>Explain: what is an API key?</summary>
 
-## Getting access (four steps)
+An API key is a long secret string that lets a program (here, opencode) use the
+service on your behalf. Anyone who has your key can spend your credits, so treat
+it like a password: do not paste it into files, emails or chats.
 
-1. Create a PLGrid account, get an affiliation and create a team (see the PLGrid Beginner's Guide).
-2. Get a **grant** and apply for LLM credits in the Resources tab. Alternatively, renegotiate resources on an existing grant.
-3. Activate the service at <https://portal.plgrid.pl/services/111>.
-4. Open <https://llmlab.plgrid.pl>, go to **Grants → Generate API Key**, and copy the key.
+</details>
 
-## API keys
+## 2. Connect opencode
 
-- A key authenticates requests. Whoever has the key can use your credits, with or without a PLGrid account, so treat it like a password.
-- The key is shown **only once**, at creation. Forge does not store it.
-- When creating a key:
-  - The name must be unique within the grant. It is the only mandatory field.
-  - The expiration date **cannot be changed later**.
-  - Set a **monthly credit limit**. This limits the damage if the key leaks.
-  - A total credit limit is optional.
-- Each team member sees and manages only their own keys.
-- Key statuses are active, expired and revoked. Keys can be archived, which blocks API access immediately.
-- **Management keys** are created only in the web UI. They can create API keys through the management endpoint, but cannot be used for inference. They have no usage limits, so never share them. We do not need them for the lectures.
+We use the community setup from
+[groundnuty/plgrid-llmlab-opencode](https://github.com/groundnuty/plgrid-llmlab-opencode).
+Copy these three items from that repository into your project folder:
 
-## Models (tags)
+- the `.opencode` folder
+- `AGENTS.md`
+- `opencode.json`
 
-| Tag | Meaning |
-|---|---|
-| Active / Inactive | Whether queries can be sent now |
-| Accessible / Inaccessible | Whether one of **your** grants can use it. Access is requested through the PLGrid Helpdesk |
-| Non-commercial | Not allowed for users with a commercial affiliation |
-| FC | Supports function calling (needed for agentic coding) |
-| EMB | Embedding model, not for chat |
+Then, in PowerShell inside your project folder, log in once and paste your API key
+when asked. The key is stored in your user folder, not in the project.
 
-The model name used in the API is the full identifier, for example `deepseek-ai/DeepSeek-V4.1-Flash`.
-
-## DeepSeek V4.1 specifics
-
-From the community repo (it measured the live gateway; these values are not from the official guide):
-
-| Item | Value |
-|---|---|
-| API model id | `deepseek-ai/DeepSeek-V4.1-Flash` |
-| opencode model id | `plgrid/deepseek-ai/DeepSeek-V4.1-Flash` |
-| Context window | 1,048,576 tokens (1M) |
-| Output limit set in the plugin | 32,768 tokens |
-| Function calling | yes |
-| Reasoning | yes. The model returns reasoning in the `reasoning` field |
-| Benchmark | 22/22 correct in all 3 runs (the repo's agentic fixtures, not ours) |
-| Flags | non-commercial, and **restricted to some grants** |
-
-- A key whose grant cannot use the model gets the error *"not available for grant 'N'"*. Access is requested through the PLGrid Helpdesk.
-- **Before the lectures, check that the grant used for the course can reach this model.**
-- Fallback open to all grants: `plgrid/Qwen/Qwen3.6-27B`. It is slower but correct on the benchmark.
-- Neighbouring models are `deepseek-ai/DeepSeek-V4-Flash` (700k context, no reasoning) and `deepseek-ai/DeepSeek-V4-Flash-0731`.
-
-## Using it from opencode
-
-The community repo provides a provider plugin (`.opencode/plugins/plgrid.js`), an `opencode.json` and an `AGENTS.md`. The plugin hardcodes the base URL `https://llmlab.plgrid.pl/api/v1`, the model list and per-model limits.
-
-- Setup is copying three things into the project: `.opencode/`, `AGENTS.md` and `opencode.json`. Or put the plugin and config in `~/.config/opencode/`.
-- Log in once. The key is stored under the home directory, never in the repo.
-  - opencode 1.x: `opencode providers login -p plgrid`
-  - opencode 2.x: `opencode auth login plgrid`
-- `opencode.json` sets `"model": "plgrid/deepseek-ai/DeepSeek-V4.1-Flash"` and `"small_model": "plgrid/google/gemma-4-31B"`.
-- Check with `opencode models plgrid` (1.x). It should list 20 models.
-- opencode 1.x and 2.x differ in install command, login command and LSP support. 2.x runs no language servers, and per-agent temperature is ignored.
-- Only the terminal TUI was tested by the repo author, not the desktop or web apps.
-- The repo defines agents `architect`, `chat`, `researcher`, `reviewer` and `fastfix`, and commands `/check`, `/review` and `/explain`.
-- Models without function calling (6 of the 20) need the `chat` agent. The default `build` and `plan` agents send a tools array, and those models reject it with HTTP 400.
-
-## Pitfalls to teach (from the repo's research)
-
-- **Windows:** the repo's instructions are written for bash. Our lectures need PowerShell equivalents, and these are untested.
-- **Agent loops:** opencode's `steps` defaults to unlimited, so set a cap per agent.
-- **Custom agent prompts:** a custom agent `prompt` replaces the base system prompt instead of appending to it.
-- **Silent failures:** `opencode run` can exit 0 having done nothing. Check the result, not the exit code.
-- **Weak models:** some models produce green tests over broken code (`Qwen3.6-35B-A3B`, `Llama-3.3-70B`), or report passes they never achieved (`Bielik-11B`). Teach students to verify.
-- **Credits:** an agent loop burns tokens. Set a monthly limit on every key.
-- **Docs bug:** the official health-check example sends `Bearer {apikey}{apikey}`. That is a typo, so use the key once.
-- **Time-sensitive data:** the model list, restrictions and benchmark numbers are a snapshot.
-
-## Quick checks (one command per block)
-
-List the models your key can see:
-
-```bash
-curl -H "Authorization: Bearer $LLMLAB_API_KEY" https://llmlab.plgrid.pl/api/v1/models-plgrid-format
+```powershell
+opencode auth login plgrid
 ```
 
-Check one model's health:
+<details>
+<summary>Using opencode 1.x?</summary>
 
-```bash
-curl -H "Authorization: Bearer $LLMLAB_API_KEY" "https://llmlab.plgrid.pl/api/health?model=deepseek-ai/DeepSeek-V4.1-Flash"
+The login command is different:
+
+```powershell
+opencode providers login -p plgrid
 ```
 
-## Open questions for the course
+</details>
 
-- Which grant do students use? One shared grant with per-student keys, or each student's own grant? Is DeepSeek V4.1 Flash enabled for it?
-- What are the credit budget and per-key monthly limit for 20 or more students?
-- Windows setup for opencode: native, or WSL? This is untested.
+## 3. Which model
+
+The setup uses this model by default:
+
+| Model (as written in opencode) | Notes |
+|---|---|
+| `plgrid/deepseek-ai/DeepSeek-V4.1-Flash` | Default. Fast, large context, good at agentic work. **Only some grants can use it.** |
+| `plgrid/Qwen/Qwen3.6-27B` | Fallback that every grant can use. Slower, but reliable. |
+
+If you see the error *"not available for grant 'N'"*, your grant cannot use the
+default model. Switch to the fallback, or ask the PLGrid Helpdesk for access.
+
+Only use models marked **FC** (function calling) on <https://llmlab.plgrid.pl>.
+An agent needs function calling to run commands and edit files.
+
+## 4. Check that it works
+
+Start opencode in your project folder:
+
+```powershell
+opencode
+```
+
+Expected result: the opencode screen opens and shows the model name at the
+bottom. Type a short question, such as "What files are in this folder?", and
+you should get an answer within a few seconds.
+
+<details>
+<summary>Going further: test the key without opencode</summary>
+
+Put your key in a variable for this PowerShell session only:
+
+```powershell
+$env:LLMLAB_API_KEY = "paste-your-key-here"
+```
+
+List the models your key can use:
+
+```powershell
+curl.exe -H "Authorization: Bearer $env:LLMLAB_API_KEY" https://llmlab.plgrid.pl/api/v1/models
+```
+
+Expected result: a block of JSON text with model names. An error saying
+`401` or `Unauthorized` means the key is wrong or expired.
+
+Use `curl.exe`, not `curl`. In Windows PowerShell, `curl` is a different command.
+
+</details>
+
+## 5. Good habits
+
+- **Check the results yourself.** Models can write code that runs but computes the
+  wrong thing, or claim that tests pass when they do not. Look at the numbers and
+  plots before you trust them.
+- **Watch your credits.** Long agent sessions use many credits. Keep the monthly
+  limit on your key.
+- **A quiet finish is not a success.** If opencode stops without an error, check
+  that the expected files or results actually exist.
+
+## Sources
+
+- PLGrid Forge official guide:
+  <https://guide.plgrid.pl/en/integrated-platforms/plgrid_forge>
+- Community opencode setup (unofficial, checked 2026-09/10):
+  <https://github.com/groundnuty/plgrid-llmlab-opencode>
+
+The model list and access rules change over time. Check
+<https://llmlab.plgrid.pl> for the current state.

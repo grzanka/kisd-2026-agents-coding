@@ -4,6 +4,6 @@ Reference notes used to prepare the lectures.
 
 | Document | What it covers |
 |---|---|
-| [PLGrid Forge (llmlab) — reference for opencode](plgrid-forge.md) | What PLGrid Forge is, endpoints, getting access, API keys, models, using it from opencode, pitfalls to teach |
+| [PLGrid Forge (llmlab) — using it from opencode](plgrid-forge.md) | Getting access, connecting opencode, choosing a model, checking that it works (Windows) |
 
 [← Back to the main README](../README.md)

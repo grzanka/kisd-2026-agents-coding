@@ -7,7 +7,7 @@ Lecture materials on **agentic coding for data analysis**, using
 ## Contents
 
 - [Documentation](docs/README.md) — reference notes for the lectures
-  - [PLGrid Forge (llmlab) — reference for opencode](docs/plgrid-forge.md)
+  - [PLGrid Forge (llmlab) — using it from opencode](docs/plgrid-forge.md)
 
 ## For contributors
 
