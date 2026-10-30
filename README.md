@@ -9,6 +9,8 @@ Lecture materials on **agentic coding for data analysis**, using
 - [Documentation](docs/README.md) — reference notes for the lectures
   - [What is opencode](docs/opencode.md)
   - [PLGrid Forge (llmlab) — using it from opencode](docs/plgrid-forge.md)
+- Exercises
+  - [Exercise 1: Your first agent session — measuring *g* with a pendulum](exercises/01-pendulum.md)
 
 ## For contributors
 
