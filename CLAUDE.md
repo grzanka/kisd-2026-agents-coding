@@ -52,3 +52,12 @@ Go into it:
 ```powershell
 cd kisd-demo
 ```
+
+## 3. Folder READMEs
+
+- **Every folder has a short `README.md`** that says what is in it and in what
+  order to read it. Keep it short: one or two sentences, then a table of the
+  files with one line each.
+- When you add, rename or remove a file, update the README of its folder and the
+  main `README.md`.
+- End each folder README with a link back to the main README.
