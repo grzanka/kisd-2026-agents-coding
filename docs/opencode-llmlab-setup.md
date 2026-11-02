@@ -31,31 +31,103 @@ a blinking cursor opens. This is a terminal: you type a command, press
 
 ## Step 3. Download the settings file
 
-Create the folder where opencode looks for its settings:
+This step has three commands: create a folder, download the file into it, and
+check the file.
+
+### 3a. Create the folder
+
+opencode reads its settings from one fixed place in your user folder:
+`.config\opencode\opencode.json`. On a new computer the `.config\opencode`
+folder does not exist yet. The download in 3b only saves a file; it does not
+create missing folders, and fails if the folder is not there. So create it first:
 
 ```powershell
 mkdir -Force "$HOME\.config\opencode"
 ```
 
-Expected result: a short table with the folder name `opencode`. If the folder
-already exists, you see the same table; that is fine.
+`$HOME` is your user folder, for example `C:\Users\yourname`. `-Force` means:
+create the folder, and do not complain if it already exists.
 
-Download the settings file into that folder:
+Expected result (with your own user name and date):
+
+```text
+    Directory: C:\Users\yourname\.config
+
+
+Mode                 LastWriteTime         Length Name
+----                 -------------         ------ ----
+d-----        2026-10-30     21:03                opencode
+```
+
+### 3b. Download the file
 
 ```powershell
 curl.exe -fLo "$HOME\.config\opencode\opencode.json" https://raw.githubusercontent.com/grzanka/kisd-2026-agents-coding/lecture-content-setup/config/opencode.json
 ```
 
-Expected result: a short progress table that ends with `100`. Type `curl.exe`,
-not `curl`: in Windows PowerShell, `curl` is a different command.
+Expected result: a small progress table. The first column of the last line is
+`100` (100% downloaded). The other numbers may differ:
 
-Check that the file is there:
+```text
+  % Total    % Received % Xferd  Average Speed  Time    Time    Time   Current
+                                 Dload  Upload  Total   Spent   Left   Speed
+100    960 100    960   0      0   2202      0                              0
+```
+
+Type `curl.exe`, not `curl`: in Windows PowerShell, `curl` is a different
+command. `curl.exe` is part of Windows 10 (since 2018) and Windows 11.
+
+<details>
+<summary>Explain: what does <code>-fLo</code> mean?</summary>
+
+- `-f` (fail): if the server answers with an error, stop and say so, instead of
+  saving the error page as your settings file.
+- `-L` (location): follow a redirect if the server sends one.
+- `-o` (output): save to this file instead of printing it on the screen.
+
+</details>
+
+<details>
+<summary>No <code>curl.exe</code>? Use one of these instead</summary>
+
+If you see *curl.exe is not recognized*, your Windows is older than 2018. Use
+the PowerShell download command instead. It works on every Windows:
+
+```powershell
+Invoke-WebRequest -Uri "https://raw.githubusercontent.com/grzanka/kisd-2026-agents-coding/lecture-content-setup/config/opencode.json" -OutFile "$HOME\.config\opencode\opencode.json"
+```
+
+Expected result: no output, the cursor just returns.
+
+Or download it with a web browser: open the address above, press **Ctrl+S**,
+and save it as `opencode.json` in `C:\Users\yourname\.config\opencode`. Set
+*Save as type* to **All files**, otherwise Windows may name it
+`opencode.json.txt`, and opencode will not find it.
+
+</details>
+
+### 3c. Check the file
+
+Show the content of the file on the screen:
 
 ```powershell
 Get-Content "$HOME\.config\opencode\opencode.json"
 ```
 
-Expected result: text that contains `https://llmlab.plgrid.pl/api/v1`.
+Expected result: the settings text, starting like this:
+
+```text
+{
+  "$schema": "https://opencode.ai/config.json",
+  "model": "plgrid/deepseek-ai/DeepSeek-V4.1-Flash",
+  "small_model": "plgrid/google/gemma-4-31B",
+  "provider": {
+    "plgrid": {
+      "npm": "@ai-sdk/openai-compatible",
+      "name": "PLGrid Forge (Cyfronet)",
+      "options": {
+        "baseURL": "https://llmlab.plgrid.pl/api/v1",
+```
 
 > [!WARNING]
 > If you already had your own `opencode.json` in that folder, this command
@@ -80,8 +152,8 @@ The file [config/opencode.json](../config/opencode.json) tells opencode:
 <details>
 <summary>Errors</summary>
 
-- *Failed to create the file* or *No such file or directory*: the `mkdir`
-  command was skipped. Run it, then download again.
+- *Failed to open the file ... No such file or directory* or *curl: (23)*: the
+  folder does not exist. Run 3a, then download again.
 - *Could not resolve host* or a timeout: check your internet connection.
 - *The requested URL returned error: 404*: the address was not copied in full.
   Copy the whole block again.
