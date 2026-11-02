@@ -43,17 +43,29 @@ Click it (the small ▾) to open the details: each tool call on its own line, wi
 the tool name and its target. The tools you will see:
 
 - **Read** (also *List* or *Glob*): the agent looks at files or folders.
-- **Write**: the agent creates a new file. opencode shows its content with the
-  new lines in green.
+- **Write**: the agent creates a new file, or writes a whole file again.
+  opencode shows its content with the new lines in green.
 - **Edit**: the agent changes part of an existing file. opencode shows the change
   in red (removed) and green (added).
 - **Shell**: the agent runs a command in the terminal and reads its output.
 
 You will also see **Thought**: the model thinking before it acts. It is not a
-tool call; nothing happens on your computer.
+tool call; nothing happens on your computer. Open the Thoughts: they show why
+the agent did what it did.
+
+<details>
+<summary>Picture: the conversation with all details closed</summary>
+
+<img src="images/02-pendulum-0-collapsed.png" alt="The opencode conversation with every Used line closed: only the prompts, the Used lines and the answers are visible" width="700">
+
+</details>
 
 After each step below, count which tools you saw. That is the whole point of the
 exercise.
+
+The pictures on this page come from one test run. Your run will differ: the
+model words its answers differently each time, may pick other tools, and may
+write a longer or shorter script. The numbers should be the same.
 
 If opencode asks for **permission** before a tool call, read what it wants to do,
 then approve it.
@@ -76,24 +88,20 @@ and how can I use it to measure g?
 Answer in three sentences.
 ```
 
-Expected result: a short answer with T = 2π√(L/g), so g = 4π²L/T². Above it,
-opencode shows *Used 1 Thought*.
-
-<img src="images/02-pendulum-1-chat-answer.png" alt="The question, the line Used 1 Thought, and a three-sentence answer with T = 2π√(L/g) and g = 4π²L/T²" width="700">
+Expected result: *Used 1 Thought*, then a short answer with T = 2π√(L/g), so
+g = 4π²L/T².
 
 <details>
-<summary>Another run: a slightly different answer</summary>
+<summary>Picture: the answer in the test run</summary>
 
-<img src="images/02-pendulum-run2-1-chat-answer.png" alt="Second run: a Thought, then an answer that also suggests plotting T squared against L" width="700">
-
-The same question gave a different wording, and this time the model added a
-tip: plot T² against L and take the slope. Models do not answer the same way
-twice.
+<img src="images/02-pendulum-1-chat-answer.png" alt="Used 1 Thought, opened: the model plans to just answer; then three sentences with T = 2π√(L/g), g = 4π²L/T², and a note that this holds for small swings below about 15°" width="700">
 
 </details>
 
 **What to notice:** no tool calls, only a Thought. The model answered from what
-it knows, exactly like a chat. Everything from here on is different.
+it knows, exactly like a chat. In the test run it even added a condition you did
+not ask for: the formula holds only for small swings. Everything from here on is
+different.
 
 ## Step 2: Look around (read-only tools)
 
@@ -104,27 +112,26 @@ and check which version of Python is installed on this computer.
 ```
 
 Expected result: *Used 2 Read, Shell*, then the answer: the folder is empty,
-and the Python version, such as `Python 3.15.0`. Click the line to see the
-details: **Read** of your project folder and **Shell** `python --version`.
-
-<img src="images/02-pendulum-2-read-shell.png" alt="Used 2 Read, Shell, opened: Thought, Read exercise02, Shell python --version, Thought; then the answer: the folder is empty, Python 3.15.0, no changes were made" width="700">
+and the Python version, such as `Python 3.15.0`. Open the line to see the
+details: **Read** of your project folder, and **Shell** with the command
+`python --version` and its output.
 
 <details>
-<summary>Another run: Glob, and a check for hidden files</summary>
+<summary>Picture: Read and Shell in the test run</summary>
 
-<img src="images/02-pendulum-run2-2-glob-shell.png" alt="Second run: Used 3 Glob, Shell: Glob pattern *, Shell python --version, then Shell Get-ChildItem -Force to see hidden files too" width="700">
-
-Here the agent used **Glob** to list the files, then thought that Glob skips
-hidden files and checked again with **Shell** `Get-ChildItem -Force`. Different
-tools, same result. Also look at its last Thought: it finds Python 3.15.0
-"odd", because the model was trained before that version came out.
+<img src="images/02-pendulum-2-read-shell.png" alt="Used 2 Read, Shell, opened: Thought, Read of the project folder, Shell python --version with the output Python 3.15.0, Thought; then the answer: the folder is empty, Python 3.15.0, nothing changed" width="700">
 
 </details>
 
 **What to notice:** the model cannot see your disk. To answer, it had to call
 **Read** to list the files and **Shell** to run `python --version`, then read
-the results. You did not tell it which commands to use. The Thoughts show its
-plan: both tasks only read, so it ran them at the same time.
+the results. You did not tell it which commands to use. Some runs use **Glob**
+instead of Read, or check for hidden files too; the result is the same.
+
+Look at the last Thought: the model calls Python 3.15.0 a *fictional future
+version*. The model was trained before that version came out, so it does not
+know it. It trusted the output of the command over its own memory, which is
+right.
 
 <details>
 <summary>If Python is not installed</summary>
@@ -171,28 +178,53 @@ opencode may show the pasted text as a single block, such as
 Expected result: *Used 1 Write*. Open it: you see the content of
 `pendulum.csv`, 13 lines in green (*+13 -0*: 13 lines added, none removed).
 
-<img src="images/02-pendulum-3-write.png" alt="Used 1 Write, opened: a Thought, the new file pendulum.csv with 13 green lines, another Thought; then the answer: the file was created, and the row 70;16,8 looks like a typo for 0,70 but was left as given" width="700">
-
 <details>
-<summary>Another run: Write, then Read to check</summary>
+<summary>Pictures: the Write in the test run</summary>
 
-<img src="images/02-pendulum-run2-3-write-read.png" alt="Second run: Used 2 Write, Read: the file pendulum.csv written, then read back to verify; the answer flags the row 70;16,8 and notes the semicolon and decimal comma format" width="700">
+<img src="images/02-pendulum-3a-write-thought.png" alt="The Thought before the Write: the model notices that 70 would be absurd in metres, asks itself whether this is a trap, and decides to copy the data exactly and flag the row" width="700">
 
-This time the agent read the file back after writing it, to check its own
-work, without being asked.
+<img src="images/02-pendulum-3b-write-answer.png" alt="The new file pendulum.csv with 13 green lines, and the answer: the file was created unchanged, and the row 70;16,8 is flagged as a likely typo for 0,70" width="700">
 
 </details>
-
-Open File Explorer and go to your `kisd-pendulum` folder: the file is there. You
-can open it in Notepad.
 
 **What to notice:** the agent created a real file on your disk. In a chat you
 would have to copy the text and save the file yourself.
 
-The agent may already point at the row `70;16,8`, which looks different from the
-others. Because you said *do not change any values*, it left the row as it is
-and only told you. That is the right behaviour: you decide what to do with raw
-data. Keep the row; it matters in step 5.
+The agent probably already points at the row `70;16,8`. In its Thought it even
+asks itself *"is it a trap?"* Because you said *do not change any values*, it
+copied the row as it is and only told you. That is the right behaviour: you
+decide what to do with raw data. Keep the row; it matters in step 5.
+
+### Look at the file in opencode
+
+opencode can show you the files of the project, next to the conversation.
+
+1. At the top right of the window, click the **Toggle review** button (the
+   square with a bar on the right), or press **Ctrl+Shift+R**.
+
+   <img src="images/02-pendulum-3c-review-button.png" alt="The top bar of opencode; at the right, the Toggle review button with the tooltip Toggle review Ctrl Shift R" width="700">
+
+2. A panel opens on the right with a **New tab**. Click **Open file** (or press
+   **Ctrl+Alt+P**).
+
+   ![The New tab in the right panel: Review, Browser, Terminal, and Open file](images/02-pendulum-3d-new-tab.png)
+
+3. You see the files of your project. Click `pendulum.csv`.
+
+   ![Open file: the project name and the list of files, with pendulum.csv](images/02-pendulum-3e-open-file.png)
+
+Expected result: the file is shown as a table, but the columns look wrong:
+`0` in one column, `20;8` in the next, `9` in the third.
+
+![pendulum.csv shown as a table with wrongly split columns, such as 0 | 20;8 | 9](images/02-pendulum-3f-csv-table.png)
+
+The file is fine; the viewer is not. It expects commas between the columns, as
+in English CSV files, so it splits the Polish decimal commas instead of the
+semicolons. Your own analysis must not make the same mistake. Watch whether the
+agent's script does in step 4.
+
+You can also open the file in File Explorer: go to your `kisd-pendulum` folder
+and open `pendulum.csv` in Notepad.
 
 ## Step 4: Analyse (`Write` + `Shell` + the loop)
 
@@ -205,40 +237,37 @@ Use only the Python standard library.
 Run the script and show me the output.
 ```
 
-Expected result: *Used 2 Write, Shell*. Open it: the new script `analyse.py`
-in green, then **Shell** `python analyse.py`.
-
-<img src="images/02-pendulum-4a-write-shell.png" alt="Used 2 Write, Shell, opened: a Thought, the new file analyse.py with 22 green lines, Shell python analyse.py, and a Thought" width="700">
-
-Below it, the output: a table of 12 rows, then a mean *g* of about
-**90 m/s²**. That is far too large. Keep it for the next step.
-
-<img src="images/02-pendulum-4b-output.png" alt="The output table: 12 rows with g near 9.8 except the row 70.00 with g = 979.127, and Mean g = 90.581 m/s^2; below, a note that the row 70 is probably a typo" width="700">
+Expected result: *Used 2 Write, Shell*: the new script `analyse.py` in green,
+then **Shell** `python analyse.py`. Below it, the output: a table of 12 rows,
+then a mean *g* of about **90.58 m/s²**. That is far too large. Keep it for the
+next step.
 
 <details>
-<summary>Another run: a longer script, the same numbers</summary>
+<summary>Pictures: the script and its output in the test run</summary>
 
-<img src="images/02-pendulum-run2-4a-write.png" alt="Second run: a long Thought about how to treat the row 70, then a 45-line analyse.py" width="700">
+<img src="images/02-pendulum-4a-write.png" alt="The Thought: the model plans to split on semicolons, replace decimal commas, and leave the row 70 as it is; then the new file analyse.py, 33 lines" width="700">
 
-<img src="images/02-pendulum-run2-4b-output.png" alt="Second run: Shell python analyse.py, the same per-row values and mean g = 90.5812; the agent suggests the row should be 0,70" width="700">
-
-A different script (45 lines instead of 22), the same numbers. Check the last
-paragraph: the agent says that with 0.70 m "the mean becomes ~9.81 m/s²". The
-real value is 9.80. Close, but it rounded towards the answer it expected.
+<img src="images/02-pendulum-4b-output.png" alt="The rest of analyse.py, Shell python analyse.py, and the output: 12 rows with g near 9.8 except 979.1274 for the row 70.00, and Mean g = 90.5812; below, a note that without that row the mean would be about 9.78" width="700">
 
 </details>
 
 **What to notice:** several tool calls in a row: **Write** for the script, then
 **Shell** to run `python analyse.py`. The agent read the output before answering
-you. It may also point at the row `70` again, as in the picture.
+you. Its Thought shows that it saw the decimal commas in advance.
 
 Sometimes the first run fails, because Python does not read `0,20` as a number.
 You then see an error such as
 `ValueError: could not convert string to float: '0,20'`, followed by an **Edit**
 of the script and a second run, without you doing anything. That is the agentic
-loop: act, look at the result, fix, try again. In the run in the pictures the
-agent saw the decimal commas in advance and the first run worked. Ask your
-neighbour whether theirs failed.
+loop: act, look at the result, fix, try again. In our test runs the first run
+always worked. Ask your neighbour whether theirs failed.
+
+**Check the agent's words, not only its numbers.** In the test run the agent
+wrote that without the row `70` *"the mean would be about 9.78 m/s²"*. The
+correct value is **9.80**: you can see it yourself, all the other rows are
+between 9.64 and 9.99. The agent did not run any code for that sentence; it
+estimated it, and wrote the estimate as confidently as the real results. In the
+same answer it also suggested correcting the CSV file. Do not do that yet.
 
 ## Step 5: Find the problem (reasoning on results)
 
@@ -252,16 +281,10 @@ Expected result: *Used 1 Thought*, then an explanation. The agent points to the
 row with length `70`: its *g* is about **979**, a hundred times too large, and
 this one row pulls the mean up from about 9.8 to 90.6.
 
-<img src="images/02-pendulum-5-explain.png" alt="The Thought and the answer: the culprit is the row 70;16,8; the period 1.68 s fits a 0.70 m pendulum; without that row the mean is 9.80 m/s^2; the agent offers to fix the row to 0,70" width="700">
-
 <details>
-<summary>Another run: a different argument for the same row</summary>
+<summary>Picture: the explanation in the test run</summary>
 
-<img src="images/02-pendulum-run2-5-explain.png" alt="Second run: the culprit is 70;16,8; the period 1.68 s sits between 1.54 and 1.81 in the sequence, so the length should be 0,70" width="700">
-
-This time the agent argued from the order of the periods: 1.68 s sits
-between 1.54 s and 1.81 s, just where a 0.70 m pendulum belongs. Again it
-guessed a lost `0,`, not centimetres.
+<img src="images/02-pendulum-5-explain.png" alt="The Thought adds up the eleven other values by hand and gets 9.8043; the answer: the row 70;16,8 gives 979, with 0.70 m it would give 9.79, and without it the mean is 9.80" width="700">
 
 </details>
 
@@ -269,14 +292,14 @@ guessed a lost `0,`, not centimetres.
 
 - The agent used the output of its own script as evidence. Here it did not need
   any tool; it reasoned on what it already had.
-- The best argument is in the second column. The time, 16.8 s for 10 swings,
-  gives T = 1.68 s, which is just what a **0.70 m** pendulum swings. So the
-  length is wrong, not the time.
-- The agent says *why* the length is 70: you may read "the length was written in
-  centimetres" or "a typo, `0,` is missing". Both give 0.70 m. The data cannot
-  tell which; it is a guess, even if the agent sounds sure.
-- The agent may offer to change the row in `pendulum.csv` to `0,70`. Do not
-  accept: step 6 explains why.
+- In the Thought it added up the other eleven values by hand and got 9.80. So
+  it quietly corrected its own *9.78* from step 4, without telling you.
+- The best evidence is in the second column. The time, 16.8 s for 10 swings,
+  gives T = 1.68 s, which is just what a **0.70 m** pendulum swings
+  (g = 4π²·0.70/1.68² ≈ 9.79). So the length is wrong, not the time.
+- The agent also says *why* the length is 70: in our test runs it always guessed
+  a typo, a lost `0,`. A length in centimetres gives the same 0.70 m. The data
+  cannot tell which; it is a guess, even if the agent sounds sure.
 
 <details>
 <summary>Explain: could it really be a 70 m pendulum?</summary>
@@ -288,7 +311,7 @@ numbers alone fit both stories. Context is your job, not the agent's.
 
 </details>
 
-## Step 6: Fix it (`Edit`)
+## Step 6: Fix it (`Edit` or `Write`)
 
 The agent found **which** value is wrong. It cannot know **why**: a lost `0,`
 and a length in centimetres both give 0.70 m. That needs knowledge from outside
@@ -306,27 +329,32 @@ Also print the standard error of the mean of g.
 Run the script again.
 ```
 
-Expected result: *Used ... Edit, Shell*. Open it: an **Edit** of `analyse.py`
-that shows only the changed part, with the new lines in green: the conversion
-with its warning, and the standard error. Then **Shell** runs the script again.
+Expected result: a change of `analyse.py`, then **Shell** runs it again. The
+output starts with a warning about the length 70, the row now shows `0.70` with
+g = 9.79, and at the end a mean *g* of about **9.80 m/s²** with a standard error
+of about **0.03 m/s²**.
 
-<img src="images/02-pendulum-6a-edit.png" alt="The Edit of analyse.py: green lines for the check length > 10 with a warning and division by 100, and for the standard error; then Shell python analyse.py" width="700">
+<details>
+<summary>Pictures: the fix in the test run</summary>
 
-The output: a warning about the row with `70`, the row now as `0.70` with
-g = 9.791, a mean *g* of about **9.80 m/s²** and a standard error of about
-**0.03 m/s²**.
+<img src="images/02-pendulum-6a-thought.png" alt="The Thought: the model plans the conversion of lengths above 10, a warning, and the standard error with the statistics module" width="700">
 
-<img src="images/02-pendulum-6b-output.png" alt="Output: Warning: length 70 looks like centimetres; the table with 0.70 and g = 9.791; Mean g = 9.803 m/s^2; Standard error of the mean of g = 0.031 m/s^2; and the agent's comments below" width="700">
+<img src="images/02-pendulum-6b-write.png" alt="The Thought ends with Let me write the whole file; then a Write of analyse.py, 43 lines, all green" width="700">
 
-**What to notice:** the agent changed **part** of an existing file instead of
-rewriting it, and checked its change by running the script again.
+<img src="images/02-pendulum-6c-output.png" alt="Shell python analyse.py: Warning: length 70 looks like centimetres; converting to 0.7 m; the table with 0.70 and 9.7913; Mean g = 9.8032; Standard error of the mean = 0.0311; and a list of what changed" width="700">
 
-**Check the agent's words, not only its numbers.** In the run in the picture
-the numbers are right, but the last sentence says the result is "within about
-0.2 m/s² of 9.81". The real difference is 9.81 − 9.803 = **0.007 m/s²**, about
-0.2 *standard errors*. The agent mixed up the units. The mistake is small here,
-but it is written just as confidently as the correct parts. Read what the agent
-writes the way you would read a student's report.
+</details>
+
+**What to notice:** to change a file, the agent can **Edit** part of it (red and
+green lines) or **Write** the whole file again (all green). In the test run it
+chose to write the whole file again (*Used 2 Write, Shell*, *+43 -0*). Both
+work, but with a full rewrite you cannot see at a glance what changed. The agent
+then listed its changes in the answer; read that list. It also checked its work
+by running the script again.
+
+The final sentence of the test run says the result *"is consistent with the
+accepted 9.81 m/s² within about one standard error"*. Check it: 9.81 − 9.803 =
+0.007, and one standard error is 0.031. So it is true, with room to spare.
 
 <details>
 <summary>Explain: why fix the script and not the data?</summary>
@@ -354,16 +382,25 @@ and install every package you need into .venv.
 Do not activate the environment; call .venv\Scripts\python.exe directly.
 ```
 
-Expected result: several **Shell** calls, such as
-`python -m venv .venv`, then `.venv\Scripts\python.exe -m pip install matplotlib`.
-The installation takes up to a minute. opencode may ask you to allow the
-commands; allow them. A new folder `.venv` appears in your project folder.
+Expected result: several **Shell** calls: `python -m venv .venv` to create the
+environment, then `.venv\Scripts\python.exe -m pip install matplotlib`. The
+installation takes up to a minute. opencode may ask you to allow the commands;
+allow them. A new folder `.venv` appears in your project folder.
 
-<!-- TODO: screenshot of the venv creation and the pip install. -->
+<details>
+<summary>Pictures: the venv in the test run</summary>
 
-**What to notice:** the agent prepared the environment, not only the code. Ask
-it to show the matplotlib version: it should run `.venv\Scripts\python.exe`,
-not `python`.
+<img src="images/02-pendulum-7a-venv.png" alt="Used 4 Shell, opened: python -m venv .venv; .venv\Scripts\python.exe --version gives Python 3.15.0; .venv\Scripts\python.exe -m pip install matplotlib with its download log; and an import check that prints matplotlib 3.11.2" width="700">
+
+<img src="images/02-pendulum-7b-answer.png" alt="The answer: the venv was created, matplotlib 3.11.2 installed with numpy, pillow and fonttools, and from now on the agent will use .venv\Scripts\python.exe" width="700">
+
+</details>
+
+**What to notice:** the agent prepared the environment, not only the code. In
+the test run it used four **Shell** calls, and two of them were checks you did
+not ask for: the Python version inside the venv, and a test that matplotlib
+really imports. Then it repeated your rule back to you. matplotlib brought other
+packages with it, such as **numpy**; they are all inside `.venv`.
 
 <details>
 <summary>Explain: why a virtual environment?</summary>
@@ -389,7 +426,7 @@ On Linux and macOS the path is `.venv/bin/python` instead of
 
 </details>
 
-## Step 8: Plot (`Edit` + `Shell`)
+## Step 8: Plot (`Edit` + `Shell` + `Read`)
 
 ```text
 Add a plot to analyse.py:
@@ -402,13 +439,54 @@ Run the script with the Python from .venv.
 
 Expected result: an **Edit** of `analyse.py`, then **Shell**
 `.venv\Scripts\python.exe analyse.py`. A new file `pendulum.png` appears in the
-folder.
+folder. The agent may then **Read** `pendulum.png`: the plot appears right in
+the conversation. The 12 points lie on, or very close to, the red curve.
 
-<!-- TODO: screenshot of the Edit and the run. -->
+<details>
+<summary>Pictures: the plot in the test run</summary>
 
-**What to notice:** check the **Shell** line. If it says plain `python
-analyse.py`, the agent forgot the venv and the script fails with
-*No module named 'matplotlib'*. Remind it: "Use .venv\Scripts\python.exe."
+<img src="images/02-pendulum-8a-edit.png" alt="Used 4 Edit, Shell, Read, opened: the Thought plans a file-only matplotlib backend, Agg, and numpy for the curve; the Edit adds the matplotlib imports" width="700">
+
+<img src="images/02-pendulum-8b-run-read.png" alt="The rest of the Edit with the plotting code; Shell .venv\Scripts\python.exe analyse.py with the table; a Thought: Let me view the png to confirm it looks right; and Read pendulum.png" width="700">
+
+<img src="images/02-pendulum-8c-plot.png" alt="The plot shown in the conversation: blue measured points on a red curve T = 2π√(L/g) with g = 9.803; then the agent describes the plot" width="700">
+
+</details>
+
+**What to notice:**
+
+- Check the **Shell** line. It should say `.venv\Scripts\python.exe
+  analyse.py`. If it says plain `python analyse.py`, the agent forgot the venv
+  and the script fails with *No module named 'matplotlib'*. Remind it: "Use
+  .venv\Scripts\python.exe."
+- To keep the plot window closed, the agent switched matplotlib to its
+  file-only mode (`matplotlib.use("Agg")`).
+- After saving the plot, the agent **read the picture** to check its own work,
+  without being asked. See below what that means.
+
+<details>
+<summary>Explain: what does it mean that the agent "reads" a png file?</summary>
+
+**Read** works on pictures too. When the agent reads `pendulum.png`, opencode
+does two things:
+
+- It shows the picture to **you**, in the conversation. That is why the plot
+  appeared without you opening it.
+- It sends the picture to the **model** as an image, so that a model that can
+  understand pictures can look at it, as a person looks at a screenshot.
+
+Whether the model really *looked* is another matter. Some models read only
+text; for them the picture is just a note that a file was read. The agent's
+description in the test run (blue points, red curve, labels with units) matches
+what the code was told to draw, so it could have been written without seeing
+the picture at all. You cannot tell from the answer.
+
+So: when the agent says "the plot looks right", treat it as a claim, not a
+check. Look at the plot yourself. Things only your eyes may catch: a point far
+off the curve, an axis in the wrong units, a curve that does not pass through
+the points.
+
+</details>
 
 <details>
 <summary>Explain: why "do not open a plot window"?</summary>
@@ -420,31 +498,34 @@ agent would wait too, and look frozen. Saving to a file lets the script finish.
 
 ## Step 9: Look at the plot
 
-Can the agent show you the plot in the conversation?
+The plot is a file in your project. Ask the agent to show it to you:
 
 ```text
 Show me pendulum.png.
 ```
 
-<!-- TODO: check what opencode desktop does here with DeepSeek, and add a
-screenshot. Possible outcomes: the picture appears in the conversation; the
-agent opens it in the Windows image viewer; the agent says it cannot see
-images. -->
+Expected result: the plot opens in the panel on the right, and again in the
+conversation. In the test run the agent used two new tools: **Skill** (it loaded
+instructions for the opencode browser) and **Execute** (it ran
+`browser.preview` with the file `pendulum.png`).
 
-Expected result: one of these, depending on the model and the opencode version:
+<details>
+<summary>Picture: the plot in the side panel in the test run</summary>
 
-- the picture appears in the conversation;
-- the agent opens it in the Windows image viewer (**Shell** with
-  `Start-Process pendulum.png` or `start pendulum.png`);
-- the agent says it cannot show or see pictures. Then open `pendulum.png`
-  yourself from File Explorer.
+<img src="images/02-pendulum-9-show.png" alt="Used 2 Skill, Execute: a long Thought weighing a second Read against the browser preview; Loaded Browser skill; Execute browser.preview with path pendulum.png; the plot in the conversation and in the right panel, pendulum.png" width="700">
 
-Either way, look at it: the 12 points should lie on or very close to a smooth
-rising curve.
+</details>
 
-**What to notice:** some models read only text. Such a model wrote the plot but
-**cannot see it**, so it cannot tell you whether it looks right. Checking the
-picture is your job.
+**What to notice:** open the Thought. The model spends a long paragraph going
+back and forth: read the picture again, or use the browser preview? It changes
+its mind several times. A simple request can cost many model calls, and so
+credits. The plot was already visible after step 8; this step was not needed,
+but now you know where to find it.
+
+In the right panel, the zoom buttons at the bottom right make the plot larger.
+You can also open `pendulum.png` from File Explorer, in your `kisd-pendulum`
+folder.
+
 
 ## Step 10: Write the report (`Write` from results)
 
@@ -532,7 +613,7 @@ typed as 0,61, would pass silently. You are still the scientist.
 - **Undo.** `/undo` takes back the last message and its file changes. It needs a
   Git repository: ask the agent to "initialise a git repository and commit all
   files" first.
-- **Look at the code.** Open `analyse.py`. It is about 30–50 lines. Ask the
+- **Look at the code.** Open `analyse.py`. It is about 40–80 lines. Ask the
   agent to explain any line you do not understand.
 
 </details>

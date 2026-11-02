@@ -14,14 +14,26 @@ page that shows it.
 | `01-project-4-name-folder.png` | [Create a project folder](../01-project-folder.md), step 4 | Typing the name of the new folder |
 | `01-project-5-select-folder.png` | [Create a project folder](../01-project-folder.md), step 5 | Inside the empty folder, Select Folder |
 | `01-project-6-project-open.png` | [Create a project folder](../01-project-folder.md), step 5 | opencode with the new project open |
+| `02-pendulum-0-collapsed.png` | [Exercise 1](../02-pendulum.md), What to watch for | The conversation with all details closed |
 | `02-pendulum-1-chat-answer.png` | [Exercise 1](../02-pendulum.md), step 1 | A plain answer, only a Thought |
-| `02-pendulum-2-read-shell.png` | [Exercise 1](../02-pendulum.md), step 2 | Read and Shell tool calls, opened |
-| `02-pendulum-3-write.png` | [Exercise 1](../02-pendulum.md), step 3 | The Write of pendulum.csv, opened |
-| `02-pendulum-4a-write-shell.png` | [Exercise 1](../02-pendulum.md), step 4 | The Write of analyse.py and its run |
-| `02-pendulum-4b-output.png` | [Exercise 1](../02-pendulum.md), step 4 | The first output, mean g about 90 |
+| `02-pendulum-2-read-shell.png` | [Exercise 1](../02-pendulum.md), step 2 | Read and Shell, opened |
+| `02-pendulum-3a-write-thought.png` | [Exercise 1](../02-pendulum.md), step 3 | The Thought before writing pendulum.csv |
+| `02-pendulum-3b-write-answer.png` | [Exercise 1](../02-pendulum.md), step 3 | The Write of pendulum.csv and the answer |
+| `02-pendulum-3c-review-button.png` | [Exercise 1](../02-pendulum.md), step 3 | The Toggle review button, top right |
+| `02-pendulum-3d-new-tab.png` | [Exercise 1](../02-pendulum.md), step 3 | The New tab with Open file |
+| `02-pendulum-3e-open-file.png` | [Exercise 1](../02-pendulum.md), step 3 | The list of project files |
+| `02-pendulum-3f-csv-table.png` | [Exercise 1](../02-pendulum.md), step 3 | pendulum.csv shown with wrongly split columns |
+| `02-pendulum-4a-write.png` | [Exercise 1](../02-pendulum.md), step 4 | The Write of analyse.py |
+| `02-pendulum-4b-output.png` | [Exercise 1](../02-pendulum.md), step 4 | The first output, mean g about 90.58 |
 | `02-pendulum-5-explain.png` | [Exercise 1](../02-pendulum.md), step 5 | The agent explains the row 70 |
-| `02-pendulum-6a-edit.png` | [Exercise 1](../02-pendulum.md), step 6 | The Edit of analyse.py, in green |
-| `02-pendulum-6b-output.png` | [Exercise 1](../02-pendulum.md), step 6 | The fixed output, g = 9.803 ± 0.031 |
-| `02-pendulum-run2-*.png` | [Exercise 1](../02-pendulum.md), steps 1–5, "Another run" | A second run of the same prompts, for comparison |
+| `02-pendulum-6a-thought.png` | [Exercise 1](../02-pendulum.md), step 6 | The Thought before the fix |
+| `02-pendulum-6b-write.png` | [Exercise 1](../02-pendulum.md), step 6 | analyse.py written again in full |
+| `02-pendulum-6c-output.png` | [Exercise 1](../02-pendulum.md), step 6 | The fixed output, g = 9.803 ± 0.031 |
+| `02-pendulum-7a-venv.png` | [Exercise 1](../02-pendulum.md), step 7 | The four Shell calls for the venv |
+| `02-pendulum-7b-answer.png` | [Exercise 1](../02-pendulum.md), step 7 | The answer after creating the venv |
+| `02-pendulum-8a-edit.png` | [Exercise 1](../02-pendulum.md), step 8 | The Edit adding the plot |
+| `02-pendulum-8b-run-read.png` | [Exercise 1](../02-pendulum.md), step 8 | The run with the venv Python, then Read of the png |
+| `02-pendulum-8c-plot.png` | [Exercise 1](../02-pendulum.md), step 8 | The plot shown in the conversation |
+| `02-pendulum-9-show.png` | [Exercise 1](../02-pendulum.md), step 9 | The plot in the side panel |
 
 [← Back to the exercises](../README.md) · [Main README](../../README.md)
