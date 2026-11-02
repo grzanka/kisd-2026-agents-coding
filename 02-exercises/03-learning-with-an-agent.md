@@ -69,7 +69,9 @@ note for a colleague who takes over your lab shift.
 <summary>Explain: why not one long session for everything?</summary>
 
 - **Cost.** Every prompt sends the whole session again. A session ten times
-  longer makes every prompt about ten times more expensive in credits.
+  longer makes every prompt about ten times more expensive in credits. In a
+  test run of part B of Exercise 2, the last prompts sent about 180,000 tokens
+  each, and the session as a whole about 5 million.
 - **Quality.** A long session is full of old details, wrong attempts and
   corrections. The model has to find what matters now among all of that, and
   sometimes it picks up an old, wrong idea.
