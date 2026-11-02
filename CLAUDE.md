@@ -65,10 +65,13 @@ cd kisd-demo
 ## 4. Order of pages
 
 - Pages in `docs/` and `exercises/` have a two-digit prefix in reading order:
-  `01-what-is-opencode.md`, `02-install-opencode.md`, … One page covers one
+  `01-chatbot-or-agent.md`, `02-install-opencode.md`, … One page covers one
   stage of the setup or one exercise.
 - Images in `docs/images/` start with the number of the page that uses them,
-  then the step: `04-connect-3a-mkdir.png`.
+  then the step: `03-endpoint-2-mkdir.png`.
+- Embed wide screenshots (browser pages, app windows) with
+  `<img src="..." alt="..." width="700">`, so they line up with the tables
+  instead of filling the whole page width.
 - End each page with a navigation line after `---`:
   `← Previous: [..] · [Docs overview](README.md) · Next: [.. →]`.
 - When you insert, remove or reorder a page, renumber the files and fix every

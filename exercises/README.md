@@ -13,8 +13,8 @@ prompts are ready to copy and paste. You do not need to know Python.
 Go through the [docs](../docs/README.md) in order. You need:
 
 - the opencode app installed ([2. Install the opencode app](../docs/02-install-opencode.md));
-- an llmlab API key ([3. Get access to llmlab](../docs/03-get-llmlab-access.md));
-- opencode connected to llmlab ([4. Connect opencode to llmlab](../docs/04-connect-opencode-to-llmlab.md)).
+- opencode configured for llmlab: the address ([part 1](../docs/03-configure-llmlab-endpoint.md)) and
+  your API key ([part 2](../docs/04-configure-llmlab-api-key.md)).
 
 Do the exercises in order. Each one runs in its own new folder.
 

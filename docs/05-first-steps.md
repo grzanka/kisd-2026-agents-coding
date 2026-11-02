@@ -64,8 +64,8 @@ An agent needs function calling to run commands and edit files.
 <details>
 <summary>Going further: test the key without opencode</summary>
 
-If you saved the key with `setx` (option B in step 4 of
-[4. Connect opencode to llmlab](04-connect-opencode-to-llmlab.md)), open a new
+If you saved the key with `setx` (option B in step 2 of
+[4. Configure opencode for llmlab, part 2](04-configure-llmlab-api-key.md)), open a new
 PowerShell window and skip this command. Otherwise, put your key in a variable
 for this PowerShell session only:
 
@@ -104,4 +104,4 @@ Use `curl.exe`, not `curl`. In Windows PowerShell, `curl` is a different command
 
 ---
 
-← Previous: [4. Connect opencode to llmlab](04-connect-opencode-to-llmlab.md) · [Docs overview](README.md) · Next: [Exercises →](../exercises/README.md)
+← Previous: [4. Configure opencode for llmlab, part 2: the API key](04-configure-llmlab-api-key.md) · [Docs overview](README.md) · Next: [Exercises →](../exercises/README.md)

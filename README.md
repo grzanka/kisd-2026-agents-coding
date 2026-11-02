@@ -12,8 +12,8 @@ on your computer), then do the exercises in order.
 1. [`docs/`](docs/README.md) — background and setup, in this order:
    1. [Chatbot or agent](docs/01-chatbot-or-agent.md)
    2. [Install the opencode app](docs/02-install-opencode.md)
-   3. [Get access to llmlab](docs/03-get-llmlab-access.md)
-   4. [Connect opencode to llmlab](docs/04-connect-opencode-to-llmlab.md)
+   3. [Configure opencode for llmlab, part 1: the address](docs/03-configure-llmlab-endpoint.md)
+   4. [Configure opencode for llmlab, part 2: the API key](docs/04-configure-llmlab-api-key.md)
    5. [First steps in opencode](docs/05-first-steps.md)
 2. [`exercises/`](exercises/README.md) — hands-on tasks with copy-paste prompts:
    1. [Your first agent session — measuring *g* with a pendulum](exercises/01-pendulum.md)

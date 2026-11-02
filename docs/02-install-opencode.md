@@ -2,19 +2,19 @@
 
 Open your web browser and go to <https://opencode.ai/>.
 
-![opencode home page with a curl command and the Download button](images/02-install-1-home.png)
-
 > [!WARNING]
 > Do **not** run the command shown on the home page
 > (`curl -fsSL https://opencode.ai/v2/install | bash`), or any other command
 > from the list. They install the **terminal** version of opencode. We use the
 > **desktop** app.
 
+<img src="images/02-install-1-home.png" alt="opencode home page with a curl command and the Download button" width="700">
+
 Click **Download** in the top right corner. The download page has two parts.
 Skip **[1] OpenCode Terminal**. Go to **[2] OpenCode Desktop** and click
 **Download** in the row for your computer:
 
-![opencode download page: Terminal commands at the top, Desktop downloads below](images/02-install-2-download.png)
+<img src="images/02-install-2-download.png" alt="opencode download page: Terminal commands at the top, Desktop downloads below" width="700">
 
 | Your computer | Row to choose |
 |---|---|
@@ -36,8 +36,18 @@ Open the downloaded file and follow the installer.
 - **Linux:** open the file with your software installer, or install it from the
   terminal with your package manager.
 
-Expected result: you can find **opencode** in the Start menu (Windows),
-Launchpad (macOS) or the application menu (Linux).
+Start the app: press the **Windows** key, type `opencode`, and press **Enter**.
+On macOS, open it from Launchpad; on Linux, from the application menu.
+
+Expected result: a window like this, with the large **opencode** logo and a
+text box that says *Ask anything, / for commands, @ for context...*:
+
+<img src="images/02-install-3-first-start.png" alt="opencode window after the first start: logo, text box, free model and Default Project" width="700">
+
+- Under the text box you see a free model run by opencode (here *Nemotron 3.5
+  Lightning Free*; yours may differ). It is not llmlab yet: pages 3 and 4 change
+  that.
+- Below it you see the project, **Default Project**, the folder opencode works in.
 
 <details>
 <summary>Explain: Apple Silicon or Intel (Mac)?</summary>
@@ -83,4 +93,4 @@ says *x64-based processor* or *ARM-based processor*. If you are not sure, choose
 
 ---
 
-← Previous: [1. Chatbot or agent](01-chatbot-or-agent.md) · [Docs overview](README.md) · Next: [3. Get access to llmlab →](03-get-llmlab-access.md)
+← Previous: [1. Chatbot or agent](01-chatbot-or-agent.md) · [Docs overview](README.md) · Next: [3. Configure opencode for llmlab, part 1: the address →](03-configure-llmlab-endpoint.md)

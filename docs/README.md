@@ -8,8 +8,8 @@ computer, before the first lecture.
 |---|---|---|---|
 | 1 | [Chatbot or agent](01-chatbot-or-agent.md) | Read: how an AI agent differs from a chatbot, and why one prompt costs many model calls | 5 min |
 | 2 | [Install the opencode app](02-install-opencode.md) | Download and install the desktop app for your computer | 10 min |
-| 3 | [Get access to llmlab](03-get-llmlab-access.md) | Activate PLGrid Forge and create an API key | 10 min |
-| 4 | [Connect opencode to llmlab](04-connect-opencode-to-llmlab.md) | Download the settings file, store the key, check it works | 10 min |
+| 3 | [Configure opencode for llmlab, part 1: the address](03-configure-llmlab-endpoint.md) | Download the settings file, check that opencode lists llmlab | 10 min |
+| 4 | [Configure opencode for llmlab, part 2: the API key](04-configure-llmlab-api-key.md) | Create an API key on llmlab, give it to opencode, check it works | 10 min |
 | 5 | [First steps in opencode](05-first-steps.md) | Open a project folder, ask a question; models and good habits | 5 min |
 | 6 | [Optional: opencode and Claude Code](06-opencode-vs-claude-code.md) | Read after the exercises: how opencode compares with Claude Code | 5 min |
 
