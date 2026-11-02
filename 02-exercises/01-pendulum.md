@@ -327,8 +327,8 @@ typed as 0,61, would pass silently. You are still the scientist.
 
 ## If something goes wrong
 
-- **The agent only describes what it would do but does not do it.** You may be in
-  the `plan` agent. Press **Tab** to switch to `build` and send the prompt again.
+- **The agent only describes what it would do but does not do it.** Reply
+  "Go ahead and do it."
 - **"not available for grant"**: your grant cannot use the default model. See
   [Which model](../01-getting-started/05-first-steps.md#which-model).
 - **`pip` fails with a network or proxy error.** Ask the agent to try again; if it
@@ -346,10 +346,10 @@ typed as 0,61, would pass silently. You are still the scientist.
 - **Change the data yourself.** Open `pendulum.csv` in Notepad, add a row
   `1,40;23,8`, save, and ask the agent to "run the analysis again". It reads the
   current file, not what it remembers.
-- **Plan first.** Press **Tab** to switch to `plan`, then ask: "How would you
-  estimate g from a straight-line fit of T^2 against L instead of the mean?"
-  The agent only reads and proposes. Press **Tab** again to `build` and let it
-  do it. Does the fit give the same *g*? Why might it not?
+- **Plan first.** Ask: "Do not change any files yet. How would you estimate g
+  from a straight-line fit of T^2 against L instead of the mean?" The agent only
+  reads and proposes. If the plan looks good, reply "Go ahead" and let it do it.
+  Does the fit give the same *g*? Why might it not?
 - **Undo.** `/undo` takes back the last message and its file changes. It needs a
   Git repository: ask the agent to "initialise a git repository and commit all
   files" first.

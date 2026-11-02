@@ -26,9 +26,8 @@ folder it says that the folder is empty.
 
 Useful keys and commands in the text box (type `/` to see them all):
 
-- **Tab**: switch between `plan` (only reads and proposes) and `build` (makes
-  changes). Use `plan` first when you are unsure what the agent will do.
-- `/models`: pick another model.
+- `/model`: pick another model. The same as clicking the model name under the
+  text box, or pressing **Ctrl+'**.
 - `/init`: let the agent write an `AGENTS.md` that describes your project. opencode
   reads this file at the start of every session.
 - `/undo`: take back the last message and its file changes.

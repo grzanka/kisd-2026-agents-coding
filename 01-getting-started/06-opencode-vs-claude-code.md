@@ -20,9 +20,9 @@ difference is **which models they can use**.
 | Where your data goes | To the provider you choose (here: PLGrid) | To Anthropic |
 | Project instructions file | `AGENTS.md` (reads `CLAUDE.md` if there is no `AGENTS.md`) | `CLAUDE.md` |
 | Settings file | `opencode.json` | `.claude/settings.json` |
-| Plan first, then build | **Tab** switches between the `plan` and `build` agents | **Shift+Tab** cycles modes, including plan mode |
+| Plan first, then build | In the terminal app, **Tab** switches between the `plan` and `build` agents | **Shift+Tab** cycles modes, including plan mode |
 | Create the instructions file | `/init` | `/init` |
-| Choose a model | `/models` | `/model` |
+| Choose a model | `/model` in the desktop app, `/models` in the terminal app | `/model` |
 | Undo the last change | `/undo` (needs a Git repository) | `/rewind`, or **Esc** twice |
 | Windows | Desktop app and terminal | Desktop app and terminal |
 
