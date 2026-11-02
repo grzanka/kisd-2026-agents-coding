@@ -66,9 +66,10 @@ cd kisd-demo
 
 ## 4. Order of pages
 
-- Top-level folders with reading material have a two-digit prefix in the order
-  participants use them: `01-getting-started/`, `02-exercises/`. Supporting
-  folders that pages only link to or download from (`config/`) have no prefix.
+- Top-level folders have a two-digit prefix in the order participants use them:
+  `01-getting-started/`, `02-exercises/`. Files that pages show or download
+  (screenshots, settings files) go in an unnumbered subfolder of the folder that
+  uses them: `01-getting-started/images/`, `01-getting-started/config/`.
 - Pages in `01-getting-started/` and `02-exercises/` have a two-digit prefix in reading order:
   `01-chatbot-or-agent.md`, `02-install-opencode.md`, … One page covers one
   stage of the setup or one exercise.

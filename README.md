@@ -21,8 +21,8 @@ then do the tasks in `02-exercises`, in order.
 3. Later, optional: [opencode and Claude Code](01-getting-started/06-opencode-vs-claude-code.md),
    [For experts: other ways to set up](01-getting-started/07-for-experts.md)
 
-Supporting folder: [`config/`](config/README.md) — the opencode settings file
-that page 3 of Getting started downloads ([opencode.json](config/opencode.json)).
+The settings file that page 3 downloads is in
+[`01-getting-started/config/`](01-getting-started/config/README.md).
 
 ## For contributors
 

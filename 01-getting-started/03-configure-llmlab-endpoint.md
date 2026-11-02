@@ -38,7 +38,7 @@ folder `opencode`.
 ## Step 3. Download the settings file
 
 ```powershell
-curl.exe -fLo "$HOME\.config\opencode\opencode.json" https://raw.githubusercontent.com/grzanka/kisd-2026-agents-coding/lecture-content-setup/config/opencode.json
+curl.exe -fLo "$HOME\.config\opencode\opencode.json" https://raw.githubusercontent.com/grzanka/kisd-2026-agents-coding/lecture-content-setup/01-getting-started/config/opencode.json
 ```
 
 Expected result: a small progress table. The first column of the last line is
@@ -70,7 +70,7 @@ If you see *curl.exe is not recognized*, your Windows is older than 2018. Use
 the PowerShell download command instead. It works on every Windows:
 
 ```powershell
-Invoke-WebRequest -Uri "https://raw.githubusercontent.com/grzanka/kisd-2026-agents-coding/lecture-content-setup/config/opencode.json" -OutFile "$HOME\.config\opencode\opencode.json"
+Invoke-WebRequest -Uri "https://raw.githubusercontent.com/grzanka/kisd-2026-agents-coding/lecture-content-setup/01-getting-started/config/opencode.json" -OutFile "$HOME\.config\opencode\opencode.json"
 ```
 
 Expected result: no output, the cursor just returns.
@@ -88,7 +88,7 @@ and save it as `opencode.json` in `C:\Users\yourname\.config\opencode`. Set
 One command creates the folder and downloads the file:
 
 ```bash
-curl -fL --create-dirs -o ~/.config/opencode/opencode.json https://raw.githubusercontent.com/grzanka/kisd-2026-agents-coding/lecture-content-setup/config/opencode.json
+curl -fL --create-dirs -o ~/.config/opencode/opencode.json https://raw.githubusercontent.com/grzanka/kisd-2026-agents-coding/lecture-content-setup/01-getting-started/config/opencode.json
 ```
 
 </details>
@@ -120,7 +120,7 @@ Expected result: the settings text. Look for the llmlab address
 <details>
 <summary>Explain: what is in the file?</summary>
 
-The file [config/opencode.json](../config/opencode.json) tells opencode:
+The file [config/opencode.json](config/opencode.json) tells opencode:
 
 - the address of llmlab: `https://llmlab.plgrid.pl/api/v1`;
 - two models, with their limits (how much text each can read and write at once):

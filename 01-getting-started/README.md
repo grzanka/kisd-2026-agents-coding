@@ -14,6 +14,7 @@ computer, before the first lecture.
 | 6 | [Optional: opencode and Claude Code](06-opencode-vs-claude-code.md) | Read after the exercises: how opencode compares with Claude Code | 5 min |
 | 7 | [For experts: other ways to set up](07-for-experts.md) | Optional: where settings and key are stored, key as an environment variable, testing the key with `curl`, the terminal version | — |
 
-Screenshots used on these pages are in [`images/`](images/README.md).
+Screenshots used on these pages are in [`images/`](images/README.md). The
+settings file that page 3 downloads is in [`config/`](config/README.md).
 
 [← Back to the main README](../README.md)
