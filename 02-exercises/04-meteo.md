@@ -31,7 +31,7 @@ The agent does this for you, because the rules in `AGENTS.md` say so.
 
 So that 30 people do not download 1,000 files each from a small institute's
 server at the same time, we keep an unchanged copy of the whole archive as one
-ZIP file (15 MB) in this course's
+ZIP file (16 MB) in this course's
 [GitHub release](https://github.com/grzanka/kisd-2026-agents-coding/releases/tag/data-gig-meteo-2006-2026).
 
 </details>
@@ -158,15 +158,15 @@ the folders you found, and anything unexpected.
 ```
 
 Expected result: the agent first does the earlier steps of the plan, if there
-are any (folders, `.venv`). Then it downloads the ZIP (15 MB) and unpacks it,
+are any (folders, `.venv`). Then it downloads the ZIP (16 MB) and unpacks it,
 often with small scripts that it writes first (**Write**, then **Shell**). It
 reports **1,066 files** in 21 year folders (`2006` to `2026`), about **100 MB**,
 and a `README.txt`. The files are in `data/raw/gig-meteo/`, one folder deeper
 than you might expect. Compare with your guess.
 
 The archive comes with a short `README.txt`, and a careful agent reads it. It
-lists some of the problems in the data, but not all of them, and one of its
-statements is wrong. You will find out which in step B4.
+lists some of the problems in the data, and says itself that the list may not
+be complete. In step B4 you will see what it leaves out.
 
 <!-- TODO: screenshot of the download and unpacking. -->
 
@@ -262,12 +262,12 @@ The archive has these problems. How many did your agent find?
    short, and one line with two rows glued together.
 7. **Two column layouts.** Some files, for example `2018/20180604.txt`, have
    wider columns than the rest.
-8. **The `README.txt` is not complete.** It names only one file that is there
-   twice, and it says that all dates are year-month-day.
+The `README.txt` mentions problems 1 to 5, but without the details: it does not
+say which files use day-month-year dates, or how many. Problems 6 and 7 are not
+in it at all. Read the documentation, then check it against the data.
 
 Problems 1, 2 and 3 do not cause any error message. A script that ignores them
-runs fine and gives wrong numbers. And problem 8 is a lesson of its own: read
-the documentation, then check it against the data.
+runs fine and gives wrong numbers.
 
 </details>
 
@@ -389,9 +389,11 @@ Does any year have too few data? Does any sensor show the same value for days?
 <details>
 <summary>Check: what the agent might find</summary>
 
-- A temperature of exactly **−67.8 °C**, 143 times, between 2009 and 2022:
-  always the same value, so a sensor error code, not weather. The coldest real
-  values in Katowice are around −25 °C.
+- A temperature of exactly **−67.8 °C**, about 140 times, between 2009 and
+  2022: always the same value, so a sensor error code, not weather. The coldest
+  real values in Katowice are around −25 °C.
+- A **rain rate** of more than 1,000 mm per hour in a few rows: impossible. The
+  world record is about 300 mm in one hour.
 - **2009** and **2019** have a few percent fewer data than other years: each
   has a gap of about two weeks.
 - The first and last years are incomplete: the archive starts in October 2006
@@ -416,10 +418,10 @@ Also make a heatmap of the mean humidity by hour of day and month.
 Save both in results/. Explain the code that counts the hours.
 ```
 
-Expected result: two plots in `results/`. November to January have the most
-humid hours (about 360–410 per month), April to August the fewest (about
-125–160).
-In the heatmap, the air is most humid around sunrise (about 88%) and driest in
+Expected result: the agent installs `matplotlib` into `.venv`, if it is not
+there yet, then makes two plots in `results/`. November to January have the
+most humid hours (about 360–410 per month), April to August the fewest (about
+125–160). In the heatmap, the air is most humid around sunrise (about 88%) and driest in
 the afternoon (about 68%).
 
 <!-- TODO: screenshots of the two plots. -->
@@ -440,8 +442,15 @@ I changed the threshold myself. Run the script again,
 and tell me what changed in the results.
 ```
 
+Expected result: about 1.7 times more humid hours in every month, for example
+about 630 instead of 407 in December. The heatmap does not change: it shows the
+mean humidity and does not use the threshold.
+
 **What to notice:** this is the first line of code you changed yourself. The
-agent explained where; you did it.
+agent explained where; you did it. But look at the bar chart: its title still
+says "90 %". The number 90 was written in more than one place, and you changed
+only one of them. A good agent warns you about this. If yours does not, ask:
+"Where else in the script does 90 appear?"
 
 ### C4. Is there a trend?
 
@@ -455,18 +464,53 @@ Expected result: a plot and a list of reasons for caution: years with missing
 data (2009 and 2019 each miss about two weeks), one station only, possible
 sensor changes, and how the date problem of 2009-2010 was handled. The values
 lie between about 2,100 and 3,700 hours a year, and they jump a lot from year
-to year. If 2009 and 2010 show far fewer humid hours than the other years, ask
+to year. A straight line through them is flat: there is no trend that the data
+can show. If 2009 and 2010 show far fewer humid hours than the other years, ask
 the agent why: the date problem was not handled.
 
-### C5. Short report
+### C5. Short report: let the agent ask you
+
+A report needs decisions that are yours: which results to show, and what to do
+with the chart you changed in C3. Instead of letting the agent guess, make it
+ask you, with options to choose from:
 
 ```text
 Write results/report.md: half a page with what we did, the problems we found
 in the data and how we handled them, the two main results with their plots,
 and the source of the data.
+Before you write: ask me which two results to include, and anything else
+you are not sure about. Use your question tool, with 2-3 options for each.
 ```
 
-Read the report. Is every sentence true? Is anything made up?
+Expected result: no report yet. The agent stops and shows its questions, each
+with 2–3 options and a short description of each option. For example: "Which
+two results should the report feature?", with the options "Monthly bar +
+humidity heatmap" and "Monthly bar + yearly trend". Click your choice for each
+question. Only then does the agent write the report.
+
+<!-- TODO: screenshot of the Question box with options. -->
+
+Read the report. Is every sentence true? Is anything made up? Pick one claim
+and ask: "How do you know that?" For example, a report may say that the empty
+wind directions are moments without wind. Is that checked, or assumed?
+
+<details>
+<summary>Explain: the question tool</summary>
+
+opencode gives the agent a tool called **question**. With it, the agent stops
+and shows you questions with ready answers to click, instead of writing a
+question in the chat. Agents use it by themselves when they notice that
+something is unclear; with "use your question tool" you make sure that it does.
+
+This is useful whenever a decision is yours: which data to leave out, which
+plot to show, which threshold to use. Clicking an option is quicker than
+writing an answer, and the options show you what the choices are, which you
+might not have thought of.
+
+The rules in `AGENTS.md` ask the agent to do this whenever it needs a decision
+from you.
+
+</details>
 
 ## Check yourself
 

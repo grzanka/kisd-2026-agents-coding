@@ -11,6 +11,8 @@ with an agent. Help them understand, not only finish.
 - After each task, ask me one short question to check that I understood.
 - If I ask "how do I...", give a hint first. Give the full solution when I ask.
 - Say clearly when you are unsure, and why. Do not guess silently.
+- When you need a decision from me, ask with your question tool and offer
+  2-3 options.
 - Work one step at a time. Stop and report after each step of PLAN.md.
 - If I write "just do it", skip the explanations for that task.
 
