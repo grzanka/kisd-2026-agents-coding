@@ -11,28 +11,110 @@ in Poland, on PLGrid hardware, and not by a commercial cloud.
   reads and writes, the more credits it uses.
 - PLGrid administrators cannot see your prompts or the answers.
 
+## An API key, never your password
+
+> [!CAUTION]
+> Never give opencode, or any program, script or settings file, your **PLGrid
+> password**. Use an **API key**, made only for this purpose.
+
+An **API key** is a long secret string that lets a program (here, opencode) use
+one service on your behalf. It is not the same as your password:
+
+| | Your PLGrid password | An API key |
+|---|---|---|
+| What it opens | Everything: the PLGrid portal, your grants, the supercomputers, your files there | One service only: llmlab |
+| How many | One | As many as you like: one per project, per computer, per course |
+| How long it works | Until you change it | Until the expiry date you set |
+| Spending limit | None | A credit quota you set |
+| If it leaks | Someone controls your whole account, in your name; you change the password everywhere | You archive that one key in a minute; the others keep working |
+
+Why this matters with an agent: an agent reads and writes many files, and its
+settings and notes get copied, zipped, sent to colleagues or put on GitHub.
+Sooner or later a secret in such a file ends up where it should not be. A leaked
+key costs at most its credit quota. A leaked password can cost your account, your
+grant and your data.
+
+Saving your password once would be quicker than making keys. Take the extra five
+minutes anyway: it is the cheapest insurance you will ever buy.
+
+Also: never paste the key into the opencode chat. Everything you type there is
+sent to the model.
+
 ## Step 1. Get an API key
 
-1. Have a PLGrid account and be a member of a team with a **grant** that has LLM
-   credits.
-2. Activate the service at <https://portal.plgrid.pl/services/111>.
-3. Open <https://llmlab.plgrid.pl>, go to **Grants → Generate API Key**.
+You need a PLGrid account and membership in a team with a **grant** that has LLM
+credits. Ask the course organisers which grant to use.
 
-When you create the key:
+### 1a. Activate the llmlab service
 
-- Give it any unique name.
-- Set a **monthly credit limit**. An agent can use many credits quickly, and the
-  limit protects you if the key leaks.
-- Copy the key right away. It is shown **only once**.
+Go to <https://portal.plgrid.pl/services/111> and log in with your PLGrid
+account. This is the service *Access to Large Language Models at the Cyfronet
+centre [grant required]*. Click **Activate**.
 
-<details>
-<summary>Explain: what is an API key?</summary>
+Expected result: the green label **Active**. Activation may take a while; if
+you still see **Activate**, try again later. Do not click **Deactivate**.
 
-An API key is a long secret string that lets a program (here, opencode) use the
-service on your behalf. Anyone who has your key can spend your credits, so treat
-it like a password: do not paste it into files, emails or chats.
+<img src="images/04-key-1-portal-service.png" alt="PLGrid portal: the service Access to Large Language Models at the Cyfronet centre, marked Active" width="700">
 
-</details>
+### 1b. Log in to llmlab
+
+Go to <https://llmlab.plgrid.pl> and click **Log in to the service**. Log in
+with your PLGrid account.
+
+<img src="images/04-key-2-llmlab-home.png" alt="LLM-Lab home page with the button Log in to the service and the list of available models" width="700">
+
+### 1c. Choose your grant
+
+You land on **Grants**, the list of your active grants. Each shows the credits
+used and the total, here 6,052 of 10,000. Click **Generate API Key** next to the
+course grant.
+
+<img src="images/04-key-3-grants.png" alt="LLM Lab Grants page: grant plgtraining2026 with credits and the Generate API Key button" width="700">
+
+On the next page, **Actions**, click **Generate**.
+
+<img src="images/04-key-4-grant-actions.png" alt="Grant actions page with Generate API Key and the Generate button" width="700">
+
+### 1d. Fill in the form
+
+![Generate API Key form: Name, Expires, Monthly Credits Quota, Total Credits Quota, All grant models](images/04-key-5-generate-form.png)
+
+| Field | What to enter |
+|---|---|
+| **Name** | What the key is for, for example `kisd course, my laptop`. You will see it in the list of keys. |
+| **Expires** | A date soon after the course ends. An empty field means the key never expires: avoid that. |
+| **Monthly Credits Quota** | The most this key may spend per month. An agent can use many credits quickly; the quota protects you if the key leaks or a session runs away. |
+| **Total Credits Quota** | The most this key may spend in total. Optional. |
+| **All grant models** | Leave it ticked. |
+
+Click **Create**.
+
+### 1e. Copy the key now: it is shown only once
+
+> [!IMPORTANT]
+> The key is shown **only once**, right after you click **Create**. When you
+> leave or reload the page, it is gone, and nobody can show it to you again,
+> not even the administrators.
+
+Click the copy button on the right of the key, and go straight on to step 2.
+
+![The new key under "Your API Token", with a copy button; most of the key is hidden in this picture](images/04-key-6-key-shown.png)
+
+Your key starts with `plg-` and is about 45 characters long. In the picture
+above most of it is hidden: never use a key from a picture, page or file you
+did not create yourself.
+
+If you lost the key before you used it, nothing is broken: generate a new one,
+and archive the old one in **API Keys** (step 1f).
+
+### 1f. Your keys in the list
+
+Under **API Keys → Active Keys** you see all your keys: name, grant, the first
+characters of the key, the expiry date and the models it can use. The full key is
+not shown here. The **⋮** menu on the right of a key lets you archive it, so it
+stops working.
+
+<img src="images/04-key-7-key-list.png" alt="LLM Lab API Keys page: the key llmlab python lecture, Active, grant plgtraining2026, expiring 2026-11-30, all models" width="700">
 
 ## Step 2. Give the key to opencode
 
