@@ -12,7 +12,7 @@ computer, before the first lecture.
 | 4 | [Configure opencode for llmlab, part 2: the API key](04-configure-llmlab-api-key.md) | Create an API key on llmlab, give it to opencode, check it works | 10 min |
 | 5 | [First steps in opencode](05-first-steps.md) | Open a project folder, ask a question; models and good habits | 5 min |
 | 6 | [Optional: opencode and Claude Code](06-opencode-vs-claude-code.md) | Read after the exercises: how opencode compares with Claude Code | 5 min |
-| 7 | [For experts: other ways to set up](07-for-experts.md) | Optional: key as an environment variable, testing the key with `curl`, the terminal version | — |
+| 7 | [For experts: other ways to set up](07-for-experts.md) | Optional: where settings and key are stored, key as an environment variable, testing the key with `curl`, the terminal version | — |
 
 Screenshots used on these pages are in [`images/`](images/README.md).
 

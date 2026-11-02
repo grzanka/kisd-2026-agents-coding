@@ -202,54 +202,9 @@ help you today?* This answer came from llmlab, and used a few of your credits.
 
 </details>
 
-## Summary: what is now on your computer
-
-The settings and the key are kept in different files. `yourname` stands for your
-Windows user name.
-
-| What | Where | Created in |
-|---|---|---|
-| Settings: llmlab address and models | `C:\Users\yourname\.config\opencode\opencode.json` | Part 1 |
-| Your API key | A file in `C:\Users\yourname\.local\share\opencode\`: `auth.json` or `opencode.db`, depending on the opencode version | Part 2, step 2 |
-
-The settings file has no secrets in it. The key is stored as plain text, so do
-not share the `.local` folder or send its files to anyone.
-
-You will not normally see these folders. File Explorer opens on *This PC*,
-*Desktop* or *Documents*, and these folders sit one level up, directly in your
-user folder. Their names start with a dot, which is the Linux and macOS way of
-marking hidden folders; there they are hidden, and that habit came to Windows
-with programs like opencode.
-
-To open the settings folder in File Explorer, press **Windows+R**, paste this,
-and press **Enter**:
-
-```text
-%USERPROFILE%\.config\opencode
-```
-
-<details>
-<summary>Linux / macOS</summary>
-
-The same paths, starting with `~` instead of `C:\Users\yourname`:
-`~/.config/opencode/opencode.json` and `~/.local/share/opencode/`. Folders
-starting with a dot are hidden; list them with `ls -a`, or press
-**Cmd+Shift+.** in the macOS Finder.
-
-</details>
-
-<details>
-<summary>Remove everything</summary>
-
-Delete the folder `C:\Users\yourname\.config\opencode`, and the folder
-`C:\Users\yourname\.local\share\opencode`. The second one also holds your
-saved opencode sessions, so they are gone too. Then archive the key in llmlab
-(step 1f).
-
-</details>
-
-Other ways to give opencode the key, for experienced users, are in
-[For experts: other ways to set up](07-for-experts.md).
+Where opencode keeps the settings and the key, how to find these files and how
+to remove everything, and other ways to give opencode the key, are described in
+[7. For experts: other ways to set up](07-for-experts.md).
 
 ## Sources
 
