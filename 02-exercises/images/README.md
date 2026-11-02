@@ -39,5 +39,8 @@ page that shows it.
 | `02-pendulum-11a-tools-thought.png` | [Exercise 1](../02-pendulum.md), step 11 | The Thought rebuilding the list of tools |
 | `02-pendulum-11b-tools-list.png` | [Exercise 1](../02-pendulum.md), step 11 | The list of 19 tool calls |
 | `02-pendulum-12-context.png` | [Exercise 1](../02-pendulum.md), step 12 | The Context tab with the session numbers |
+| `02-pendulum-raw-1-user.png` | [Exercise 1](../02-pendulum.md), For experts | The raw JSON of a user message |
+| `02-pendulum-raw-2-assistant.png` | [Exercise 1](../02-pendulum.md), For experts | The raw JSON of an answer, with the reasoning part |
+| `02-pendulum-raw-3-show-me.png` | [Exercise 1](../02-pendulum.md), For experts | The raw JSON of the step 9 prompt and answer |
 
 [← Back to the exercises](../README.md) · [Main README](../../README.md)

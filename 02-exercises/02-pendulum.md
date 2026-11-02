@@ -691,6 +691,78 @@ typed as 0,61, would pass silently. You are still the scientist.
 
 </details>
 
+<details>
+<summary>For experts: what a session looks like inside</summary>
+
+opencode keeps every message of a session as a small JSON record. You can see
+them in the **Context** tab of step 12, under **Raw messages**; **Export
+session** saves the whole session to a file. The pictures below come from the
+test run.
+
+**Your prompt** (picture 1) is a record with `"type": "user"`:
+
+- `text` is your prompt exactly as typed. The line breaks of the copy-paste
+  blocks arrive as `\n`, plain new lines; they do not change the meaning.
+- `metadata.agent` is `"build"`: the opencode agent that may change files. (The
+  terminal version of opencode also has a read-only `plan` agent.)
+- `metadata.model` names the provider `"plgrid"` and the model
+  `"deepseek-ai/DeepSeek-V4.1-Flash"`. Both come from the settings file of
+  [part 1](../01-getting-started/03-configure-llmlab-endpoint.md): `plgrid` is
+  the name of the provider in
+  [opencode.json](../01-getting-started/config/opencode.json), the model name is
+  what llmlab calls it.
+- `time.created` is a Unix time in milliseconds: 1793636270586 is
+  2 November 2026, 17:17:50.
+
+**The answer** (picture 2) is a record with `"type": "assistant"`. Its
+`content` is a list of parts:
+
+- A part `"type": "reasoning"`: this is the **Thought** you saw in the app. Its
+  `native.reasoningField` is `"reasoning"`: llmlab sends the model's thinking in
+  a separate field of the answer with that name, and the line
+  `"interleaved": {"field": "reasoning"}` in `opencode.json` tells opencode where
+  to find it. Its `time` shows the thinking took 1.3 s, the *Thought 1s* in the
+  app.
+- A part `"type": "text"`: the answer itself.
+- In steps that use tools, the tool calls and their results are further parts
+  of the same kind of list.
+- `model.variant` is `"default"`: the **Default** shown next to the model name
+  under the text box. Some models offer variants, for example more or less
+  thinking; DeepSeek here runs in its default one.
+
+**The "Show me" prompt of step 9** (picture 3): the reasoning part holds the
+same long, hesitating text you saw as the Thought. The app shows the model's
+thinking as it is, not a cleaned-up summary. That is useful: when an agent does
+something strange, its reasoning often tells you why.
+
+Why this matters for research: the raw records are an exact log of what you
+asked, which model answered, when, and what it thought and did. If you use an
+agent for real analysis, export the session and keep it next to your results,
+as you would keep a lab notebook.
+
+<details>
+<summary>Picture 1: a user message</summary>
+
+<img src="images/02-pendulum-raw-1-user.png" alt="Raw messages: the JSON of the first prompt, with id, type user, text with \n line breaks, metadata with agent build and model deepseek-ai/DeepSeek-V4.1-Flash from provider plgrid, and time created" width="700">
+
+</details>
+
+<details>
+<summary>Picture 2: an assistant message</summary>
+
+<img src="images/02-pendulum-raw-2-assistant.png" alt="The JSON of the first answer: type assistant, agent build, model with variant default, and content with a reasoning part (native reasoningField reasoning, created and completed times) and a text part with the answer" width="700">
+
+</details>
+
+<details>
+<summary>Picture 3: the "Show me pendulum.png." messages</summary>
+
+<img src="images/02-pendulum-raw-3-show-me.png" alt="The JSON of the prompt Show me pendulum.png. and the start of the answer, whose reasoning part holds the long text about read versus browser.preview" width="700">
+
+</details>
+
+</details>
+
 ---
 
 ← Previous: [Create a project folder](01-project-folder.md) · [Exercises overview](README.md) · [Main README](../README.md)
