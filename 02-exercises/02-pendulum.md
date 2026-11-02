@@ -298,7 +298,7 @@ agent this fact, and you decide how to fix it:
 
 ```text
 I checked the lab notebook.
-The length 70 in the row 70;16,8 is not a typo for 0,70:
+That length of 70 is not a typo for 0,70:
 the student measured 70 cm and forgot to convert it to metres.
 Fix it in analyse.py, not in pendulum.csv:
 convert any length above 10 to metres and print a warning when you do.
