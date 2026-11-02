@@ -17,5 +17,10 @@ page that shows it.
 | `01-pendulum-1-chat-answer.png` | [Exercise 1](../01-pendulum.md), step 1 | A plain answer, only a Thought |
 | `01-pendulum-2-read-shell.png` | [Exercise 1](../01-pendulum.md), step 2 | Read and Shell tool calls, opened |
 | `01-pendulum-3-write.png` | [Exercise 1](../01-pendulum.md), step 3 | The Write of pendulum.csv, opened |
+| `01-pendulum-4a-write-shell.png` | [Exercise 1](../01-pendulum.md), step 4 | The Write of analyse.py and its run |
+| `01-pendulum-4b-output.png` | [Exercise 1](../01-pendulum.md), step 4 | The first output, mean g about 90 |
+| `01-pendulum-5-explain.png` | [Exercise 1](../01-pendulum.md), step 5 | The agent explains the row 70 |
+| `01-pendulum-6a-edit.png` | [Exercise 1](../01-pendulum.md), step 6 | The Edit of analyse.py, in green |
+| `01-pendulum-6b-output.png` | [Exercise 1](../01-pendulum.md), step 6 | The fixed output, g = 9.803 ± 0.031 |
 
 [← Back to the exercises](../README.md) · [Main README](../../README.md)

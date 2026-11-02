@@ -249,18 +249,27 @@ Use only the Python standard library.
 Run the script and show me the output.
 ```
 
-Expected result: a table of 12 rows, then a mean *g* of about **90 m/s²**. That is
-far too large. Keep it for the next step.
+Expected result: *Used 2 Write, Shell*. Open it: the new script `analyse.py`
+in green, then **Shell** `python analyse.py`.
+
+<img src="images/01-pendulum-4a-write-shell.png" alt="Used 2 Write, Shell, opened: a Thought, the new file analyse.py with 22 green lines, Shell python analyse.py, and a Thought" width="700">
+
+Below it, the output: a table of 12 rows, then a mean *g* of about
+**90 m/s²**. That is far too large. Keep it for the next step.
+
+<img src="images/01-pendulum-4b-output.png" alt="The output table: 12 rows with g near 9.8 except the row 70.00 with g = 979.127, and Mean g = 90.581 m/s^2; below, a note that the row 70 is probably a typo" width="700">
 
 **What to notice:** several tool calls in a row: **Write** for the script, then
 **Shell** to run `python analyse.py`. The agent read the output before answering
-you.
+you. It may also point at the row `70` again, as in the picture.
 
-Often the first run fails, because Python does not read `0,20` as a number. You
-then see an error such as `ValueError: could not convert string to float: '0,20'`,
-followed by an `Edit` of the script and a second run, without you doing anything.
-That is the agentic loop: act, look at the result, fix, try again. If it did not
-happen to you, look at your neighbour's screen.
+Sometimes the first run fails, because Python does not read `0,20` as a number.
+You then see an error such as
+`ValueError: could not convert string to float: '0,20'`, followed by an **Edit**
+of the script and a second run, without you doing anything. That is the agentic
+loop: act, look at the result, fix, try again. In the run in the pictures the
+agent saw the decimal commas in advance and the first run worked. Ask your
+neighbour whether theirs failed.
 
 ## Step 5: Find the problem (reasoning on results)
 
@@ -270,14 +279,39 @@ Look at the per-row results and find out why.
 Do not change any files yet, just explain.
 ```
 
-Expected result: the agent points to the row with length `70`. Its *g* is about
-979, a hundred times too large: the length was written in **centimetres**, not
-metres.
+Expected result: *Used 1 Thought*, then an explanation. The agent points to the
+row with length `70`: its *g* is about **979**, a hundred times too large, and
+this one row pulls the mean up from about 9.8 to 90.6.
 
-**What to notice:** the agent used the output of its own script as evidence. It
-may also read `pendulum.csv` again to check.
+<img src="images/01-pendulum-5-explain.png" alt="The Thought and the answer: the culprit is the row 70;16,8; the period 1.68 s fits a 0.70 m pendulum; without that row the mean is 9.80 m/s^2; the agent offers to fix the row to 0,70" width="700">
+
+**What to notice:**
+
+- The agent used the output of its own script as evidence. Here it did not need
+  any tool; it reasoned on what it already had.
+- The best argument is in the second column. The time, 16.8 s for 10 swings,
+  gives T = 1.68 s, which is just what a **0.70 m** pendulum swings. So the
+  length is wrong, not the time.
+- The agent says *why* the length is 70: you may read "the length was written in
+  centimetres" or "a typo, `0,` is missing". Both give 0.70 m. The data cannot
+  tell which; it is a guess, even if the agent sounds sure.
+- The agent may offer to change the row in `pendulum.csv` to `0,70`. Do not
+  accept: step 6 explains why.
+
+<details>
+<summary>Explain: could it really be a 70 m pendulum?</summary>
+
+A 70 m pendulum has a period of 16.8 s. That is exactly the number in the second
+column. So the row could also mean "70 m, timed for **one** swing instead of
+10". Only the setting rules this out: a student lab has no 70 m pendulum. The
+numbers alone fit both stories. Context is your job, not the agent's.
+
+</details>
 
 ## Step 6: Fix it (`Edit`)
+
+Suppose you asked the student, and they wrote that length in centimetres. You
+give the agent this fact and decide how to fix it:
 
 ```text
 That length was written in centimetres.
@@ -287,12 +321,27 @@ Also print the standard error of the mean of g.
 Run the script again.
 ```
 
-Expected result: an `Edit` of `analyse.py` with red and green lines, a new run,
-a warning about the row with `70`, and a mean *g* of about **9.80 m/s²** with a
-standard error of about **0.03 m/s²**.
+Expected result: *Used ... Edit, Shell*. Open it: an **Edit** of `analyse.py`
+that shows only the changed part, with the new lines in green: the conversion
+with its warning, and the standard error. Then **Shell** runs the script again.
+
+<img src="images/01-pendulum-6a-edit.png" alt="The Edit of analyse.py: green lines for the check length > 10 with a warning and division by 100, and for the standard error; then Shell python analyse.py" width="700">
+
+The output: a warning about the row with `70`, the row now as `0.70` with
+g = 9.791, a mean *g* of about **9.80 m/s²** and a standard error of about
+**0.03 m/s²**.
+
+<img src="images/01-pendulum-6b-output.png" alt="Output: Warning: length 70 looks like centimetres; the table with 0.70 and g = 9.791; Mean g = 9.803 m/s^2; Standard error of the mean of g = 0.031 m/s^2; and the agent's comments below" width="700">
 
 **What to notice:** the agent changed **part** of an existing file instead of
 rewriting it, and checked its change by running the script again.
+
+**Check the agent's words, not only its numbers.** In the run in the picture
+the numbers are right, but the last sentence says the result is "within about
+0.2 m/s² of 9.81". The real difference is 9.81 − 9.803 = **0.007 m/s²**, about
+0.2 *standard errors*. The agent mixed up the units. The mistake is small here,
+but it is written just as confidently as the correct parts. Read what the agent
+writes the way you would read a student's report.
 
 <details>
 <summary>Explain: why fix the script and not the data?</summary>
