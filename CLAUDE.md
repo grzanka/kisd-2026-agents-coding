@@ -61,3 +61,15 @@ cd kisd-demo
 - When you add, rename or remove a file, update the README of its folder and the
   main `README.md`.
 - End each folder README with a link back to the main README.
+
+## 4. Order of pages
+
+- Pages in `docs/` and `exercises/` have a two-digit prefix in reading order:
+  `01-what-is-opencode.md`, `02-install-opencode.md`, … One page covers one
+  stage of the setup or one exercise.
+- Images in `docs/images/` start with the number of the page that uses them,
+  then the step: `04-connect-3a-mkdir.png`.
+- End each page with a navigation line after `---`:
+  `← Previous: [..] · [Docs overview](README.md) · Next: [.. →]`.
+- When you insert, remove or reorder a page, renumber the files and fix every
+  link to them, including the previous/next lines.

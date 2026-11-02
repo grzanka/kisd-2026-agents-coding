@@ -1,19 +1,21 @@
-# Step by step: connect the opencode app to llmlab
+# 4. Connect opencode to llmlab
 
 This page shows, with screenshots, how to set up the opencode desktop app on
-Windows so that it uses models from [PLGrid Forge (llmlab)](plgrid-forge.md).
+Windows so that it uses models from [PLGrid Forge (llmlab)](03-get-llmlab-access.md).
+You need the opencode app ([page 2](02-install-opencode.md)) and your llmlab API
+key ([page 3](03-get-llmlab-access.md)).
 
 ## Step 1. Open opencode
 
 Start opencode from the Start menu. Not installed yet? See
-[Install the desktop app](opencode.md#install-the-desktop-app).
+[2. Install the opencode app](02-install-opencode.md).
 
 Expected result: a window with the large **opencode** logo and a text box that
 says *Ask anything, / for commands, @ for context...*. Below the box you see the
 current project (**Default Project**), and at the bottom a link
 *Connect to 75+ providers to use other models*.
 
-![opencode start screen after the first launch](images/opencode-setup-01-start-screen.png)
+![opencode start screen after the first launch](images/04-connect-1-start-screen.png)
 
 The model shown under the text box (here **Big Pickle**) is a free default
 model. It is not llmlab yet. The next steps change that.
@@ -49,14 +51,18 @@ create the folder, and do not complain if it already exists.
 
 Expected result (with your own user name and date):
 
-```text
+<!-- Trying two ways to show output without a copy button: <pre> and a screenshot. Keep one. -->
+
+<pre>
     Directory: C:\Users\yourname\.config
 
 
 Mode                 LastWriteTime         Length Name
 ----                 -------------         ------ ----
 d-----        2026-10-30     21:03                opencode
-```
+</pre>
+
+![PowerShell window after the mkdir command, showing the new opencode folder](images/04-connect-3a-mkdir.png)
 
 ### 3b. Download the file
 
@@ -164,7 +170,7 @@ The file [config/opencode.json](../config/opencode.json) tells opencode:
 ## Step 4. Store your API key
 
 You get the key on <https://llmlab.plgrid.pl> under **Grants → Generate API Key**
-(see [PLGrid Forge](plgrid-forge.md#1-get-access)).
+(see [3. Get access to llmlab](03-get-llmlab-access.md)).
 
 opencode looks for the key in two places. Use **one** of them.
 
@@ -243,7 +249,7 @@ an answer within a few seconds.
   of Windows and sign in again.
 - *not available for grant*: your grant cannot use DeepSeek. Click the model
   name under the text box and pick **Gemma 4 31B (PLGrid)**. See
-  [Which model](plgrid-forge.md#3-which-model).
+  [Which model](05-first-steps.md#which-model).
 
 </details>
 
@@ -299,4 +305,6 @@ setting:
 
 </details>
 
-[← Back to the docs](README.md)
+---
+
+← Previous: [3. Get access to llmlab](03-get-llmlab-access.md) · [Docs overview](README.md) · Next: [5. First steps in opencode →](05-first-steps.md)

@@ -15,8 +15,8 @@ You do **not** need to write or read any Python. You only type prompts and
 watch.
 
 - Time: about 30–40 minutes.
-- You need: opencode connected to PLGrid Forge (see
-  [PLGrid Forge](../docs/plgrid-forge.md)).
+- You need: the opencode app connected to llmlab (pages 2–4 of the
+  [docs](../docs/README.md)).
 
 <details>
 <summary>Explain: agent, tool, tool call, agentic loop</summary>
@@ -63,26 +63,16 @@ Create a folder for the exercise:
 mkdir kisd-pendulum
 ```
 
-Go into it:
+Expected result: a short table with the folder name `kisd-pendulum`. The command
+is the same in the terminal on Linux and macOS. You can also create the folder
+in File Explorer instead.
 
-```powershell
-cd kisd-pendulum
-```
+Start the opencode app from the Start menu. Click the project name under the
+text box and choose the `kisd-pendulum` folder (see
+[Open a project folder](../docs/05-first-steps.md#open-a-project-folder)).
 
-Copy the opencode setup files into this folder (the `.opencode` folder,
-`AGENTS.md` and `opencode.json`), as described in
-[PLGrid Forge, step 2](../docs/plgrid-forge.md#2-connect-opencode).
-
-Start opencode:
-
-```powershell
-opencode
-```
-
-Expected result: the opencode screen opens, with a text box at the bottom and the
-model name next to it.
-
-The commands are the same in bash on Linux and macOS.
+Expected result: under the text box you see the project `kisd-pendulum` and the
+model **DeepSeek V4.1 Flash (PLGrid)**.
 
 ## Step 1: A plain question (chat mode)
 
@@ -103,8 +93,8 @@ like a chat. Everything from here on is different.
 Do not change anything. List the files in this folder, and check which version of Python is installed on this computer.
 ```
 
-Expected result: the agent lists `.opencode`, `AGENTS.md` and `opencode.json`,
-and reports a Python version such as `Python 3.12.4`.
+Expected result: the agent says the folder is empty, and reports a Python
+version such as `Python 3.12.4`.
 
 **What to notice:** the model cannot see your disk. To answer, it had to call a
 tool to list the files and a `Bash` tool to run `python --version`, then read
@@ -114,15 +104,15 @@ the results. You did not tell it which commands to use.
 <summary>If Python is not installed</summary>
 
 On Windows the agent may report *"Python was not found; run without arguments to
-install from the Microsoft Store"*. Quit opencode with `/exit`, then install
+install from the Microsoft Store"*. Close the opencode window, then install
 Python in PowerShell:
 
 ```powershell
 winget install -e --id Python.Python.3.12
 ```
 
-Close the terminal, open a new one, go back into the folder with
-`cd kisd-pendulum`, start `opencode` again and repeat this step.
+Start the opencode app again, choose the `kisd-pendulum` folder as in step 0,
+and repeat this step.
 
 On Linux, install the `python3` package with your package manager. On macOS, run
 `brew install python`.
@@ -249,11 +239,7 @@ List, in order, every tool you used in this session, and for each one say in one
 Expected result: a list such as read, write, run, edit, run, install… Compare it
 with the tool calls you saw on screen. Do they match?
 
-Quit opencode:
-
-```text
-/exit
-```
+You are done. Close the opencode window, or keep it open for "Going further".
 
 ## What just happened
 
@@ -286,7 +272,7 @@ typed as 0,61, would pass silently. You are still the scientist.
 - **The agent only describes what it would do but does not do it.** You may be in
   the `plan` agent. Press **Tab** to switch to `build` and send the prompt again.
 - **"not available for grant"**: your grant cannot use the default model. See
-  [PLGrid Forge, step 3](../docs/plgrid-forge.md#3-which-model).
+  [Which model](../docs/05-first-steps.md#which-model).
 - **`pip` fails with a network or proxy error.** Ask the agent to try again; if it
   keeps failing, skip the plot and do step 8 without it.
 - **The agent stops without a result.** Check whether the expected file exists.
@@ -314,4 +300,6 @@ typed as 0,61, would pass silently. You are still the scientist.
 
 </details>
 
-[← Back to the main README](../README.md)
+---
+
+← Previous: [5. First steps in opencode](../docs/05-first-steps.md) · [Exercises overview](README.md) · [Main README](../README.md)

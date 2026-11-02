@@ -1,12 +1,13 @@
 # Images
 
-Screenshots used by the pages in `docs`. File names start with the page they
-belong to and the step number.
+Screenshots used by the pages in `docs`. Each file name starts with the number
+of the page it belongs to, then the step.
 
 | Image | Used in |
 |---|---|
-| [opencode-install-01-home.png](opencode-install-01-home.png) | [What is opencode](../opencode.md), install |
-| [opencode-install-02-download.png](opencode-install-02-download.png) | [What is opencode](../opencode.md), install |
-| [opencode-setup-01-start-screen.png](opencode-setup-01-start-screen.png) | [Step by step: connect the opencode app to llmlab](../opencode-llmlab-setup.md), step 1 |
+| [02-install-1-home.png](02-install-1-home.png) | [2. Install the opencode app](../02-install-opencode.md): opencode home page |
+| [02-install-2-download.png](02-install-2-download.png) | [2. Install the opencode app](../02-install-opencode.md): download page |
+| [04-connect-1-start-screen.png](04-connect-1-start-screen.png) | [4. Connect opencode to llmlab](../04-connect-opencode-to-llmlab.md), step 1 |
+| [04-connect-3a-mkdir.png](04-connect-3a-mkdir.png) | [4. Connect opencode to llmlab](../04-connect-opencode-to-llmlab.md), step 3a |
 
-[← Back to the main README](../../README.md)
+[← Back to the docs](../README.md) · [Main README](../../README.md)

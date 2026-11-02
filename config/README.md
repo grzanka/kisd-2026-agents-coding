@@ -1,7 +1,7 @@
 # Config
 
 A ready-made opencode configuration that connects opencode to PLGrid Forge
-(llmlab). How to install it: [Step by step: connect the opencode app to llmlab](../docs/opencode-llmlab-setup.md).
+(llmlab). How to install it: [4. Connect opencode to llmlab](../docs/04-connect-opencode-to-llmlab.md).
 
 | File | What it does |
 |---|---|
