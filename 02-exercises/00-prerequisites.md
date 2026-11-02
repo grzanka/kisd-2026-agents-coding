@@ -55,7 +55,7 @@ folder it lives in and the Python version in brackets.
 <img src="images/00-python-2-pip.png" alt="PowerShell: python -m pip --version prints pip 26.2.1 from C:\Users\...\pythoncore-3.15-64\Lib\site-packages\pip (python 3.15)" width="700">
 
 If both steps worked, you are ready: go to
-[Exercise 1](01-pendulum.md).
+[Create a project folder](01-project-folder.md).
 
 ## Install Python
 
@@ -178,4 +178,4 @@ installer from <https://www.python.org/downloads/> and run it.
 
 ---
 
-← Previous: [5. First steps in opencode](../01-getting-started/05-first-steps.md) · [Overview](README.md) · Next: [Exercise 1 →](01-pendulum.md)
+← Previous: [5. First steps in opencode](../01-getting-started/05-first-steps.md) · [Overview](README.md) · Next: [Create a project folder →](01-project-folder.md)

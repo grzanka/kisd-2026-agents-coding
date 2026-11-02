@@ -16,8 +16,9 @@ watch.
 
 - Time: about 30–40 minutes.
 - You need: the opencode app connected to llmlab (pages 2–4 of
-  [Getting started](../01-getting-started/README.md)), and Python installed
-  ([Before the exercises](00-prerequisites.md)).
+  [Getting started](../01-getting-started/README.md)), Python installed
+  ([Before the exercises](00-prerequisites.md)), and an empty project folder
+  ([Create a project folder](01-project-folder.md)).
 
 <details>
 <summary>Explain: agent, tool, tool call, agentic loop</summary>
@@ -57,91 +58,13 @@ exercise.
 If opencode asks for **permission** before a tool call, read what it wants to do,
 then approve it.
 
-## Step 0: Create a project folder
+## Before you start: open the project
 
-You may be used to working with **one file at a time**: you open a Word document,
-edit it, save it. An agent works differently. It works with a **whole folder**,
-called the **project**. It can read, create and change every file in that folder,
-and nothing outside it. Over the exercise the agent fills the folder with several
-files: the data, a script, a plot and a report.
+Create the folder `kisd-pendulum` and open it as the project in opencode, as in
+[Before each exercise: create a project folder](01-project-folder.md).
 
-So the rule is: **one project = one folder**. Each exercise gets its own new,
-empty folder. That keeps the files of different exercises apart, and keeps the
-agent away from your other files.
-
-You create the folder from inside opencode.
-
-### 0a. Choose a project
-
-Start the opencode app (press the **Windows** key, type `opencode`, press
-**Enter**). Under the text box you see the current project, after installing it
-is **Default Project**. Click it, or press **Ctrl+Shift+O**.
-
-![The project name "Default Project" under the text box, with the tooltip "Choose project Ctrl Shift O"](images/01-pendulum-0a-choose-project.png)
-
-### 0b. Add a project
-
-A list of projects opens. Click **Add project** (or press **Ctrl+O**).
-
-![The project list: Default Project, Other projects, and Add project](images/01-pendulum-0b-add-project.png)
-
-### 0c. Create a new folder
-
-A window **Open project** opens. It looks like File Explorer. Go to the place
-where you want to keep your exercises, for example **Documents**: click
-**This PC** on the left, then **Documents**. Then click **New folder** at the top.
-
-<img src="images/01-pendulum-0c-new-folder.png" alt="Open project window with the New folder button at the top highlighted" width="700">
-
-### 0d. Name the folder
-
-A new folder appears, with its name ready to type over. Type `kisd-pendulum` and
-press **Enter**. (In the picture the folder is called `exercise02`; use
-`kisd-pendulum`.)
-
-<img src="images/01-pendulum-0d-name-folder.png" alt="A new folder in the list, its name being typed" width="700">
-
-### 0e. Open the folder and select it
-
-Double-click the new folder to go into it. It is empty, so the window says
-*No items match your search*. That is fine. Click **Select Folder**.
-
-<img src="images/01-pendulum-0e-select-folder.png" alt="Open project window inside the empty new folder, with the Select Folder button" width="700">
-
-Expected result: opencode shows the new project under the text box, with its
-full path on the right, and the model **PLGrid Forge (Cyfronet) / DeepSeek V4.1
-Flash (PLGrid)** in the text box.
-
-<img src="images/01-pendulum-0f-project-open.png" alt="opencode with the new project under the text box, its path on the right, and DeepSeek V4.1 Flash (PLGrid) selected" width="700">
-
-If you see a different model, click its name and choose **DeepSeek V4.1 Flash
-(PLGrid)**.
-
-<details>
-<summary>Errors</summary>
-
-- You clicked **Select Folder** before going into the new folder: opencode
-  opened the folder above it, for example **Documents**. Repeat from 0a and
-  double-click `kisd-pendulum` before you click **Select Folder**.
-- The new folder is called *New folder*: you clicked somewhere else before
-  typing the name. Right-click it, choose **Rename**, type `kisd-pendulum`, and
-  press **Enter**.
-
-</details>
-
-<details>
-<summary>Going further: create the folder in the terminal</summary>
-
-In PowerShell (or a Linux/macOS terminal), this creates the folder in your user
-folder:
-
-```powershell
-mkdir kisd-pendulum
-```
-
-Then open it in opencode with **Add project** as in 0b, and skip 0c and 0d.
-
-</details>
+Expected result: under the text box you see the project `kisd-pendulum`, and the
+model **PLGrid Forge (Cyfronet) / DeepSeek V4.1 Flash (PLGrid)**.
 
 ## Step 1: A plain question (chat mode)
 
@@ -156,7 +79,7 @@ Answer in three sentences.
 Expected result: a short answer with T = 2π√(L/g), so g = 4π²L/T². Above it,
 opencode shows *Used 1 Thought*.
 
-<img src="images/01-pendulum-1-chat-answer.png" alt="The question, the line Used 1 Thought, and a three-sentence answer with T = 2π√(L/g) and g = 4π²L/T²" width="700">
+<img src="images/02-pendulum-1-chat-answer.png" alt="The question, the line Used 1 Thought, and a three-sentence answer with T = 2π√(L/g) and g = 4π²L/T²" width="700">
 
 **What to notice:** no tool calls, only a Thought. The model answered from what
 it knows, exactly like a chat. Everything from here on is different.
@@ -173,7 +96,7 @@ Expected result: *Used 2 Read, Shell*, then the answer: the folder is empty,
 and the Python version, such as `Python 3.15.0`. Click the line to see the
 details: **Read** of your project folder and **Shell** `python --version`.
 
-<img src="images/01-pendulum-2-read-shell.png" alt="Used 2 Read, Shell, opened: Thought, Read exercise02, Shell python --version, Thought; then the answer: the folder is empty, Python 3.15.0, no changes were made" width="700">
+<img src="images/02-pendulum-2-read-shell.png" alt="Used 2 Read, Shell, opened: Thought, Read exercise02, Shell python --version, Thought; then the answer: the folder is empty, Python 3.15.0, no changes were made" width="700">
 
 **What to notice:** the model cannot see your disk. To answer, it had to call
 **Read** to list the files and **Shell** to run `python --version`, then read
@@ -225,7 +148,7 @@ opencode may show the pasted text as a single block, such as
 Expected result: *Used 1 Write*. Open it: you see the content of
 `pendulum.csv`, 13 lines in green (*+13 -0*: 13 lines added, none removed).
 
-<img src="images/01-pendulum-3-write.png" alt="Used 1 Write, opened: a Thought, the new file pendulum.csv with 13 green lines, another Thought; then the answer: the file was created, and the row 70;16,8 looks like a typo for 0,70 but was left as given" width="700">
+<img src="images/02-pendulum-3-write.png" alt="Used 1 Write, opened: a Thought, the new file pendulum.csv with 13 green lines, another Thought; then the answer: the file was created, and the row 70;16,8 looks like a typo for 0,70 but was left as given" width="700">
 
 Open File Explorer and go to your `kisd-pendulum` folder: the file is there. You
 can open it in Notepad.
@@ -252,12 +175,12 @@ Run the script and show me the output.
 Expected result: *Used 2 Write, Shell*. Open it: the new script `analyse.py`
 in green, then **Shell** `python analyse.py`.
 
-<img src="images/01-pendulum-4a-write-shell.png" alt="Used 2 Write, Shell, opened: a Thought, the new file analyse.py with 22 green lines, Shell python analyse.py, and a Thought" width="700">
+<img src="images/02-pendulum-4a-write-shell.png" alt="Used 2 Write, Shell, opened: a Thought, the new file analyse.py with 22 green lines, Shell python analyse.py, and a Thought" width="700">
 
 Below it, the output: a table of 12 rows, then a mean *g* of about
 **90 m/s²**. That is far too large. Keep it for the next step.
 
-<img src="images/01-pendulum-4b-output.png" alt="The output table: 12 rows with g near 9.8 except the row 70.00 with g = 979.127, and Mean g = 90.581 m/s^2; below, a note that the row 70 is probably a typo" width="700">
+<img src="images/02-pendulum-4b-output.png" alt="The output table: 12 rows with g near 9.8 except the row 70.00 with g = 979.127, and Mean g = 90.581 m/s^2; below, a note that the row 70 is probably a typo" width="700">
 
 **What to notice:** several tool calls in a row: **Write** for the script, then
 **Shell** to run `python analyse.py`. The agent read the output before answering
@@ -283,7 +206,7 @@ Expected result: *Used 1 Thought*, then an explanation. The agent points to the
 row with length `70`: its *g* is about **979**, a hundred times too large, and
 this one row pulls the mean up from about 9.8 to 90.6.
 
-<img src="images/01-pendulum-5-explain.png" alt="The Thought and the answer: the culprit is the row 70;16,8; the period 1.68 s fits a 0.70 m pendulum; without that row the mean is 9.80 m/s^2; the agent offers to fix the row to 0,70" width="700">
+<img src="images/02-pendulum-5-explain.png" alt="The Thought and the answer: the culprit is the row 70;16,8; the period 1.68 s fits a 0.70 m pendulum; without that row the mean is 9.80 m/s^2; the agent offers to fix the row to 0,70" width="700">
 
 **What to notice:**
 
@@ -325,13 +248,13 @@ Expected result: *Used ... Edit, Shell*. Open it: an **Edit** of `analyse.py`
 that shows only the changed part, with the new lines in green: the conversion
 with its warning, and the standard error. Then **Shell** runs the script again.
 
-<img src="images/01-pendulum-6a-edit.png" alt="The Edit of analyse.py: green lines for the check length > 10 with a warning and division by 100, and for the standard error; then Shell python analyse.py" width="700">
+<img src="images/02-pendulum-6a-edit.png" alt="The Edit of analyse.py: green lines for the check length > 10 with a warning and division by 100, and for the standard error; then Shell python analyse.py" width="700">
 
 The output: a warning about the row with `70`, the row now as `0.70` with
 g = 9.791, a mean *g* of about **9.80 m/s²** and a standard error of about
 **0.03 m/s²**.
 
-<img src="images/01-pendulum-6b-output.png" alt="Output: Warning: length 70 looks like centimetres; the table with 0.70 and g = 9.791; Mean g = 9.803 m/s^2; Standard error of the mean of g = 0.031 m/s^2; and the agent's comments below" width="700">
+<img src="images/02-pendulum-6b-output.png" alt="Output: Warning: length 70 looks like centimetres; the table with 0.70 and g = 9.791; Mean g = 9.803 m/s^2; Standard error of the mean of g = 0.031 m/s^2; and the agent's comments below" width="700">
 
 **What to notice:** the agent changed **part** of an existing file instead of
 rewriting it, and checked its change by running the script again.
@@ -460,4 +383,4 @@ typed as 0,61, would pass silently. You are still the scientist.
 
 ---
 
-← Previous: [Before the exercises: Python](00-prerequisites.md) · [Exercises overview](README.md) · [Main README](../README.md)
+← Previous: [Create a project folder](01-project-folder.md) · [Exercises overview](README.md) · [Main README](../README.md)
