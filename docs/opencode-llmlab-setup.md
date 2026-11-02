@@ -21,8 +21,6 @@ The opencode app has no screen where you can type the llmlab address. Instead,
 you download a small ready-made settings file from this course repository.
 You do not need Git.
 
-Close opencode before you continue.
-
 ## Step 2. Open PowerShell
 
 Press the **Windows** key, type `PowerShell`, and press **Enter**. A window with
@@ -125,8 +123,9 @@ Expected result: the settings text, starting like this:
     "plgrid": {
       "npm": "@ai-sdk/openai-compatible",
       "name": "PLGrid Forge (Cyfronet)",
+      "env": ["PLGRID_API_KEY"],
       "options": {
-        "baseURL": "https://llmlab.plgrid.pl/api/v1",
+        "baseURL": "https://llmlab.plgrid.pl/api/v1"
 ```
 
 > [!WARNING]
@@ -144,8 +143,9 @@ The file [config/opencode.json](../config/opencode.json) tells opencode:
   as a fallback;
 - to use Gemma for the short session titles, so no text goes to opencode's
   free models;
-- to read your API key from a setting called `PLGRID_API_KEY` (next step), so
-  the key itself is never written in the file.
+- where to find your API key: either saved in the opencode app, or in a Windows
+  setting called `PLGRID_API_KEY` (next step). The key itself is never written
+  in this file.
 
 </details>
 
@@ -165,8 +165,27 @@ The file [config/opencode.json](../config/opencode.json) tells opencode:
 You get the key on <https://llmlab.plgrid.pl> under **Grants → Generate API Key**
 (see [PLGrid Forge](plgrid-forge.md#1-get-access)).
 
-In PowerShell, run the command below. Replace `paste-your-key-here` with your key
-and keep the quotes:
+opencode looks for the key in two places. Use **one** of them.
+
+<!-- TODO: option A not yet tested in the desktop app; add screenshots. -->
+
+### Option A: paste the key in the opencode app
+
+1. Start opencode from the Start menu.
+2. Open the model list under the text box and click **See 70+ more providers**.
+3. In the **Integrations** search box, type `plgrid`.
+4. Click **PLGrid Forge (Cyfronet)**, choose **API key**, paste your key, and confirm.
+
+Expected result: the model name under the text box changes to
+**DeepSeek V4.1 Flash (PLGrid)**. Go on with step 5; you do not need to restart.
+
+If **PLGrid Forge (Cyfronet)** does not appear in the search, step 3 did not
+work, or your version of opencode does not offer this. Use option B.
+
+### Option B: save the key as a Windows setting
+
+Close opencode first. In PowerShell, run the command below. Replace
+`paste-your-key-here` with your key and keep the quotes:
 
 ```powershell
 setx PLGRID_API_KEY "paste-your-key-here"
@@ -218,12 +237,64 @@ an answer within a few seconds.
 
 - *Big Pickle* is still selected: opencode did not read the file. Check step 3,
   then close opencode completely and start it again.
-- *401* or *Unauthorized*: the key is wrong, or opencode was open during step 4.
-  Repeat step 4, then restart opencode. On some computers you need to sign out
+- *401* or *Unauthorized*: the key is wrong, or (option B) opencode was open
+  during step 4. Repeat step 4, then restart opencode. On some computers you need to sign out
   of Windows and sign in again.
 - *not available for grant*: your grant cannot use DeepSeek. Click the model
   name under the text box and pick **Gemma 4 31B (PLGrid)**. See
   [Which model](plgrid-forge.md#3-which-model).
+
+</details>
+
+## Summary: what is now on your computer
+
+The settings and the key are kept in different places. `yourname` stands for your
+Windows user name.
+
+| What | Where | Created by |
+|---|---|---|
+| Settings: llmlab address and models | `C:\Users\yourname\.config\opencode\opencode.json` | Step 3 |
+| API key, option A | A file in `C:\Users\yourname\.local\share\opencode\`: `auth.json` or `opencode.db`, depending on the opencode version | opencode, in step 4 |
+| API key, option B | Not a file: a Windows setting (environment variable) `PLGRID_API_KEY` of your user account | `setx` in step 4 |
+
+The settings file has no secrets in it. The key is stored as plain text, so do
+not share the `.local` folder or send its files to anyone.
+
+You will not normally see these folders. File Explorer opens on *This PC*,
+*Desktop* or *Documents*, and these folders sit one level up, directly in your
+user folder. Their names start with a dot, which is the Linux and macOS way of
+marking hidden folders; there they are hidden, and that habit came to Windows
+with programs like opencode.
+
+To open the settings folder in File Explorer, press **Windows+R**, paste this,
+and press **Enter**:
+
+```text
+%USERPROFILE%\.config\opencode
+```
+
+<details>
+<summary>Linux / macOS</summary>
+
+The same paths, starting with `~` instead of `C:\Users\yourname`:
+`~/.config/opencode/opencode.json` and `~/.local/share/opencode/`. Folders
+starting with a dot are hidden; list them with `ls -a`, or press
+**Cmd+Shift+.** in the macOS Finder. Option B lives in `~/.bashrc` or
+`~/.zshrc`.
+
+</details>
+
+<details>
+<summary>Remove everything</summary>
+
+Delete the folder `C:\Users\yourname\.config\opencode`, and the folder
+`C:\Users\yourname\.local\share\opencode`. The second one also holds your
+saved opencode sessions, so they are gone too. If you used option B, remove the
+setting:
+
+```powershell
+[Environment]::SetEnvironmentVariable("PLGRID_API_KEY", $null, "User")
+```
 
 </details>
 

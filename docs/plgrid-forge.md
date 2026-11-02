@@ -36,8 +36,8 @@ it like a password: do not paste it into files, emails or chats.
 
 We use the **opencode desktop app** with a small settings file from this
 repository, [config/opencode.json](../config/opencode.json). It sets the llmlab
-address and two models. Your API key stays outside the file, in a Windows
-setting called `PLGRID_API_KEY`.
+address and two models. Your API key stays outside the file: you paste it in
+the opencode app, or save it in a Windows setting called `PLGRID_API_KEY`.
 
 Follow [Step by step: connect the opencode app to llmlab](opencode-llmlab-setup.md).
 

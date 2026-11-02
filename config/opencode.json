@@ -6,9 +6,9 @@
     "plgrid": {
       "npm": "@ai-sdk/openai-compatible",
       "name": "PLGrid Forge (Cyfronet)",
+      "env": ["PLGRID_API_KEY"],
       "options": {
-        "baseURL": "https://llmlab.plgrid.pl/api/v1",
-        "apiKey": "{env:PLGRID_API_KEY}"
+        "baseURL": "https://llmlab.plgrid.pl/api/v1"
       },
       "models": {
         "deepseek-ai/DeepSeek-V4.1-Flash": {
