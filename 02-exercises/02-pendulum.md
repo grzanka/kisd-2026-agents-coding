@@ -290,11 +290,16 @@ numbers alone fit both stories. Context is your job, not the agent's.
 
 ## Step 6: Fix it (`Edit`)
 
-Suppose you asked the student, and they wrote that length in centimetres. You
-give the agent this fact and decide how to fix it:
+The agent found **which** value is wrong. It cannot know **why**: a lost `0,`
+and a length in centimetres both give 0.70 m. That needs knowledge from outside
+the data. Suppose you checked the student's lab notebook: they measured that
+pendulum as 70 **cm** and typed the number without converting it. You give the
+agent this fact, and you decide how to fix it:
 
 ```text
-That length was written in centimetres.
+I checked the lab notebook.
+The length 70 in the row 70;16,8 is not a typo for 0,70:
+the student measured 70 cm and forgot to convert it to metres.
 Fix it in analyse.py, not in pendulum.csv:
 convert any length above 10 to metres and print a warning when you do.
 Also print the standard error of the mean of g.
