@@ -12,6 +12,9 @@ exercises in order.
 - [`docs/`](docs/README.md) — background and setup
   - [What is opencode](docs/opencode.md)
   - [PLGrid Forge (llmlab) — using it from opencode](docs/plgrid-forge.md)
+  - [Step by step: connect the opencode app to llmlab](docs/opencode-llmlab-setup.md)
+- [`config/`](config/README.md) — ready-made opencode settings for llmlab
+  - [opencode.json](config/opencode.json)
 - [`exercises/`](exercises/README.md) — hands-on tasks with copy-paste prompts
   - [Exercise 1: Your first agent session — measuring *g* with a pendulum](exercises/01-pendulum.md)
 
