@@ -5,6 +5,8 @@ belong to and the step number.
 
 | Image | Used in |
 |---|---|
+| [opencode-install-01-home.png](opencode-install-01-home.png) | [What is opencode](../opencode.md), install |
+| [opencode-install-02-download.png](opencode-install-02-download.png) | [What is opencode](../opencode.md), install |
 | [opencode-setup-01-start-screen.png](opencode-setup-01-start-screen.png) | [Step by step: connect the opencode app to llmlab](../opencode-llmlab-setup.md), step 1 |
 
 [← Back to the main README](../../README.md)

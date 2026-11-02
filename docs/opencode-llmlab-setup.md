@@ -5,7 +5,8 @@ Windows so that it uses models from [PLGrid Forge (llmlab)](plgrid-forge.md).
 
 ## Step 1. Open opencode
 
-Start opencode from the Start menu.
+Start opencode from the Start menu. Not installed yet? See
+[Install the desktop app](opencode.md#install-the-desktop-app).
 
 Expected result: a window with the large **opencode** logo and a text box that
 says *Ask anything, / for commands, @ for context...*. Below the box you see the
