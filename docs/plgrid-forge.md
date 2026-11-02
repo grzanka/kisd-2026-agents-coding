@@ -34,72 +34,48 @@ it like a password: do not paste it into files, emails or chats.
 
 ## 2. Connect opencode
 
-We use the community setup from
-[groundnuty/plgrid-llmlab-opencode](https://github.com/groundnuty/plgrid-llmlab-opencode).
-Copy these three items from that repository into your project folder:
+We use the **opencode desktop app** with a small settings file from this
+repository, [config/opencode.json](../config/opencode.json). It sets the llmlab
+address and two models. Your API key stays outside the file, in a Windows
+setting called `PLGRID_API_KEY`.
 
-- the `.opencode` folder
-- `AGENTS.md`
-- `opencode.json`
-
-Then, in PowerShell inside your project folder, log in once and paste your API key
-when asked. The key is stored in your user folder, not in the project.
-
-```powershell
-opencode auth login plgrid
-```
-
-<details>
-<summary>Using opencode 1.x?</summary>
-
-The login command is different:
-
-```powershell
-opencode providers login -p plgrid
-```
-
-</details>
+Follow [Step by step: connect the opencode app to llmlab](opencode-llmlab-setup.md).
 
 ## 3. Which model
 
-The setup uses this model by default:
-
-| Model (as written in opencode) | Notes |
-|---|---|
-| `plgrid/deepseek-ai/DeepSeek-V4.1-Flash` | Default. Fast, large context, good at agentic work. **Only some grants can use it.** |
-| `plgrid/Qwen/Qwen3.6-27B` | Fallback that every grant can use. Slower, but reliable. |
+| Model (as shown in opencode) | Model id on llmlab | Notes |
+|---|---|---|
+| DeepSeek V4.1 Flash (PLGrid) | `deepseek-ai/DeepSeek-V4.1-Flash` | Default. Fast, large context, good at agentic work. **Only some grants can use it.** |
+| Gemma 4 31B (PLGrid) | `google/gemma-4-31B` | Fallback. Also used for the short session titles. |
 
 If you see the error *"not available for grant 'N'"*, your grant cannot use the
-default model. Switch to the fallback, or ask the PLGrid Helpdesk for access.
+default model. Pick **Gemma 4 31B (PLGrid)** in the model list, or ask the PLGrid
+Helpdesk for access.
 
 Only use models marked **FC** (function calling) on <https://llmlab.plgrid.pl>.
 An agent needs function calling to run commands and edit files.
 
 ## 4. Check that it works
 
-Start opencode in your project folder:
-
-```powershell
-opencode
-```
-
-Expected result: the opencode screen opens and shows the model name at the
-bottom. Type a short question, such as "What files are in this folder?", and
-you should get an answer within a few seconds.
+Start the opencode app. Expected result: under the text box you see
+**DeepSeek V4.1 Flash (PLGrid)**. Ask a short question, such as
+"What is 2 + 2?", and you should get an answer within a few seconds.
 
 <details>
 <summary>Going further: test the key without opencode</summary>
 
-Put your key in a variable for this PowerShell session only:
+If you already did step 4 of the setup guide, open a new PowerShell window and
+skip this command. Otherwise, put your key in a variable for this PowerShell
+session only:
 
 ```powershell
-$env:LLMLAB_API_KEY = "paste-your-key-here"
+$env:PLGRID_API_KEY = "paste-your-key-here"
 ```
 
 List the models your key can use:
 
 ```powershell
-curl.exe -H "Authorization: Bearer $env:LLMLAB_API_KEY" https://llmlab.plgrid.pl/api/v1/models
+curl.exe -H "Authorization: Bearer $env:PLGRID_API_KEY" https://llmlab.plgrid.pl/api/v1/models
 ```
 
 Expected result: a block of JSON text with model names. An error saying
@@ -123,8 +99,8 @@ Use `curl.exe`, not `curl`. In Windows PowerShell, `curl` is a different command
 
 - PLGrid Forge official guide:
   <https://guide.plgrid.pl/en/integrated-platforms/plgrid_forge>
-- Community opencode setup (unofficial, checked 2026-09/10):
-  <https://github.com/groundnuty/plgrid-llmlab-opencode>
+- Model limits in our settings file were taken from the community setup
+  <https://github.com/groundnuty/plgrid-llmlab-opencode> (unofficial, checked 2026-11).
 
 The model list and access rules change over time. Check
 <https://llmlab.plgrid.pl> for the current state.

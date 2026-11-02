@@ -34,7 +34,7 @@ a blinking cursor opens. This is a terminal: you type a command, press
 Create the folder where opencode looks for its settings:
 
 ```powershell
-New-Item -ItemType Directory -Force "$HOME\.config\opencode"
+mkdir -Force "$HOME\.config\opencode"
 ```
 
 Expected result: a short table with the folder name `opencode`. If the folder
@@ -43,10 +43,13 @@ already exists, you see the same table; that is fine.
 Download the settings file into that folder:
 
 ```powershell
-Invoke-WebRequest -Uri "https://raw.githubusercontent.com/grzanka/kisd-2026-agents-coding/lecture-content-setup/config/opencode.json" -OutFile "$HOME\.config\opencode\opencode.json"
+curl.exe -fLo "$HOME\.config\opencode\opencode.json" https://raw.githubusercontent.com/grzanka/kisd-2026-agents-coding/lecture-content-setup/config/opencode.json
 ```
 
-Expected result: no output, the cursor just returns. Check that the file is there:
+Expected result: a short progress table that ends with `100`. Type `curl.exe`,
+not `curl`: in Windows PowerShell, `curl` is a different command.
+
+Check that the file is there:
 
 ```powershell
 Get-Content "$HOME\.config\opencode\opencode.json"
@@ -64,10 +67,11 @@ Expected result: text that contains `https://llmlab.plgrid.pl/api/v1`.
 The file [config/opencode.json](../config/opencode.json) tells opencode:
 
 - the address of llmlab: `https://llmlab.plgrid.pl/api/v1`;
-- the one model to use, `deepseek-ai/DeepSeek-V4.1-Flash`, with its limits
-  (how much text it can read and write at once);
-- to use this model for everything, including the short session titles, so no
-  text goes to other services;
+- two models, with their limits (how much text each can read and write at once):
+  `deepseek-ai/DeepSeek-V4.1-Flash` as the default, and `google/gemma-4-31B`
+  as a fallback;
+- to use Gemma for the short session titles, so no text goes to opencode's
+  free models;
 - to read your API key from a setting called `PLGRID_API_KEY` (next step), so
   the key itself is never written in the file.
 
@@ -76,11 +80,11 @@ The file [config/opencode.json](../config/opencode.json) tells opencode:
 <details>
 <summary>Errors</summary>
 
-- *Could not find a part of the path*: the first command was skipped. Run it,
-  then download again.
-- *The remote name could not be resolved* or a timeout: check your internet
-  connection.
-- *404 Not Found*: the address was not copied in full. Copy the whole block again.
+- *Failed to create the file* or *No such file or directory*: the `mkdir`
+  command was skipped. Run it, then download again.
+- *Could not resolve host* or a timeout: check your internet connection.
+- *The requested URL returned error: 404*: the address was not copied in full.
+  Copy the whole block again.
 
 </details>
 
@@ -145,7 +149,8 @@ an answer within a few seconds.
 - *401* or *Unauthorized*: the key is wrong, or opencode was open during step 4.
   Repeat step 4, then restart opencode. On some computers you need to sign out
   of Windows and sign in again.
-- *not available for grant*: your grant cannot use this model. See
+- *not available for grant*: your grant cannot use DeepSeek. Click the model
+  name under the text box and pick **Gemma 4 31B (PLGrid)**. See
   [Which model](plgrid-forge.md#3-which-model).
 
 </details>
