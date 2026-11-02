@@ -1,28 +1,6 @@
-# 1. What is opencode
+# 6. Optional: opencode and Claude Code
 
-opencode is an **AI coding agent**. You describe a task in plain language, for
-example "load `results.csv` and plot the mean per group", and the agent reads
-your files, writes and runs code, looks at the output and fixes its own mistakes
-until the task is done. It asks before it does anything risky.
-
-In this course we use the **opencode desktop app**: you install it and start it
-like any other program, from the Start menu (Windows), Launchpad (macOS) or the
-application menu (Linux). It uses models hosted on the PLGrid supercomputers
-(see [3. Get access to llmlab](03-get-llmlab-access.md)).
-
-<details>
-<summary>Explain: agent, model, terminal</summary>
-
-- **Model** (large language model, LLM): the program that reads text and writes
-  text. On its own it can only answer.
-- **Agent**: a program that gives a model tools (read a file, run a command, edit
-  a file) and lets it use them in a loop until the task is finished.
-- **Terminal**: a window where you type commands instead of clicking. opencode
-  also exists as a terminal program. We do not use it in this course.
-
-</details>
-
-## Why opencode and not Claude Code
+Read this after the exercises, when you have used opencode for a while.
 
 Claude Code is Anthropic's coding agent. It looks and works much like opencode:
 both read and edit your files, run commands and ask for permission. The main
@@ -33,8 +11,6 @@ difference is **which models they can use**.
   grant, and your data stays on PLGrid hardware.
 - Claude Code works only with **Anthropic's Claude models** and needs a paid
   Claude subscription or API account. Your data is sent to Anthropic.
-
-## Side by side
 
 | | opencode | Claude Code |
 |---|---|---|
@@ -63,4 +39,4 @@ yourself.
 
 ---
 
-[Docs overview](README.md) · Next: [2. Install the opencode app →](02-install-opencode.md)
+← Previous: [5. First steps in opencode](05-first-steps.md) · [Docs overview](README.md) · [Exercises](../exercises/README.md)

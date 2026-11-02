@@ -83,4 +83,4 @@ says *x64-based processor* or *ARM-based processor*. If you are not sure, choose
 
 ---
 
-← Previous: [1. What is opencode](01-what-is-opencode.md) · [Docs overview](README.md) · Next: [3. Get access to llmlab →](03-get-llmlab-access.md)
+← Previous: [1. Chatbot or agent](01-chatbot-or-agent.md) · [Docs overview](README.md) · Next: [3. Get access to llmlab →](03-get-llmlab-access.md)
