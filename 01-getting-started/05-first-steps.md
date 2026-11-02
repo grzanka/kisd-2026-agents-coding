@@ -6,10 +6,11 @@ opencode always works in one folder, called the **project**. It can read and
 change only the files in that folder. You see the current project under the text
 box; right after installing it is **Default Project**.
 
-For real work, use a separate folder for each task. Click the project name under
-the text box and choose your folder. The exercises tell you which folder to use.
-
-<!-- TODO: add a screenshot of choosing a project folder in the desktop app. -->
+For real work, use a separate folder for each task: one project = one folder.
+Click the project name under the text box (or press **Ctrl+Shift+O**), then
+**Add project**, and choose or create your folder. The first exercise shows this
+step by step, with pictures:
+[Exercise 1, step 0](../02-exercises/01-pendulum.md#step-0-create-a-project-folder).
 
 ## Ask the first question
 
