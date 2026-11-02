@@ -28,6 +28,14 @@ then do the tasks in `02-exercises`, in order.
 The settings file that page 3 downloads is in
 [`01-getting-started/config/`](01-getting-started/config/README.md).
 
+## How this repository was made
+
+All the content of this repository (pages, prompts and example files) was
+created by the AI model **Claude Opus 5.5** (Anthropic). It took many iterations
+and strict guidelines from the author, Leszek Grzanka. You can read those
+guidelines in [CLAUDE.md](CLAUDE.md). The screenshots come from the author's
+own runs of the exercises.
+
 ## For contributors
 
 - [Guidelines for creating content](CLAUDE.md) — audience, copy-paste rules, folder READMEs
