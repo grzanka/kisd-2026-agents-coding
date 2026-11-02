@@ -93,4 +93,4 @@ says *x64-based processor* or *ARM-based processor*. If you are not sure, choose
 
 ---
 
-← Previous: [1. Chatbot or agent](01-chatbot-or-agent.md) · [Docs overview](README.md) · Next: [3. Configure opencode for llmlab, part 1: the address →](03-configure-llmlab-endpoint.md)
+← Previous: [1. Chatbot or agent](01-chatbot-or-agent.md) · [Overview](README.md) · Next: [3. Configure opencode for llmlab, part 1: the address →](03-configure-llmlab-endpoint.md)

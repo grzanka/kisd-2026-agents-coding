@@ -1,6 +1,6 @@
 # Images
 
-Screenshots used by the pages in `docs`. Each file name starts with the number
+Screenshots used by the pages in `01-getting-started`. Each file name starts with the number
 of the page it belongs to, then the step.
 
 | Image | Used in |
@@ -32,4 +32,4 @@ of the page it belongs to, then the step.
 | [04-key-15-first-message.png](04-key-15-first-message.png) | Part 2, step 3: first message to llmlab |
 | [04-key-16-first-answer.png](04-key-16-first-answer.png) | Part 2, step 3: first answer from llmlab |
 
-[← Back to the docs](../README.md) · [Main README](../../README.md)
+[← Back to Getting started](../README.md) · [Main README](../../README.md)

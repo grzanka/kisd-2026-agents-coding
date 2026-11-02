@@ -117,4 +117,4 @@ reads the key from opencode's own file or from `PLGRID_API_KEY`.
 
 ---
 
-← Previous: [6. Optional: opencode and Claude Code](06-opencode-vs-claude-code.md) · [Docs overview](README.md)
+← Previous: [6. Optional: opencode and Claude Code](06-opencode-vs-claude-code.md) · [Overview](README.md)

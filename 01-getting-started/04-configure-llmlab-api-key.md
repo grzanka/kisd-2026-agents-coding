@@ -216,4 +216,4 @@ The model list and access rules change over time. Check
 
 ---
 
-← Previous: [3. Configure opencode for llmlab, part 1: the address](03-configure-llmlab-endpoint.md) · [Docs overview](README.md) · Next: [5. First steps in opencode →](05-first-steps.md)
+← Previous: [3. Configure opencode for llmlab, part 1: the address](03-configure-llmlab-endpoint.md) · [Overview](README.md) · Next: [5. First steps in opencode →](05-first-steps.md)

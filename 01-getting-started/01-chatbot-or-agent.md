@@ -70,4 +70,4 @@ A real run of this task might look like this:
 
 ---
 
-[Docs overview](README.md) · Next: [2. Install the opencode app →](02-install-opencode.md)
+[Overview](README.md) · Next: [2. Install the opencode app →](02-install-opencode.md)

@@ -39,4 +39,4 @@ yourself.
 
 ---
 
-← Previous: [5. First steps in opencode](05-first-steps.md) · [Docs overview](README.md) · Next: [7. For experts: other ways to set up →](07-for-experts.md)
+← Previous: [5. First steps in opencode](05-first-steps.md) · [Overview](README.md) · Next: [7. For experts: other ways to set up →](07-for-experts.md)

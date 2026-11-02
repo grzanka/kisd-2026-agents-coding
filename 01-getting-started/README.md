@@ -1,7 +1,7 @@
-# Documentation
+# 1. Getting started
 
 Background and setup. Read the pages in order, then go to the
-[exercises](../exercises/README.md). Pages 2–4 are things to do once, on your own
+[exercises](../02-exercises/README.md). Pages 2–4 are things to do once, on your own
 computer, before the first lecture.
 
 | # | Page | What you do there | Time |

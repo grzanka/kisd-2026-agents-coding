@@ -1,4 +1,4 @@
-# Exercises
+# 2. Exercises
 
 Hands-on tasks for the lectures. In each one you give an AI agent (opencode)
 short prompts and watch it read, write and run files on your computer. All
@@ -10,11 +10,11 @@ prompts are ready to copy and paste. You do not need to know Python.
 
 ## Before you start
 
-Go through the [docs](../docs/README.md) in order. You need:
+Go through [1. Getting started](../01-getting-started/README.md) in order. You need:
 
-- the opencode app installed ([2. Install the opencode app](../docs/02-install-opencode.md));
-- opencode configured for llmlab: the address ([part 1](../docs/03-configure-llmlab-endpoint.md)) and
-  your API key ([part 2](../docs/04-configure-llmlab-api-key.md)).
+- the opencode app installed ([2. Install the opencode app](../01-getting-started/02-install-opencode.md));
+- opencode configured for llmlab: the address ([part 1](../01-getting-started/03-configure-llmlab-endpoint.md)) and
+  your API key ([part 2](../01-getting-started/04-configure-llmlab-api-key.md)).
 
 Do the exercises in order. Each one runs in its own new folder.
 

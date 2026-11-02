@@ -192,4 +192,4 @@ research data there.
 
 ---
 
-← Previous: [2. Install the opencode app](02-install-opencode.md) · [Docs overview](README.md) · Next: [4. Configure opencode for llmlab, part 2: the API key →](04-configure-llmlab-api-key.md)
+← Previous: [2. Install the opencode app](02-install-opencode.md) · [Overview](README.md) · Next: [4. Configure opencode for llmlab, part 2: the API key →](04-configure-llmlab-api-key.md)

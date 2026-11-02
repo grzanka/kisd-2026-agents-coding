@@ -79,4 +79,4 @@ An agent needs function calling to run commands and edit files.
 
 ---
 
-← Previous: [4. Configure opencode for llmlab, part 2: the API key](04-configure-llmlab-api-key.md) · [Docs overview](README.md) · Next: [Exercises →](../exercises/README.md)
+← Previous: [4. Configure opencode for llmlab, part 2: the API key](04-configure-llmlab-api-key.md) · [Overview](README.md) · Next: [Exercises →](../02-exercises/README.md)

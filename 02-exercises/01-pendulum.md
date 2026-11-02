@@ -16,7 +16,7 @@ watch.
 
 - Time: about 30–40 minutes.
 - You need: the opencode app connected to llmlab (pages 2–4 of the
-  [docs](../docs/README.md)).
+  [Getting started](../01-getting-started/README.md)).
 
 <details>
 <summary>Explain: agent, tool, tool call, agentic loop</summary>
@@ -69,7 +69,7 @@ in File Explorer instead.
 
 Start the opencode app from the Start menu. Click the project name under the
 text box and choose the `kisd-pendulum` folder (see
-[Open a project folder](../docs/05-first-steps.md#open-a-project-folder)).
+[Open a project folder](../01-getting-started/05-first-steps.md#open-a-project-folder)).
 
 Expected result: under the text box you see the project `kisd-pendulum` and the
 model **DeepSeek V4.1 Flash (PLGrid)**.
@@ -272,7 +272,7 @@ typed as 0,61, would pass silently. You are still the scientist.
 - **The agent only describes what it would do but does not do it.** You may be in
   the `plan` agent. Press **Tab** to switch to `build` and send the prompt again.
 - **"not available for grant"**: your grant cannot use the default model. See
-  [Which model](../docs/05-first-steps.md#which-model).
+  [Which model](../01-getting-started/05-first-steps.md#which-model).
 - **`pip` fails with a network or proxy error.** Ask the agent to try again; if it
   keeps failing, skip the plot and do step 8 without it.
 - **The agent stops without a result.** Check whether the expected file exists.
@@ -302,4 +302,4 @@ typed as 0,61, would pass silently. You are still the scientist.
 
 ---
 
-← Previous: [5. First steps in opencode](../docs/05-first-steps.md) · [Exercises overview](README.md) · [Main README](../README.md)
+← Previous: [5. First steps in opencode](../01-getting-started/05-first-steps.md) · [Exercises overview](README.md) · [Main README](../README.md)
