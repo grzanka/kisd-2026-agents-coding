@@ -17,6 +17,7 @@ then do the tasks in `02-exercises`, in order.
    4. [Configure opencode for llmlab, part 2: the API key](01-getting-started/04-configure-llmlab-api-key.md)
    5. [First steps in opencode](01-getting-started/05-first-steps.md)
 2. [`02-exercises/`](02-exercises/README.md) — hands-on tasks with copy-paste prompts:
+   0. [Before the exercises: check that Python is installed](02-exercises/00-prerequisites.md)
    1. [Your first agent session — measuring *g* with a pendulum](02-exercises/01-pendulum.md)
 3. Later, optional: [opencode and Claude Code](01-getting-started/06-opencode-vs-claude-code.md),
    [For experts: other ways to set up](01-getting-started/07-for-experts.md)

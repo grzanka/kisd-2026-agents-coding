@@ -15,8 +15,9 @@ You do **not** need to write or read any Python. You only type prompts and
 watch.
 
 - Time: about 30–40 minutes.
-- You need: the opencode app connected to llmlab (pages 2–4 of the
-  [Getting started](../01-getting-started/README.md)).
+- You need: the opencode app connected to llmlab (pages 2–4 of
+  [Getting started](../01-getting-started/README.md)), and Python installed
+  ([Before the exercises](00-prerequisites.md)).
 
 <details>
 <summary>Explain: agent, tool, tool call, agentic loop</summary>
@@ -104,18 +105,10 @@ the results. You did not tell it which commands to use.
 <summary>If Python is not installed</summary>
 
 On Windows the agent may report *"Python was not found; run without arguments to
-install from the Microsoft Store"*. Close the opencode window, then install
-Python in PowerShell:
-
-```powershell
-winget install -e --id Python.Python.3.12
-```
-
-Start the opencode app again, choose the `kisd-pendulum` folder as in step 0,
-and repeat this step.
-
-On Linux, install the `python3` package with your package manager. On macOS, run
-`brew install python`.
+install from the Microsoft Store"*. Close the opencode window and follow
+[Before the exercises: check that Python is installed](00-prerequisites.md).
+Then start the opencode app again, choose the `kisd-pendulum` folder as in step
+0, and repeat this step.
 
 </details>
 
@@ -302,4 +295,4 @@ typed as 0,61, would pass silently. You are still the scientist.
 
 ---
 
-← Previous: [5. First steps in opencode](../01-getting-started/05-first-steps.md) · [Exercises overview](README.md) · [Main README](../README.md)
+← Previous: [Before the exercises: Python](00-prerequisites.md) · [Exercises overview](README.md) · [Main README](../README.md)
