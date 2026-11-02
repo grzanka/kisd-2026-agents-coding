@@ -20,4 +20,6 @@ Go through [1. Getting started](../01-getting-started/README.md) in order. You n
 
 Do the exercises in order. Each one runs in its own new folder.
 
+Screenshots for these pages are in [images/](images/README.md).
+
 [← Back to the main README](../README.md)
