@@ -30,18 +30,8 @@ mkdir -Force "$HOME\.config\opencode"
 `$HOME` is your user folder, for example `C:\Users\yourname`. `-Force` means:
 create the folder, and do not complain if it already exists.
 
-Expected result (with your own user name and date):
-
-<!-- Trying two ways to show output without a copy button: <pre> and a screenshot. Keep one. -->
-
-<pre>
-    Directory: C:\Users\yourname\.config
-
-
-Mode                 LastWriteTime         Length Name
-----                 -------------         ------ ----
-d-----        2026-10-30     21:03                opencode
-</pre>
+Expected result (with your own user name and date): a short table with the new
+folder `opencode`.
 
 ![PowerShell window after the mkdir command, showing the new opencode folder](images/03-endpoint-2-mkdir.png)
 
@@ -54,11 +44,7 @@ curl.exe -fLo "$HOME\.config\opencode\opencode.json" https://raw.githubuserconte
 Expected result: a small progress table. The first column of the last line is
 `100` (100% downloaded). The other numbers may differ:
 
-```text
-  % Total    % Received % Xferd  Average Speed  Time    Time    Time   Current
-                                 Dload  Upload  Total   Spent   Left   Speed
-100    960 100    960   0      0   2202      0                              0
-```
+![PowerShell window after the download: progress table ending with 100](images/03-endpoint-3-download.png)
 
 Type `curl.exe`, not `curl`: in Windows PowerShell, `curl` is a different
 command. `curl.exe` is part of Windows 10 (since 2018) and Windows 11.
@@ -126,21 +112,10 @@ Show the content of the file on the screen:
 Get-Content "$HOME\.config\opencode\opencode.json"
 ```
 
-Expected result: the settings text, starting like this:
+Expected result: the settings text. Look for the llmlab address
+`https://llmlab.plgrid.pl/api/v1` and the two model names:
 
-```text
-{
-  "$schema": "https://opencode.ai/config.json",
-  "model": "plgrid/deepseek-ai/DeepSeek-V4.1-Flash",
-  "small_model": "plgrid/google/gemma-4-31B",
-  "provider": {
-    "plgrid": {
-      "npm": "@ai-sdk/openai-compatible",
-      "name": "PLGrid Forge (Cyfronet)",
-      "env": ["PLGRID_API_KEY"],
-      "options": {
-        "baseURL": "https://llmlab.plgrid.pl/api/v1"
-```
+![PowerShell window showing the content of opencode.json](images/03-endpoint-4-check-file.png)
 
 <details>
 <summary>Explain: what is in the file?</summary>
@@ -161,21 +136,59 @@ The file [config/opencode.json](../config/opencode.json) tells opencode:
 
 ## Step 5. Check that opencode sees llmlab
 
-<!-- TODO: confirm what the desktop app shows without a key; add screenshots. -->
-
 Start opencode: press the **Windows** key, type `opencode`, and press **Enter**.
+If it was already open, close it completely first, so that it reads the new
+settings.
 
-1. Click the model name under the text box. The model list opens.
-2. At the bottom, click **See 70+ more providers**. The **Integrations** window
-   opens.
-3. In its search box, type `plgrid`.
+Under the text box you still see a free model, here *Nemotron 3.5 Lightning
+Free*. That is expected: opencode keeps a free model until it has your key.
 
-Expected result: **PLGrid Forge (Cyfronet)** appears in the list. This means
-opencode has read the settings file. Do not click it yet: first get your API key
-on the next page.
+Click the model name (or press **Ctrl+'**). The model list opens.
+
+![The model name under the text box, with the tooltip "Choose model"](images/03-endpoint-5a-model-button.png)
+
+In the search box at the top of the list, type `plgr`.
+
+Expected result: a group **PLGrid Forge (Cyfronet)** with two models,
+**DeepSeek V4.1 Flash (PLGrid)** and **Gemma 4 31B (PLGrid)**. This means
+opencode has read the settings file. The word *Default* on the highlighted row
+is a button; you can ignore it.
+
+![Model list searched for "plgr": the PLGrid Forge group with DeepSeek and Gemma](images/03-endpoint-5b-search-plgr.png)
 
 If the search finds nothing, opencode did not read the file. Repeat step 4, then
 close opencode completely and start it again.
+
+Press **Esc** to close the list. Do not chat yet: first get your API key on the
+next page.
+
+### Two models called DeepSeek
+
+If you type `deep` instead, you see two DeepSeek models in two groups:
+
+![Model list searched for "deep": DeepSeek V4.1 Flash Free under OpenCode, and DeepSeek V4.1 Flash (PLGrid) under PLGrid Forge](images/03-endpoint-5c-search-deep.png)
+
+| In the list | Group | Who runs it | Use it in this course? |
+|---|---|---|---|
+| DeepSeek V4.1 Flash **Free** | OpenCode | opencode's free service, outside PLGrid | **No** |
+| DeepSeek V4.1 Flash **(PLGrid)** | PLGrid Forge (Cyfronet) | llmlab, on PLGrid computers, paid by your grant | **Yes** |
+
+It is the same model, run by two different services. Your text goes to the one
+you pick. Always check the group name, and pick the one with **(PLGrid)**.
+
+### If you start chatting too early
+
+If you pick a PLGrid model and send a message before part 2, opencode shows a
+red **Not authenticated**:
+
+![opencode conversation: the message "hi" and the red error "Not authenticated", with PLGrid Forge / DeepSeek V4.1 Flash (PLGrid) selected](images/03-endpoint-5d-not-authenticated.png)
+
+Nothing is broken and no credits are used: llmlab refused the message because
+opencode has no key yet. Do part 2, then send the message again.
+
+If you chat with the free model that is selected at the start, it answers, but
+your text goes to opencode's free service, not to PLGrid. Do not paste your
+research data there.
 
 ---
 

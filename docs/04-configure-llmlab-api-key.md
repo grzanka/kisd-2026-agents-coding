@@ -89,6 +89,9 @@ If opencode is closed, start it: press the **Windows** key, type `opencode`, and
 press **Enter**.
 
 Expected result: under the text box you see **DeepSeek V4.1 Flash (PLGrid)**.
+If a free model is still selected, click its name, type `plgr`, and pick
+**DeepSeek V4.1 Flash (PLGrid)**, as in
+[part 1, step 5](03-configure-llmlab-endpoint.md#step-5-check-that-opencode-sees-llmlab).
 
 > [!IMPORTANT]
 > The model list also contains a free **DeepSeek V4.1 Flash** run by opencode,

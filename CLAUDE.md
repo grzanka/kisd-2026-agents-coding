@@ -33,7 +33,9 @@ Write so that both groups are served:
   they belong together. Each block is copied and pasted on its own.
 - Put the explanation **outside** the block, before or after it.
 - Do not include prompt characters (`$`, `>`, `PS>`) inside the block. They break copy-paste.
-- Do not include output in the same block as the command. Show output in a separate block.
+- Do not include output in the same block as the command. Show the expected
+  output as a **screenshot** of the terminal or app, not as a code block: a code
+  block gets a copy button on GitHub and invites copying the output.
 - Do not use line continuations (`\`, `` ` ``) to make one long command look like
   several. Prefer a single line, or a script file.
 - Label the shell above each block when it matters (PowerShell, bash).
