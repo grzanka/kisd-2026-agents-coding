@@ -128,9 +128,9 @@ The file [config/opencode.json](../config/opencode.json) tells opencode:
   as a fallback;
 - to use Gemma for the short session titles, so no text goes to opencode's
   free models;
-- where to find your API key: saved in the opencode app, or in a Windows setting
-  called `PLGRID_API_KEY` ([part 2](04-configure-llmlab-api-key.md)). The key
-  itself is never written in this file.
+- that the API key comes separately: you paste it in the opencode app in
+  [part 2](04-configure-llmlab-api-key.md). The key itself is never written in
+  this file.
 
 </details>
 

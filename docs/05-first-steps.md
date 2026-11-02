@@ -62,38 +62,13 @@ An agent needs function calling to run commands and edit files.
   that the expected files or results actually exist.
 
 <details>
-<summary>Going further: test the key without opencode</summary>
-
-If you saved the key with `setx` (option B in step 2 of
-[4. Configure opencode for llmlab, part 2](04-configure-llmlab-api-key.md)), open a new
-PowerShell window and skip this command. Otherwise, put your key in a variable
-for this PowerShell session only:
-
-```powershell
-$env:PLGRID_API_KEY = "paste-your-key-here"
-```
-
-List the models your key can use:
-
-```powershell
-curl.exe -H "Authorization: Bearer $env:PLGRID_API_KEY" https://llmlab.plgrid.pl/api/v1/models
-```
-
-Expected result: a block of JSON text with model names. An error saying
-`401` or `Unauthorized` means the key is wrong or expired.
-
-Use `curl.exe`, not `curl`. In Windows PowerShell, `curl` is a different command.
-
-</details>
-
-<details>
-<summary>Going further: other ways to use opencode</summary>
+<summary>Going further</summary>
 
 - Ask a helper agent for a side task with `@`, for example
   `@general find where the plots are saved`.
-- The terminal version of opencode (the `opencode` command) uses the same
-  settings file and the same models. It is handy for scripts, for example
-  `opencode run "summarise data.csv"`.
+- Test your key without opencode, store it as an environment variable, or use
+  the terminal version of opencode: see
+  [7. For experts: other ways to set up](07-for-experts.md).
 
 </details>
 

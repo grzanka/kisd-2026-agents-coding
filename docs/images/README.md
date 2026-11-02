@@ -22,5 +22,14 @@ of the page it belongs to, then the step.
 | [04-key-5-generate-form.png](04-key-5-generate-form.png) | Part 2, step 1d: form for a new key |
 | [04-key-6-key-shown.png](04-key-6-key-shown.png) | Part 2, step 1e: the new key, shown once (most of it hidden in the picture) |
 | [04-key-7-key-list.png](04-key-7-key-list.png) | Part 2, step 1f: list of active keys |
+| [04-key-8-new-session.png](04-key-8-new-session.png) | Part 2, step 2a: the New session button |
+| [04-key-9-connect-command.png](04-key-9-connect-command.png) | Part 2, step 2b: the `/connect` command |
+| [04-key-10-integrations.png](04-key-10-integrations.png) | Part 2, step 2b: the Integrations window |
+| [04-key-11-search-cyfronet.png](04-key-11-search-cyfronet.png) | Part 2, step 2c: Integrations searched for `cyfron` |
+| [04-key-12-key-field.png](04-key-12-key-field.png) | Part 2, step 2d: empty API key field |
+| [04-key-13-key-pasted.png](04-key-13-key-pasted.png) | Part 2, step 2d: key pasted (most of it hidden in the picture) |
+| [04-key-14-connected.png](04-key-14-connected.png) | Part 2, step 2e: connected, choose the model |
+| [04-key-15-first-message.png](04-key-15-first-message.png) | Part 2, step 3: first message to llmlab |
+| [04-key-16-first-answer.png](04-key-16-first-answer.png) | Part 2, step 3: first answer from llmlab |
 
 [← Back to the docs](../README.md) · [Main README](../../README.md)

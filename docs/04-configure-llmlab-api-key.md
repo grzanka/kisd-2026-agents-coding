@@ -118,79 +118,84 @@ stops working.
 
 ## Step 2. Give the key to opencode
 
-opencode looks for the key in two places. Use **one** of them.
+You paste the key once into opencode. It keeps it for the next times.
 
-<!-- TODO: option A not yet tested in the desktop app; add screenshots. -->
+### 2a. Start a new session
 
-### Option A: paste the key in the opencode app
+If opencode is not running, start it: press the **Windows** key, type
+`opencode`, and press **Enter**. Then start a new, empty session: click the
+**+** at the top of the window (or press **Ctrl+T**).
 
-1. In opencode, click the model name under the text box, then **See 70+ more
-   providers**.
-2. In the **Integrations** search box, type `plgrid`.
-3. Click **PLGrid Forge (Cyfronet)**, choose **API key**, paste your key, and
-   confirm.
+![The + button at the top of the opencode window, with the tooltip "New session"](images/04-key-8-new-session.png)
 
-Expected result: the model name under the text box changes to
-**DeepSeek V4.1 Flash (PLGrid)**. Go on with step 3; you do not need to restart.
+### 2b. Open the list of providers
 
-If the app does not offer to paste a key, use option B.
+In the text box, type `/conn`. A list of commands appears. Click **/connect**
+(or press **Enter**).
 
-### Option B: save the key as a Windows setting
+![The text box with "/conn" typed and the command /connect suggested above it](images/04-key-9-connect-command.png)
 
-Close opencode first. In PowerShell, run the command below. Replace
-`paste-your-key-here` with your key and keep the quotes:
+Expected result: the **Integrations** window, with a long list of services.
 
-```powershell
-setx PLGRID_API_KEY "paste-your-key-here"
-```
+![Integrations window: a search box and a list of providers](images/04-key-10-integrations.png)
 
-Expected result:
+### 2c. Find PLGrid Forge
 
-```text
-SUCCESS: Specified value was saved.
-```
+In the search box, type `cyfron`. Click **PLGrid Forge (Cyfronet)**.
 
-This saves the key as a Windows setting for your user account (an
-*environment variable*). Programs started from now on can read it; programs
-already open cannot. That is why opencode must be closed during this step.
+![Integrations searched for "cyfron": PLGrid Forge (Cyfronet) under Services](images/04-key-11-search-cyfronet.png)
 
-<details>
-<summary>Linux / macOS</summary>
+If the search finds nothing, opencode did not read the settings file: go back to
+[part 1](03-configure-llmlab-endpoint.md), step 5.
 
-Add this line to `~/.bashrc` or `~/.zshrc`, then open a new terminal:
+### 2d. Paste the key
 
-```bash
-export PLGRID_API_KEY="paste-your-key-here"
-```
+A window **Connect PLGrid Forge (Cyfronet)** opens, with one field for the API
+key.
 
-</details>
+![Connect PLGrid Forge (Cyfronet) window with an empty API key field and a Continue button](images/04-key-12-key-field.png)
+
+Click the field, paste your key with **Ctrl+V**, and click **Continue**. The
+key starts with `plg-`. In the picture below most of it is hidden; yours is
+shown in full.
+
+![The same window with a key starting with plg- pasted; most of the key is hidden in this picture](images/04-key-13-key-pasted.png)
+
+### 2e. Choose the model
+
+Expected result: the window **Connected to PLGrid Forge (Cyfronet)** with the
+two models, and a message in the corner *PLGrid Forge (Cyfronet) connected*.
+Keep **DeepSeek V4.1 Flash (PLGrid)** ticked and click **Continue**.
+
+![Connected to PLGrid Forge (Cyfronet): DeepSeek V4.1 Flash (PLGrid) ticked, Gemma 4 31B (PLGrid) below, and the message "PLGrid Forge (Cyfronet) connected"](images/04-key-14-connected.png)
 
 ## Step 3. Check that it works
 
-If opencode is closed, start it: press the **Windows** key, type `opencode`, and
-press **Enter**.
+Under the text box you now see **PLGrid Forge (Cyfronet) / DeepSeek V4.1 Flash
+(PLGrid)**. Type `hi` and press **Enter**.
 
-Expected result: under the text box you see **DeepSeek V4.1 Flash (PLGrid)**.
-If a free model is still selected, click its name, type `plgr`, and pick
-**DeepSeek V4.1 Flash (PLGrid)**, as in
-[part 1, step 5](03-configure-llmlab-endpoint.md#step-5-check-that-opencode-sees-llmlab).
+![The text box with "hi" typed and PLGrid Forge (Cyfronet) / DeepSeek V4.1 Flash (PLGrid) selected](images/04-key-15-first-message.png)
+
+Expected result: within a few seconds, a short answer such as *Hi! How can I
+help you today?* This answer came from llmlab, and used a few of your credits.
+
+![opencode conversation: "hi" and the answer "Hi! How can I help you today?"](images/04-key-16-first-answer.png)
 
 > [!IMPORTANT]
-> The model list also contains a free **DeepSeek V4.1 Flash** run by opencode,
-> not by PLGrid. Use only the one that ends with **(PLGrid)**.
-
-Type a short question, such as `What is 2 + 2?`, and send it. You should get
-an answer within a few seconds.
+> Always check that the model name under the text box starts with
+> **PLGrid Forge (Cyfronet)**. The model list also contains free models run by
+> opencode, among them a **DeepSeek V4.1 Flash Free**. Your text goes to the
+> service you pick.
 
 <details>
 <summary>Errors</summary>
 
-- A free model is still selected and there is no **(PLGrid)** model: opencode
-  did not read the settings file. Go back to
-  [part 1](03-configure-llmlab-endpoint.md), step 4.
-- *401* or *Unauthorized*: the key is wrong, or (option B) opencode was open
-  during step 2. Repeat step 2, then restart opencode. On some computers you
-  need to sign out of Windows and sign in again.
+- **PLGrid Forge (Cyfronet)** is not found in step 2c: opencode did not read the
+  settings file. Go back to [part 1](03-configure-llmlab-endpoint.md), step 4,
+  then close opencode completely and start it again.
+- *Not authenticated*, *401* or *Unauthorized*: the key is wrong or incomplete.
+  Repeat step 2 and paste the key again. If you lost the key, generate a new one
+  (step 1).
 - *not available for grant*: your grant cannot use DeepSeek. Click the model
   name under the text box and pick **Gemma 4 31B (PLGrid)**. See
   [Which model](05-first-steps.md#which-model).
@@ -199,14 +204,13 @@ an answer within a few seconds.
 
 ## Summary: what is now on your computer
 
-The settings and the key are kept in different places. `yourname` stands for your
+The settings and the key are kept in different files. `yourname` stands for your
 Windows user name.
 
-| What | Where | Created by |
+| What | Where | Created in |
 |---|---|---|
 | Settings: llmlab address and models | `C:\Users\yourname\.config\opencode\opencode.json` | Part 1 |
-| API key, option A | A file in `C:\Users\yourname\.local\share\opencode\`: `auth.json` or `opencode.db`, depending on the opencode version | opencode, in step 2 |
-| API key, option B | Not a file: a Windows setting (environment variable) `PLGRID_API_KEY` of your user account | `setx` in step 2 |
+| Your API key | A file in `C:\Users\yourname\.local\share\opencode\`: `auth.json` or `opencode.db`, depending on the opencode version | Part 2, step 2 |
 
 The settings file has no secrets in it. The key is stored as plain text, so do
 not share the `.local` folder or send its files to anyone.
@@ -230,8 +234,7 @@ and press **Enter**:
 The same paths, starting with `~` instead of `C:\Users\yourname`:
 `~/.config/opencode/opencode.json` and `~/.local/share/opencode/`. Folders
 starting with a dot are hidden; list them with `ls -a`, or press
-**Cmd+Shift+.** in the macOS Finder. Option B lives in `~/.bashrc` or
-`~/.zshrc`.
+**Cmd+Shift+.** in the macOS Finder.
 
 </details>
 
@@ -240,14 +243,13 @@ starting with a dot are hidden; list them with `ls -a`, or press
 
 Delete the folder `C:\Users\yourname\.config\opencode`, and the folder
 `C:\Users\yourname\.local\share\opencode`. The second one also holds your
-saved opencode sessions, so they are gone too. If you used option B, remove the
-setting:
-
-```powershell
-[Environment]::SetEnvironmentVariable("PLGRID_API_KEY", $null, "User")
-```
+saved opencode sessions, so they are gone too. Then archive the key in llmlab
+(step 1f).
 
 </details>
+
+Other ways to give opencode the key, for experienced users, are in
+[For experts: other ways to set up](07-for-experts.md).
 
 ## Sources
 
