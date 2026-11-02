@@ -49,7 +49,7 @@ Paste this prompt. The long address must stay on one line:
 
 ```text
 Download this file into the project folder as AGENTS.md:
-https://raw.githubusercontent.com/grzanka/kisd-2026-agents-coding/lecture-content-setup/02-exercises/meteo/AGENTS.md
+https://raw.githubusercontent.com/grzanka/kisd-2026-agents-coding/main/02-exercises/meteo/AGENTS.md
 Then show me its content. Do nothing else.
 ```
 
