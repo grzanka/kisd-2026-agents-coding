@@ -81,6 +81,17 @@ opencode shows *Used 1 Thought*.
 
 <img src="images/02-pendulum-1-chat-answer.png" alt="The question, the line Used 1 Thought, and a three-sentence answer with T = 2π√(L/g) and g = 4π²L/T²" width="700">
 
+<details>
+<summary>Another run: a slightly different answer</summary>
+
+<img src="images/02-pendulum-run2-1-chat-answer.png" alt="Second run: a Thought, then an answer that also suggests plotting T squared against L" width="700">
+
+The same question gave a different wording, and this time the model added a
+tip: plot T² against L and take the slope. Models do not answer the same way
+twice.
+
+</details>
+
 **What to notice:** no tool calls, only a Thought. The model answered from what
 it knows, exactly like a chat. Everything from here on is different.
 
@@ -97,6 +108,18 @@ and the Python version, such as `Python 3.15.0`. Click the line to see the
 details: **Read** of your project folder and **Shell** `python --version`.
 
 <img src="images/02-pendulum-2-read-shell.png" alt="Used 2 Read, Shell, opened: Thought, Read exercise02, Shell python --version, Thought; then the answer: the folder is empty, Python 3.15.0, no changes were made" width="700">
+
+<details>
+<summary>Another run: Glob, and a check for hidden files</summary>
+
+<img src="images/02-pendulum-run2-2-glob-shell.png" alt="Second run: Used 3 Glob, Shell: Glob pattern *, Shell python --version, then Shell Get-ChildItem -Force to see hidden files too" width="700">
+
+Here the agent used **Glob** to list the files, then thought that Glob skips
+hidden files and checked again with **Shell** `Get-ChildItem -Force`. Different
+tools, same result. Also look at its last Thought: it finds Python 3.15.0
+"odd", because the model was trained before that version came out.
+
+</details>
 
 **What to notice:** the model cannot see your disk. To answer, it had to call
 **Read** to list the files and **Shell** to run `python --version`, then read
@@ -150,6 +173,16 @@ Expected result: *Used 1 Write*. Open it: you see the content of
 
 <img src="images/02-pendulum-3-write.png" alt="Used 1 Write, opened: a Thought, the new file pendulum.csv with 13 green lines, another Thought; then the answer: the file was created, and the row 70;16,8 looks like a typo for 0,70 but was left as given" width="700">
 
+<details>
+<summary>Another run: Write, then Read to check</summary>
+
+<img src="images/02-pendulum-run2-3-write-read.png" alt="Second run: Used 2 Write, Read: the file pendulum.csv written, then read back to verify; the answer flags the row 70;16,8 and notes the semicolon and decimal comma format" width="700">
+
+This time the agent read the file back after writing it, to check its own
+work, without being asked.
+
+</details>
+
 Open File Explorer and go to your `kisd-pendulum` folder: the file is there. You
 can open it in Notepad.
 
@@ -182,6 +215,19 @@ Below it, the output: a table of 12 rows, then a mean *g* of about
 
 <img src="images/02-pendulum-4b-output.png" alt="The output table: 12 rows with g near 9.8 except the row 70.00 with g = 979.127, and Mean g = 90.581 m/s^2; below, a note that the row 70 is probably a typo" width="700">
 
+<details>
+<summary>Another run: a longer script, the same numbers</summary>
+
+<img src="images/02-pendulum-run2-4a-write.png" alt="Second run: a long Thought about how to treat the row 70, then a 45-line analyse.py" width="700">
+
+<img src="images/02-pendulum-run2-4b-output.png" alt="Second run: Shell python analyse.py, the same per-row values and mean g = 90.5812; the agent suggests the row should be 0,70" width="700">
+
+A different script (45 lines instead of 22), the same numbers. Check the last
+paragraph: the agent says that with 0.70 m "the mean becomes ~9.81 m/s²". The
+real value is 9.80. Close, but it rounded towards the answer it expected.
+
+</details>
+
 **What to notice:** several tool calls in a row: **Write** for the script, then
 **Shell** to run `python analyse.py`. The agent read the output before answering
 you. It may also point at the row `70` again, as in the picture.
@@ -207,6 +253,17 @@ row with length `70`: its *g* is about **979**, a hundred times too large, and
 this one row pulls the mean up from about 9.8 to 90.6.
 
 <img src="images/02-pendulum-5-explain.png" alt="The Thought and the answer: the culprit is the row 70;16,8; the period 1.68 s fits a 0.70 m pendulum; without that row the mean is 9.80 m/s^2; the agent offers to fix the row to 0,70" width="700">
+
+<details>
+<summary>Another run: a different argument for the same row</summary>
+
+<img src="images/02-pendulum-run2-5-explain.png" alt="Second run: the culprit is 70;16,8; the period 1.68 s sits between 1.54 and 1.81 in the sequence, so the length should be 0,70" width="700">
+
+This time the agent argued from the order of the periods: 1.68 s sits
+between 1.54 s and 1.81 s, just where a 0.70 m pendulum belongs. Again it
+guessed a lost `0,`, not centimetres.
+
+</details>
 
 **What to notice:**
 

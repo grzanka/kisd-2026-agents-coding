@@ -22,5 +22,6 @@ page that shows it.
 | `02-pendulum-5-explain.png` | [Exercise 1](../02-pendulum.md), step 5 | The agent explains the row 70 |
 | `02-pendulum-6a-edit.png` | [Exercise 1](../02-pendulum.md), step 6 | The Edit of analyse.py, in green |
 | `02-pendulum-6b-output.png` | [Exercise 1](../02-pendulum.md), step 6 | The fixed output, g = 9.803 ± 0.031 |
+| `02-pendulum-run2-*.png` | [Exercise 1](../02-pendulum.md), steps 1–5, "Another run" | A second run of the same prompts, for comparison |
 
 [← Back to the exercises](../README.md) · [Main README](../../README.md)
