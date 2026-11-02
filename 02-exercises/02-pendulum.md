@@ -276,26 +276,115 @@ analysis, with or without an agent.
 
 </details>
 
-## Step 7: Plot (`Edit` + installing a package)
+## Step 7: A separate Python for this project (`Shell` + installing a package)
+
+For the plot the agent needs **matplotlib**, a Python package that is not part
+of Python itself. You want it installed **inside this project folder**, not into
+the Python of your whole computer. Python calls such a private copy a **virtual
+environment** (venv for short).
+
+```text
+Create a Python virtual environment named .venv in this folder.
+Install matplotlib into it.
+From now on, in this session, run all Python code
+with .venv\Scripts\python.exe, never with the system Python,
+and install every package you need into .venv.
+Do not activate the environment; call .venv\Scripts\python.exe directly.
+```
+
+Expected result: several **Shell** calls, such as
+`python -m venv .venv`, then `.venv\Scripts\python.exe -m pip install matplotlib`.
+The installation takes up to a minute. opencode may ask you to allow the
+commands; allow them. A new folder `.venv` appears in your project folder.
+
+<!-- TODO: screenshot of the venv creation and the pip install. -->
+
+**What to notice:** the agent prepared the environment, not only the code. Ask
+it to show the matplotlib version: it should run `.venv\Scripts\python.exe`,
+not `python`.
+
+<details>
+<summary>Explain: why a virtual environment?</summary>
+
+- **Clean and separate.** Every project keeps its own packages, in its own
+  versions. Installing something for one project cannot break another one.
+- **Easy to remove.** Everything is in the `.venv` folder. Delete the folder and
+  it is gone; your computer's Python stays as it was.
+- **Repeatable.** You (or the agent) can list exactly what this project uses,
+  and set it up again on another computer.
+- **Why not activate it?** "Activating" a venv only changes the current
+  terminal window. The agent opens a fresh one for each command, so the
+  activation would be lost. On Windows, activation in PowerShell is also often
+  blocked by the *running scripts is disabled on this system* rule. Calling
+  `.venv\Scripts\python.exe` directly always works.
+- **"From now on, in this session".** The agent remembers this only in the
+  current conversation. In a new session, say it again, or write it into
+  `AGENTS.md` (see [`/init`](../01-getting-started/05-first-steps.md)), which
+  opencode reads at the start of every session.
+
+On Linux and macOS the path is `.venv/bin/python` instead of
+`.venv\Scripts\python.exe`; change the prompt accordingly.
+
+</details>
+
+## Step 8: Plot (`Edit` + `Shell`)
 
 ```text
 Add a plot to analyse.py:
 the measured period T against the length as points,
 and the curve T = 2*pi*sqrt(L/g) with the mean g as a line.
 Label the axes with units. Save it as pendulum.png.
-Use matplotlib and install it if it is missing.
-Run the script.
+Do not open a plot window.
+Run the script with the Python from .venv.
 ```
 
-Expected result: the agent probably runs `python -m pip install matplotlib`
-first (opencode may ask you to allow it), then edits and runs the script. A new
-file `pendulum.png` appears in the folder. Open it: the 12 points lie on or very
-close to a smooth rising curve.
+Expected result: an **Edit** of `analyse.py`, then **Shell**
+`.venv\Scripts\python.exe analyse.py`. A new file `pendulum.png` appears in the
+folder.
 
-**What to notice:** the agent noticed a missing package and installed it. It
-handled the environment, not only the code.
+<!-- TODO: screenshot of the Edit and the run. -->
 
-## Step 8: Write the report (`Write` from results)
+**What to notice:** check the **Shell** line. If it says plain `python
+analyse.py`, the agent forgot the venv and the script fails with
+*No module named 'matplotlib'*. Remind it: "Use .venv\Scripts\python.exe."
+
+<details>
+<summary>Explain: why "do not open a plot window"?</summary>
+
+A plot window stays open until you close it, and the script waits for it. The
+agent would wait too, and look frozen. Saving to a file lets the script finish.
+
+</details>
+
+## Step 9: Look at the plot
+
+Can the agent show you the plot in the conversation?
+
+```text
+Show me pendulum.png.
+```
+
+<!-- TODO: check what opencode desktop does here with DeepSeek, and add a
+screenshot. Possible outcomes: the picture appears in the conversation; the
+agent opens it in the Windows image viewer; the agent says it cannot see
+images. -->
+
+Expected result: one of these, depending on the model and the opencode version:
+
+- the picture appears in the conversation;
+- the agent opens it in the Windows image viewer (**Shell** with
+  `Start-Process pendulum.png` or `start pendulum.png`);
+- the agent says it cannot show or see pictures. Then open `pendulum.png`
+  yourself from File Explorer.
+
+Either way, look at it: the 12 points should lie on or very close to a smooth
+rising curve.
+
+**What to notice:** some models read only text. Such a model wrote the plot but
+**cannot see it**, so it cannot tell you whether it looks right. Checking the
+picture is your job.
+
+## Step 10: Write the report (`Write` from results)
 
 ```text
 Write report.md: a half-page lab report with
@@ -310,7 +399,7 @@ Expected result: a new file `report.md`. Open it in Notepad (or, better, in VS
 Code, which shows the plot). The numbers in it should match what the script
 printed in step 6. **Check this yourself.**
 
-## Step 9: Ask the agent what it did
+## Step 11: Ask the agent what it did
 
 ```text
 List, in order, every tool you used in this session,
@@ -341,7 +430,7 @@ flowchart LR
 | Sees your files | Only what you paste | Reads them itself |
 | Runs code | No, you do | Yes, and reads the output |
 | Fixes its errors | Only if you paste the error back | Yes, in the loop |
-| Leaves results | Text in a chat window | Files on your disk: `analyse.py`, `pendulum.png`, `report.md` |
+| Leaves results | Text in a chat window | Files on your disk: `analyse.py`, `pendulum.png`, `report.md`, and the `.venv` with its packages |
 | Your job | Copy, paste, run | Give clear tasks, **check the results** |
 
 The last row matters most. The agent can be confidently wrong. It found the
@@ -355,10 +444,15 @@ typed as 0,61, would pass silently. You are still the scientist.
 - **"not available for grant"**: your grant cannot use the default model. See
   [Which model](../01-getting-started/05-first-steps.md#which-model).
 - **`pip` fails with a network or proxy error.** Ask the agent to try again; if it
-  keeps failing, skip the plot and do step 8 without it.
+  keeps failing, skip the plot and do step 10 without it.
 - **The agent stops without a result.** Check whether the expected file exists.
   If not, send the same prompt again, or add "Run the script and show me the
   output" at the end.
+- **Activate.ps1 cannot be loaded because running scripts is disabled.** The
+  agent tried to activate the venv. Reply "Do not activate; call
+  .venv\Scripts\python.exe directly."
+- **No module named 'matplotlib'.** The agent ran the system Python. Reply "Use
+  .venv\Scripts\python.exe."
 - **The numbers differ a little from those above.** Small differences (for example
   9.79 instead of 9.80) are fine. A different order of magnitude is not: ask the
   agent to explain.
