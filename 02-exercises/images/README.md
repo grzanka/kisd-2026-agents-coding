@@ -35,5 +35,9 @@ page that shows it.
 | `02-pendulum-8b-run-read.png` | [Exercise 1](../02-pendulum.md), step 8 | The run with the venv Python, then Read of the png |
 | `02-pendulum-8c-plot.png` | [Exercise 1](../02-pendulum.md), step 8 | The plot shown in the conversation |
 | `02-pendulum-9-show.png` | [Exercise 1](../02-pendulum.md), step 9 | The plot in the side panel |
+| `02-pendulum-10-report.png` | [Exercise 1](../02-pendulum.md), step 10 | The report, formatted in the side panel |
+| `02-pendulum-11a-tools-thought.png` | [Exercise 1](../02-pendulum.md), step 11 | The Thought rebuilding the list of tools |
+| `02-pendulum-11b-tools-list.png` | [Exercise 1](../02-pendulum.md), step 11 | The list of 19 tool calls |
+| `02-pendulum-12-context.png` | [Exercise 1](../02-pendulum.md), step 12 | The Context tab with the session numbers |
 
 [← Back to the exercises](../README.md) · [Main README](../../README.md)

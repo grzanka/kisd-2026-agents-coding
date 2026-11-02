@@ -538,9 +538,28 @@ a comparison with 9.81 m/s^2,
 and the plot pendulum.png embedded.
 ```
 
-Expected result: a new file `report.md`. Open it in Notepad (or, better, in VS
-Code, which shows the plot). The numbers in it should match what the script
-printed in step 6. **Check this yourself.**
+Expected result: *Used 2 Write, Execute*: a **Write** of `report.md`, then
+**Execute** `browser.preview`, which opens the report in the panel on the right.
+There you see it formatted: headings, the formulas, and the plot. You do not
+need any other program to read it.
+
+<details>
+<summary>Picture: the report in the test run</summary>
+
+<img src="images/02-pendulum-10-report.png" alt="Left: Used 2 Write, Execute, with report.md (+54 lines) and browser.preview report.md, then a summary of the report. Right: report.md formatted, with the sections Aim, Method with the formulas, and Centimetre correction" width="700">
+
+</details>
+
+**What to notice:** the numbers in the report should match what the script
+printed in step 6: g = 9.803 ± 0.031 m/s². **Check this yourself.** In the test
+run they matched, and the comparison was right: 0.007 m/s² from 9.81, about 0.2
+standard errors.
+
+Now read the text, not only the numbers. The report in the test run says that
+*"the length L was measured with a ruler"*. Nobody said that; the agent made it
+up because it sounds like a normal lab report. It is a small detail, but it is
+not true to what you know. In your own reports, every sentence the agent writes
+is a sentence you sign.
 
 ## Step 11: Ask the agent what it did
 
@@ -549,8 +568,62 @@ List, in order, every tool you used in this session,
 and for each one say in one sentence why you needed it.
 ```
 
-Expected result: a list such as read, write, run, edit, run, install… Compare it
-with the tool calls you saw on screen. Do they match?
+Expected result: *Used 1 Thought*, then a numbered list of about 20 tool calls,
+each with a reason. Compare it with the *Used ...* lines you saw on screen. Do
+they match?
+
+<details>
+<summary>Pictures: the list in the test run</summary>
+
+<img src="images/02-pendulum-11a-tools-thought.png" alt="The Thought: the model rebuilds the session in order, 19 tool calls from read of the folder to execute browser.preview report.md" width="700">
+
+<img src="images/02-pendulum-11b-tools-list.png" alt="The answer: 19 tool calls in order, each with one sentence why: read, shell, write, write, shell, write, shell, four shell calls for the venv, edit, edit, shell, read, skill, execute, write, execute" width="700">
+
+</details>
+
+**What to notice:** in the test run the list had 19 tool calls, and it matched
+the screen exactly: the counts in the *Used ...* lines add up to 19 too. The
+agent did not need any tool for this; it reads the whole conversation every
+time, so it knows what it did. Most of the calls were **Shell**: running code
+and checking things is most of the work.
+
+## Step 12: How big was this session?
+
+opencode counts the size of the session. At the top of the conversation, next
+to the session name, is a small circle with a number, for example **22k**. Click
+it (the tooltip says *Toggle session context*). A **Context** tab opens in the
+right panel.
+
+<img src="images/02-pendulum-12-context.png" alt="The Context tab: Session Simple pendulum period and g; Provider PLGrid Forge (Cyfronet); Model DeepSeek V4.1 Flash (PLGrid); Messages 51; Context Limit 1,048,576; Total Tokens 22,386; Usage 2%; Input Tokens 21,620; Output Tokens 448; Reasoning Tokens 318; User Messages 11; Assistant Messages 29; Total Cost $0.00" width="700">
+
+What the numbers mean (from the test run):
+
+- **User Messages 11**, **Assistant Messages 29**: your 11 prompts led to 29
+  answers of the model. One prompt can take several model calls.
+- **Total Tokens 22,386** and **Usage 2%**: the size of the last model call. A
+  **token** is a piece of a word, about ¾ of an English word. The model can hold
+  1,048,576 tokens (**Context Limit**), so this session fills 2% of it.
+- **Input Tokens 21,620**, but **Output Tokens 448** (plus 318 for the
+  Thought). With every call, the whole conversation so far is sent to the model
+  again; the model writes only a little each time. That is why each prompt in
+  a long session costs more than the one before.
+- **Total Cost $0.00**: opencode does not know the prices of PLGrid. The real
+  cost is counted in **credits** on llmlab. Look at your usage on the llmlab
+  page.
+
+See also [why one prompt costs many model calls](../01-getting-started/01-chatbot-or-agent.md#why-one-prompt-costs-many-model-calls).
+
+<details>
+<summary>Explain: start a new session for a new task</summary>
+
+Because the whole conversation is sent again with every call, a session that
+goes on and on gets slower and costs more credits per prompt. For a new task,
+start a new session (the **+** at the top, or **Ctrl+T**). Things the agent
+should always know, such as "use .venv", go into `AGENTS.md` (see
+[`/init`](../01-getting-started/05-first-steps.md)), not into a long
+conversation.
+
+</details>
 
 You are done. Close the opencode window, or keep it open for "Going further".
 
