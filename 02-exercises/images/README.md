@@ -14,5 +14,8 @@ page that shows it.
 | `01-pendulum-0d-name-folder.png` | [Exercise 1](../01-pendulum.md), step 0d | Typing the name of the new folder |
 | `01-pendulum-0e-select-folder.png` | [Exercise 1](../01-pendulum.md), step 0e | Inside the empty folder, Select Folder |
 | `01-pendulum-0f-project-open.png` | [Exercise 1](../01-pendulum.md), step 0e | opencode with the new project open |
+| `01-pendulum-1-chat-answer.png` | [Exercise 1](../01-pendulum.md), step 1 | A plain answer, only a Thought |
+| `01-pendulum-2-read-shell.png` | [Exercise 1](../01-pendulum.md), step 2 | Read and Shell tool calls, opened |
+| `01-pendulum-3-write.png` | [Exercise 1](../01-pendulum.md), step 3 | The Write of pendulum.csv, opened |
 
 [← Back to the exercises](../README.md) · [Main README](../../README.md)

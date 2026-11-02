@@ -40,6 +40,11 @@ Write so that both groups are served:
   several. Prefer a single line, or a script file.
 - Label the shell above each block when it matters (PowerShell, bash).
 - Prompts meant for the agent follow the same rule: one prompt per block.
+- **Keep lines in prompt blocks under 80 characters.** GitHub does not wrap code
+  blocks, so a long line is cut off and the reader cannot see the whole prompt
+  before pasting it. Break a prompt at the end of a sentence or clause; the
+  agent reads line breaks as spaces. Commands cannot be broken this way (no line
+  continuations), so a long command line is the only exception.
 
 Example of the right form:
 

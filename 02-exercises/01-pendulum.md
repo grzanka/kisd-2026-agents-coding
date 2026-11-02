@@ -37,18 +37,22 @@ watch.
 
 ## What to watch for
 
-While the agent works, opencode shows each tool call as a short line in the
-conversation, with the tool name and its target, for example:
+Above each answer, opencode shows a summary line such as *Used 2 Read, Shell*.
+Click it (the small ▾) to open the details: each tool call on its own line, with
+the tool name and its target. The tools you will see:
 
-- `Read` / `List` / `Glob`: the agent looks at files.
-- `Write`: the agent creates a new file.
-- `Edit`: the agent changes part of an existing file. opencode shows the change
+- **Read** (also *List* or *Glob*): the agent looks at files or folders.
+- **Write**: the agent creates a new file. opencode shows its content with the
+  new lines in green.
+- **Edit**: the agent changes part of an existing file. opencode shows the change
   in red (removed) and green (added).
-- `Bash`: the agent runs a command in the terminal and reads its output. (It is
-  called `Bash` on Windows too.)
+- **Shell**: the agent runs a command in the terminal and reads its output.
 
-After each step below, count which of these you saw. That is the whole point of
-the exercise.
+You will also see **Thought**: the model thinking before it acts. It is not a
+tool call; nothing happens on your computer.
+
+After each step below, count which tools you saw. That is the whole point of the
+exercise.
 
 If opencode asks for **permission** before a tool call, read what it wants to do,
 then approve it.
@@ -144,26 +148,37 @@ Then open it in opencode with **Add project** as in 0b, and skip 0c and 0d.
 Paste this into the opencode text box and press **Enter**:
 
 ```text
-What is the formula for the period of a simple pendulum, and how can I use it to measure g? Answer in three sentences.
+What is the formula for the period of a simple pendulum,
+and how can I use it to measure g?
+Answer in three sentences.
 ```
 
-Expected result: a short answer with T = 2π√(L/g), so g = 4π²L/T².
+Expected result: a short answer with T = 2π√(L/g), so g = 4π²L/T². Above it,
+opencode shows *Used 1 Thought*.
 
-**What to notice:** no tool calls. The model answered from what it knows, exactly
-like a chat. Everything from here on is different.
+<img src="images/01-pendulum-1-chat-answer.png" alt="The question, the line Used 1 Thought, and a three-sentence answer with T = 2π√(L/g) and g = 4π²L/T²" width="700">
+
+**What to notice:** no tool calls, only a Thought. The model answered from what
+it knows, exactly like a chat. Everything from here on is different.
 
 ## Step 2: Look around (read-only tools)
 
 ```text
-Do not change anything. List the files in this folder, and check which version of Python is installed on this computer.
+Do not change anything.
+List the files in this folder,
+and check which version of Python is installed on this computer.
 ```
 
-Expected result: the agent says the folder is empty, and reports a Python
-version such as `Python 3.12.4`.
+Expected result: *Used 2 Read, Shell*, then the answer: the folder is empty,
+and the Python version, such as `Python 3.15.0`. Click the line to see the
+details: **Read** of your project folder and **Shell** `python --version`.
 
-**What to notice:** the model cannot see your disk. To answer, it had to call a
-tool to list the files and a `Bash` tool to run `python --version`, then read
-the results. You did not tell it which commands to use.
+<img src="images/01-pendulum-2-read-shell.png" alt="Used 2 Read, Shell, opened: Thought, Read exercise02, Shell python --version, Thought; then the answer: the folder is empty, Python 3.15.0, no changes were made" width="700">
+
+**What to notice:** the model cannot see your disk. To answer, it had to call
+**Read** to list the files and **Shell** to run `python --version`, then read
+the results. You did not tell it which commands to use. The Thoughts show its
+plan: both tasks only read, so it ran them at the same time.
 
 <details>
 <summary>If Python is not installed</summary>
@@ -183,7 +198,11 @@ The data below was typed into Polish Excel and exported as CSV, so it uses
 semicolons and decimal commas. Paste the whole prompt, including the data:
 
 ```text
-Create a file named pendulum.csv with exactly the content below. It comes from a student lab: each row is one pendulum, with the string length in metres and the time of 10 full swings in seconds, measured with a stopwatch. Do not change any values.
+Create a file named pendulum.csv with exactly the content below.
+It comes from a student lab: each row is one pendulum,
+with the string length in metres
+and the time of 10 full swings in seconds, measured with a stopwatch.
+Do not change any values.
 
 length_m;time_10_swings_s
 0,20;8,9
@@ -203,23 +222,38 @@ length_m;time_10_swings_s
 opencode may show the pasted text as a single block, such as
 `[Pasted ~14 lines]`. That is fine.
 
-Expected result: a `Write` tool call for `pendulum.csv`. Open File Explorer and go
-to your `kisd-pendulum` folder: the file is there. You can open it in Notepad.
+Expected result: *Used 1 Write*. Open it: you see the content of
+`pendulum.csv`, 13 lines in green (*+13 -0*: 13 lines added, none removed).
+
+<img src="images/01-pendulum-3-write.png" alt="Used 1 Write, opened: a Thought, the new file pendulum.csv with 13 green lines, another Thought; then the answer: the file was created, and the row 70;16,8 looks like a typo for 0,70 but was left as given" width="700">
+
+Open File Explorer and go to your `kisd-pendulum` folder: the file is there. You
+can open it in Notepad.
 
 **What to notice:** the agent created a real file on your disk. In a chat you
 would have to copy the text and save the file yourself.
 
-## Step 4: Analyse (`Write` + `Bash` + the loop)
+The agent may already point at the row `70;16,8`, which looks different from the
+others. Because you said *do not change any values*, it left the row as it is
+and only told you. That is the right behaviour: you decide what to do with raw
+data. Keep the row; it matters in step 5.
+
+## Step 4: Analyse (`Write` + `Shell` + the loop)
 
 ```text
-Write a short Python script named analyse.py that reads pendulum.csv and, for each row, computes the period T (time of 10 swings divided by 10) and g = 4 * pi^2 * length / T^2. Print a table with one row per pendulum, then the mean of g. Use only the Python standard library. Run the script and show me the output.
+Write a short Python script named analyse.py that reads pendulum.csv.
+For each row, compute the period T (time of 10 swings divided by 10)
+and g = 4 * pi^2 * length / T^2.
+Print a table with one row per pendulum, then the mean of g.
+Use only the Python standard library.
+Run the script and show me the output.
 ```
 
 Expected result: a table of 12 rows, then a mean *g* of about **90 m/s²**. That is
 far too large. Keep it for the next step.
 
-**What to notice:** several tool calls in a row: `Write` for the script, then
-`Bash` to run `python analyse.py`. The agent read the output before answering
+**What to notice:** several tool calls in a row: **Write** for the script, then
+**Shell** to run `python analyse.py`. The agent read the output before answering
 you.
 
 Often the first run fails, because Python does not read `0,20` as a number. You
@@ -231,7 +265,9 @@ happen to you, look at your neighbour's screen.
 ## Step 5: Find the problem (reasoning on results)
 
 ```text
-The mean g is far from 9.81 m/s^2. Look at the per-row results and find out why. Do not change any files yet, just explain.
+The mean g is far from 9.81 m/s^2.
+Look at the per-row results and find out why.
+Do not change any files yet, just explain.
 ```
 
 Expected result: the agent points to the row with length `70`. Its *g* is about
@@ -244,7 +280,11 @@ may also read `pendulum.csv` again to check.
 ## Step 6: Fix it (`Edit`)
 
 ```text
-That length was written in centimetres. Fix it in analyse.py, not in pendulum.csv: convert any length above 10 to metres and print a warning when you do. Also print the standard error of the mean of g. Run the script again.
+That length was written in centimetres.
+Fix it in analyse.py, not in pendulum.csv:
+convert any length above 10 to metres and print a warning when you do.
+Also print the standard error of the mean of g.
+Run the script again.
 ```
 
 Expected result: an `Edit` of `analyse.py` with red and green lines, a new run,
@@ -267,7 +307,12 @@ analysis, with or without an agent.
 ## Step 7: Plot (`Edit` + installing a package)
 
 ```text
-Add a plot to analyse.py: the measured period T against the length as points, and the curve T = 2*pi*sqrt(L/g) with the mean g as a line. Label the axes with units. Save it as pendulum.png. Use matplotlib and install it if it is missing. Run the script.
+Add a plot to analyse.py:
+the measured period T against the length as points,
+and the curve T = 2*pi*sqrt(L/g) with the mean g as a line.
+Label the axes with units. Save it as pendulum.png.
+Use matplotlib and install it if it is missing.
+Run the script.
 ```
 
 Expected result: the agent probably runs `python -m pip install matplotlib`
@@ -281,7 +326,12 @@ handled the environment, not only the code.
 ## Step 8: Write the report (`Write` from results)
 
 ```text
-Write report.md: a half-page lab report with the aim, the method (the formula), a note about the centimetre correction, the result for g with its standard error, a comparison with 9.81 m/s^2, and the plot pendulum.png embedded.
+Write report.md: a half-page lab report with
+the aim, the method (the formula),
+a note about the centimetre correction,
+the result for g with its standard error,
+a comparison with 9.81 m/s^2,
+and the plot pendulum.png embedded.
 ```
 
 Expected result: a new file `report.md`. Open it in Notepad (or, better, in VS
@@ -291,7 +341,8 @@ printed in step 6. **Check this yourself.**
 ## Step 9: Ask the agent what it did
 
 ```text
-List, in order, every tool you used in this session, and for each one say in one sentence why you needed it.
+List, in order, every tool you used in this session,
+and for each one say in one sentence why you needed it.
 ```
 
 Expected result: a list such as read, write, run, edit, run, install… Compare it
