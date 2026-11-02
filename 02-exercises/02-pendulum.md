@@ -765,4 +765,4 @@ as you would keep a lab notebook.
 
 ---
 
-← Previous: [Create a project folder](01-project-folder.md) · [Exercises overview](README.md) · [Main README](../README.md)
+← Previous: [Create a project folder](01-project-folder.md) · [Exercises overview](README.md) · Next: [Learning with an agent →](03-learning-with-an-agent.md)
