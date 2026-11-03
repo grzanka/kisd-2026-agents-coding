@@ -81,6 +81,7 @@ From the community repo (it measured the live gateway; these values are not from
 - A key whose grant cannot use the model gets the error *"not available for grant 'N'"*. Access is requested through the PLGrid Helpdesk.
 - **Before the lectures, check that the grant used for the course can reach this model.**
 - Fallback open to all grants: `plgrid/Qwen/Qwen3.6-27B`. It is slower but correct on the benchmark.
+- Backup DeepSeek model: `deepseek-ai/DeepSeek-V4.1-Flash-1017` (opencode model id `plgrid/deepseek-ai/DeepSeek-V4.1-Flash-1017`). Its context window, reasoning, function calling and grant access have **not been checked**. Verify with the health check below before relying on it.
 - Neighbouring models are `deepseek-ai/DeepSeek-V4-Flash` (700k context, no reasoning) and `deepseek-ai/DeepSeek-V4-Flash-0731`.
 
 ## Using it from opencode
