@@ -14,7 +14,7 @@ This time the agent works in **learning mode**: it explains what it does, and
 you predict, check and change things yourself. Read
 [Learning with an agent](03-learning-with-an-agent.md) first.
 
-- Time: about 90 minutes, in three parts. Each part is a new session.
+- Time: about 100 minutes, in three parts. Each part is a new session.
 - You need: everything from [Exercise 1](02-pendulum.md), and about 300 MB of
   free disk space.
 - You learn: rules in `AGENTS.md`, a plan in a file, sessions and handover
@@ -31,7 +31,7 @@ The agent does this for you, because the rules in `AGENTS.md` say so.
 
 So that 30 people do not download 1,000 files each from a small institute's
 server at the same time, we keep an unchanged copy of the whole archive as one
-ZIP file (15 MB) in this course's
+ZIP file (16 MB) in this course's
 [GitHub release](https://github.com/grzanka/kisd-2026-agents-coding/releases/tag/data-gig-meteo-2006-2026).
 
 </details>
@@ -111,6 +111,9 @@ are plausible and match the date in the file name.
 Update PLAN.md.
 ```
 
+Most agents name the step that combines the files: a mistake there gives a
+table that looks fine and is wrong.
+
 **What to notice:** the plan is a file. You can read it, question it and change
 it **before** anything happens. That is cheaper than fixing things afterwards.
 The plan also survives the end of the session.
@@ -127,7 +130,7 @@ where you stopped?
 
 This session is done.
 
-## Part B: from 1,000 text files to one fast file (session 2, about 40 minutes)
+## Part B: from 1,000 text files to one fast file (session 2, about 50 minutes)
 
 Start a **new session** (**+** or **Ctrl+T**). It knows nothing about part A,
 except what is in the files.
@@ -154,28 +157,43 @@ Then stop and report: number of files, total size,
 the folders you found, and anything unexpected.
 ```
 
-Expected result: **Shell** calls that download the ZIP (15 MB) and unpack it.
-The agent reports **1,066 files** in 21 folders (`2006` to `2026`), about
-**100 MB**, and a `README.txt`. Compare with your guess.
+Expected result: the agent first does the earlier steps of the plan, if there
+are any (folders, `.venv`). Then it downloads the ZIP (16 MB) and unpacks it,
+often with small scripts that it writes first (**Write**, then **Shell**). It
+reports **1,066 files** in 21 year folders (`2006` to `2026`), about **100 MB**,
+and a `README.txt`. The files are in `data/raw/gig-meteo/`, one folder deeper
+than you might expect. Compare with your guess.
+
+The archive comes with a short `README.txt`, and a careful agent reads it. It
+lists some of the problems in the data, and says itself that the list may not
+be complete. In step B4 you will see what it leaves out.
 
 <!-- TODO: screenshot of the download and unpacking. -->
 
 ### B3. Look at one file with @
 
-In the text box, type `@` and then `2015010`. A list of matching files appears;
-choose `data/raw/2015/20150105.txt`. Then add the rest of the prompt:
+In the text box, type `@` and then `20150105`. A list of matching files
+appears. The same file is in two folders, `2014` and `2015`: the week of New
+Year belongs to both years. Choose `data/raw/gig-meteo/2015/20150105.txt`. Then
+paste the rest of the prompt after it:
 
 ```text
-@data/raw/2015/20150105.txt
 What does each column mean? Which columns are you unsure about?
 Are there units anywhere in the file?
 ```
 
-Expected result: the agent explains the columns. It should notice that:
+The file is attached only if you **choose it from the list**. If you type or
+paste the path yourself, it stays plain text, and the agent opens the file with
+a **Read** call instead. That works too, but it is not `@`.
+
+Expected result: the agent explains the columns. It may recognise the format: a
+Davis weather station, exported with the program WeatherLink. It should notice
+that:
 
 - the column names are split over **two lines** (for example `Temp` above
   `Out`);
-- the dates look like `15-01-05`, which means 2015-01-05;
+- the first date is `14-12-28`, which means 28 December 2014: the file named
+  after 5 January 2015 starts 8 days earlier;
 - **there are no units in the file.** The values look like °C, %, hPa and mm,
   but that is an assumption.
 
@@ -218,24 +236,37 @@ Expected result: several **Write** and **Shell** calls with small checking
 scripts, then a report. This is the most important step of the exercise. Take
 your time to read the report.
 
+Wait for the report before you send the next prompt. If the agent stops after
+writing a script, without running it, write: "Run it and report."
+
 <details>
 <summary>Check: what the agent should find (open after you read its report)</summary>
 
 The archive has these problems. How many did your agent find?
 
 1. **Weeks overlap.** Each file covers 8 days, so two neighbouring files share
-   one day. Simply joining all files counts about 57,000 half-hours twice.
-2. **One file is there twice:** `20070101.txt` is in both `2006/` and `2007/`.
-3. **The date format changes.** In many files from 2009 and 2010 the date is
-   written day-month-year: `5-04-09` means 5 April 2009, not 9 April 2005. Read
-   as year-month-day, such dates become nonsense, up to the year **2031**.
+   one day. Simply joining all files counts about 58,000 half-hours twice.
+2. **Files at New Year are there twice.** For example `20070101.txt` is in both
+   `2006/` and `2007/`. There are 16 such files.
+3. **The date format changes.** In 83 files, from March 2009 to November 2010,
+   the date is written day-month-year: `5-04-09` means 5 April 2009, not
+   9 April 2005. Read as year-month-day, such dates become nonsense, up to the
+   year **2031**.
 4. **Notes between the data rows**, in Polish, starting with `****`: clock
    changes and server outages.
 5. **Missing values** written as `---`.
-6. **A few broken rows** with fewer or more values than the header, one of them
-   two rows glued together.
+6. **Values that touch.** The files are fixed-width: each value has its own
+   columns of characters. A value that is too wide touches its neighbour:
+   `992.4108.801280.0` is really `992.4`, `108.80` and `1280.0`. Split at the
+   spaces, such a row seems to have values missing. There is also one row cut
+   short, and one line with two rows glued together.
+7. **Two column layouts.** Some files, for example `2018/20180604.txt`, have
+   wider columns than the rest.
+The `README.txt` mentions problems 1 to 5, but without the details: it does not
+say which files use day-month-year dates, or how many. Problems 6 and 7 are not
+in it at all. Read the documentation, then check it against the data.
 
-Problems 1 and 3 do not cause any error message. A script that ignores them
+Problems 1, 2 and 3 do not cause any error message. A script that ignores them
 runs fine and gives wrong numbers.
 
 </details>
@@ -251,10 +282,18 @@ Explain the 3 most important lines of the code that reads the files.
 Before the agent finishes, predict: **how many rows will the table have?** Hint:
 there are 48 half-hours in a day, and about 20 years.
 
-Expected result: a script in the project folder, a new file `data/meteo.csv`
-(about 60 MB), and a report with the number of rows: about **330,000–340,000**.
-That is less than 20 years × 365 days × 48 = 350,400, because the station did
-not always work.
+Expected result: this step takes longest, often 10–15 minutes. The agent writes
+a script, runs it, finds new problems in its own output, writes small test
+scripts, and changes its script several times. That is normal: watch how it
+checks its own results. At the end you have a script, a new file
+`data/meteo.csv` (about 55–60 MB), and a report with the number of rows: about
+**349,000**.
+
+Check your prediction: from 1 October 2006 to 2 November 2026 there are 7,337
+days, and 7,337 × 48 = 352,176 half-hours. The table has about 3,000 fewer,
+because the station did not always work. If your agent reports about 407,000
+rows, it did not remove the overlapping days. If it reports far fewer than
+349,000, it probably lost the rows with day-month-year dates.
 
 Then ask one question of your own about the code. If you have no idea, ask:
 
@@ -277,20 +316,24 @@ for both CSV and Parquet.
 Explain what Parquet does differently.
 ```
 
-Expected result: the agent installs `pandas` and `pyarrow` into `.venv`, then
-shows a table like this (the times depend on your computer):
+Expected result: the agent installs `pyarrow` into `.venv` (`pandas` is
+usually there already), then shows a table like this (the times depend on your
+computer):
 
 | | CSV | Parquet |
 |---|---|---|
-| Size | about 60 MB | about 10 MB |
-| Read everything | about 0.3 s | about 0.2 s |
-| Read 2 columns | about 0.4 s | about 0.03 s |
+| Size | about 55 MB | about 10 MB |
+| Read everything | about 0.4 s | about 0.03 s |
+| Read 2 columns | about 0.2 s | about 0.015 s |
+
+Look at the CSV column: reading 2 columns instead of all saves only about half
+the time, because the program still has to go through every line of text.
 
 <details>
 <summary>Explain: why Parquet is smaller and faster</summary>
 
 - **By columns.** A CSV file stores the data row by row. Parquet stores it
-  column by column. To read 2 of 36 columns, Parquet reads only those 2.
+  column by column. To read 2 of 35 columns, Parquet reads only those 2.
 - **Compressed.** Values in one column are similar (temperatures next to
   temperatures), so they compress well.
 - **Typed.** Parquet knows that a column holds dates or numbers. A CSV file holds
@@ -316,6 +359,12 @@ which problems we found and how we handled them,
 and that the analysis should use only data/meteo.parquet.
 ```
 
+Before you leave, click the small circle with the token count next to the
+session name, as in [Exercise 1, step 12](02-pendulum.md#step-12-how-big-was-this-session).
+In our test run, this session ended at about 180,000 tokens: each of the last
+prompts sent that much to the model again. Over the whole session, the model
+read about 5 million tokens. That is why part C starts a new session.
+
 This session is done.
 
 ## Part C: analysis (session 3, about 30 minutes)
@@ -340,9 +389,13 @@ Does any year have too few data? Does any sensor show the same value for days?
 <details>
 <summary>Check: what the agent might find</summary>
 
-- One temperature of about **−68 °C**: a sensor error, not weather. The coldest
+- A temperature of exactly **−67.8 °C**, about 140 times, between 2009 and
+  2022: always the same value, so a sensor error code, not weather. The coldest
   real values in Katowice are around −25 °C.
-- **2010** has far fewer data than other years: long gaps.
+- A **rain rate** of more than 1,000 mm per hour in a few rows: impossible. The
+  world record is about 300 mm in one hour.
+- **2009** and **2019** have a few percent fewer data than other years: each
+  has a gap of about two weeks.
 - The first and last years are incomplete: the archive starts in October 2006
   and ends in November 2026.
 
@@ -359,15 +412,16 @@ which month are there most such hours? At what time of day is the air most
 humid?**
 
 ```text
-For each month, count the hours with relative humidity (Out Hum) of 90% or more,
-averaged over the full years 2007-2025. Make a bar chart.
+For each month, count the hours with relative humidity (Out Hum)
+of 90% or more, averaged over the full years 2007-2025. Make a bar chart.
 Also make a heatmap of the mean humidity by hour of day and month.
 Save both in results/. Explain the code that counts the hours.
 ```
 
-Expected result: two plots in `results/`. December and January have the most
-humid hours (about 350–400 per month), April to August the fewest (about 120–150).
-In the heatmap, the air is most humid around sunrise (about 88%) and driest in
+Expected result: the agent installs `matplotlib` into `.venv`, if it is not
+there yet, then makes two plots in `results/`. November to January have the
+most humid hours (about 360–410 per month), April to August the fewest (about
+125–160). In the heatmap, the air is most humid around sunrise (about 88%) and driest in
 the afternoon (about 68%).
 
 <!-- TODO: screenshots of the two plots. -->
@@ -388,8 +442,15 @@ I changed the threshold myself. Run the script again,
 and tell me what changed in the results.
 ```
 
+Expected result: about 1.7 times more humid hours in every month, for example
+about 630 instead of 407 in December. The heatmap does not change: it shows the
+mean humidity and does not use the threshold.
+
 **What to notice:** this is the first line of code you changed yourself. The
-agent explained where; you did it.
+agent explained where; you did it. But look at the bar chart: its title still
+says "90 %". The number 90 was written in more than one place, and you changed
+only one of them. A good agent warns you about this. If yours does not, ask:
+"Where else in the script does 90 appear?"
 
 ### C4. Is there a trend?
 
@@ -400,19 +461,56 @@ List the reasons why such a trend could be wrong.
 ```
 
 Expected result: a plot and a list of reasons for caution: years with missing
-data (2010 has long gaps), one station only, possible sensor changes, and how
-the date problem of 2009-2010 was handled. If 2009 and 2010 show far fewer humid
-hours than the other years, ask the agent why.
+data (2009 and 2019 each miss about two weeks), one station only, possible
+sensor changes, and how the date problem of 2009-2010 was handled. The values
+lie between about 2,100 and 3,700 hours a year, and they jump a lot from year
+to year. A straight line through them is flat: there is no trend that the data
+can show. If 2009 and 2010 show far fewer humid hours than the other years, ask
+the agent why: the date problem was not handled.
 
-### C5. Short report
+### C5. Short report: let the agent ask you
+
+A report needs decisions that are yours: which results to show, and what to do
+with the chart you changed in C3. Instead of letting the agent guess, make it
+ask you, with options to choose from:
 
 ```text
 Write results/report.md: half a page with what we did, the problems we found
 in the data and how we handled them, the two main results with their plots,
 and the source of the data.
+Before you write: ask me which two results to include, and anything else
+you are not sure about. Use your question tool, with 2-3 options for each.
 ```
 
-Read the report. Is every sentence true? Is anything made up?
+Expected result: no report yet. The agent stops and shows its questions, each
+with 2–3 options and a short description of each option. For example: "Which
+two results should the report feature?", with the options "Monthly bar +
+humidity heatmap" and "Monthly bar + yearly trend". Click your choice for each
+question. Only then does the agent write the report.
+
+<!-- TODO: screenshot of the Question box with options. -->
+
+Read the report. Is every sentence true? Is anything made up? Pick one claim
+and ask: "How do you know that?" For example, a report may say that the empty
+wind directions are moments without wind. Is that checked, or assumed?
+
+<details>
+<summary>Explain: the question tool</summary>
+
+opencode gives the agent a tool called **question**. With it, the agent stops
+and shows you questions with ready answers to click, instead of writing a
+question in the chat. Agents use it by themselves when they notice that
+something is unclear; with "use your question tool" you make sure that it does.
+
+This is useful whenever a decision is yours: which data to leave out, which
+plot to show, which threshold to use. Clicking an option is quicker than
+writing an answer, and the options show you what the choices are, which you
+might not have thought of.
+
+The rules in `AGENTS.md` ask the agent to do this whenever it needs a decision
+from you.
+
+</details>
 
 ## Check yourself
 

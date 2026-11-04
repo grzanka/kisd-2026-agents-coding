@@ -69,7 +69,9 @@ note for a colleague who takes over your lab shift.
 <summary>Explain: why not one long session for everything?</summary>
 
 - **Cost.** Every prompt sends the whole session again. A session ten times
-  longer makes every prompt about ten times more expensive in credits.
+  longer makes every prompt about ten times more expensive in credits. In a
+  test run of part B of Exercise 2, the last prompts sent about 180,000 tokens
+  each, and the session as a whole about 5 million.
 - **Quality.** A long session is full of old details, wrong attempts and
   corrections. The model has to find what matters now among all of that, and
   sometimes it picks up an old, wrong idea.
@@ -118,6 +120,7 @@ into **learning mode**. It tells the agent to:
 - ask you one short check question after each task;
 - give hints first when you ask "how do I...";
 - say when it is unsure;
+- ask you, with options to click, when a decision is yours;
 - stop after each step of the plan.
 
 You can read the whole file here: [meteo/AGENTS.md](meteo/AGENTS.md). If you
@@ -135,6 +138,11 @@ Add one of these to your prompts, or send them on their own:
 | ...to explore data | "Before any analysis: list 5 questions we should ask about this data, and how to check each." |
 | ...good practice | "What could make this result wrong? List the assumptions we made." |
 | ...whether you understood | "Ask me 3 questions about what we just did. Tell me if my answers are right." |
+| ...what you have to decide | "Before you start, ask me what you need to know. Use your question tool, with 2-3 options for each question." |
+
+The last one makes the agent stop and show you its questions, each with
+options to click, instead of guessing. You try it in
+[Exercise 2, step C5](04-meteo.md#c5-short-report-let-the-agent-ask-you).
 
 ---
 
