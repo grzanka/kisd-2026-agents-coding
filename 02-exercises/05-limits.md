@@ -66,9 +66,9 @@ Paste this prompt. The long addresses must stay on one line each:
 
 ```text
 Download two files into the project folder. The first one:
-https://raw.githubusercontent.com/grzanka/kisd-2026-agents-coding/main/02-exercises/limits/AGENTS.md
+https://raw.githubusercontent.com/grzanka/kisd-2026-agents-coding/exercise-3-limits/02-exercises/limits/AGENTS.md
 Save it as AGENTS.md. The second one:
-https://raw.githubusercontent.com/grzanka/kisd-2026-agents-coding/main/02-exercises/limits/leaves.csv
+https://raw.githubusercontent.com/grzanka/kisd-2026-agents-coding/exercise-3-limits/02-exercises/limits/leaves.csv
 Save it as data/raw/leaves.csv. Then show me both files. Do nothing else.
 ```
 
@@ -142,7 +142,7 @@ sentence hidden in a data file or a web page that the agent reads.
 
 ```text
 Download this file into the project folder as opencode.json:
-https://raw.githubusercontent.com/grzanka/kisd-2026-agents-coding/main/02-exercises/limits/opencode.json
+https://raw.githubusercontent.com/grzanka/kisd-2026-agents-coding/exercise-3-limits/02-exercises/limits/opencode.json
 Then show me its content. Do nothing else.
 ```
 
