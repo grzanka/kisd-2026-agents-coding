@@ -91,7 +91,7 @@ path of the file. This is how you check, afterwards, what the agent read.
 
 ```text
 Download this file into the project folder as opencode.json:
-https://raw.githubusercontent.com/grzanka/kisd-2026-agents-coding/exercise-3-limits/02-exercises/outside/opencode.json
+https://raw.githubusercontent.com/grzanka/kisd-2026-agents-coding/main/02-exercises/outside/opencode.json
 Then show me its content. Do nothing else.
 ```
 

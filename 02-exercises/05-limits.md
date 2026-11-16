@@ -65,11 +65,11 @@ Paste this prompt. The long addresses must stay on one line each:
 
 ```text
 Download three files into the project folder. The first one:
-https://raw.githubusercontent.com/grzanka/kisd-2026-agents-coding/exercise-3-limits/02-exercises/limits/AGENTS.md
+https://raw.githubusercontent.com/grzanka/kisd-2026-agents-coding/main/02-exercises/limits/AGENTS.md
 Save it as AGENTS.md. The second one:
-https://raw.githubusercontent.com/grzanka/kisd-2026-agents-coding/exercise-3-limits/02-exercises/limits/leaves.csv
+https://raw.githubusercontent.com/grzanka/kisd-2026-agents-coding/main/02-exercises/limits/leaves.csv
 Save it as data/raw/leaves.csv. The third one:
-https://raw.githubusercontent.com/grzanka/kisd-2026-agents-coding/exercise-3-limits/02-exercises/limits/opencode.json
+https://raw.githubusercontent.com/grzanka/kisd-2026-agents-coding/main/02-exercises/limits/opencode.json
 Save it as setup/permissions.json.
 Then show me AGENTS.md and leaves.csv. Do nothing else.
 ```

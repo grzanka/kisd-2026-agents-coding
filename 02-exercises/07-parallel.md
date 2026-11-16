@@ -52,7 +52,7 @@ Paste this prompt. The long addresses must stay on one line each:
 
 ```text
 Download two files into the project folder. The first one:
-https://raw.githubusercontent.com/grzanka/kisd-2026-agents-coding/exercise-3-limits/02-exercises/parallel/AGENTS.md
+https://raw.githubusercontent.com/grzanka/kisd-2026-agents-coding/main/02-exercises/parallel/AGENTS.md
 Save it as AGENTS.md. The second one:
 https://github.com/grzanka/kisd-2026-agents-coding/releases/download/data-gig-meteo-2006-2026/meteo.parquet
 Save it as data/meteo.parquet. Then show me AGENTS.md. Do nothing else.

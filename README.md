@@ -4,8 +4,11 @@ Lecture materials on **agentic coding for data analysis**, using
 [opencode](https://opencode.ai) and [llmlab at Cyfronet](https://llmlab.plgrid.pl)
 (PLGrid Forge). The course is for PhD students of the KISD doctoral school.
 
-**When and where:** 3 November 2026 (03.11.2026), 11:30–14:00, MSD room,
-IFJ PAN (Institute of Nuclear Physics, Polish Academy of Sciences, Kraków).
+**When and where:** two sessions, both 11:30–14:00 in the MSD room, IFJ PAN
+(Institute of Nuclear Physics, Polish Academy of Sciences, Kraków):
+
+- 3 November 2026 (03.11.2026)
+- 17 November 2026 (17.11.2026)
 
 **Where to start:** the folders are numbered in the order you use them. Read
 the five pages in `01-getting-started` (they set up opencode on your computer),
