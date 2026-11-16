@@ -18,28 +18,6 @@ so that the whole class does not download it from Wikimedia at the same time.
   photo metadata, why a measurement needs a reference of known size, and
   checking a measurement on a marked image.
 
-<details>
-<summary>Explain: what went wrong in our test run</summary>
-
-In a test run, we **pasted** a photo of a detector into the conversation and
-asked for the diameter of the bore (the round opening). The agent could see
-the photo, but to measure it with code it needed it as a **file**, and there
-was none. So it went looking:
-
-- It searched the temporary folders of Windows and the data folder of
-  opencode itself, outside the project. opencode asked for permission again
-  and again.
-- It found opencode's own store of past sessions, pulled out pictures from
-  **other conversations**, and opened them, until it found the right one.
-- It installed Python packages into the Python of the whole computer, not
-  into the project, and wrote about 30 scripts into a temporary folder.
-
-The answer was reasonable, but it took about 80 tool calls and 20 minutes.
-The cause was one small thing: the photo was not a file in the project. In
-this exercise, it is.
-
-</details>
-
 ## Part A: prepare
 
 ### A1. Create the project folder
@@ -87,9 +65,8 @@ Create .venv and install pillow and numpy into it. Do nothing else.
 Expected result: a few **Shell** calls. `pillow` opens and draws on images,
 `numpy` computes with the pixels.
 
-**What to notice:** you prepare the tools first, inside the project. In our
-test run, nobody did, and the agent installed them into the Python of the
-whole computer.
+**What to notice:** you prepare the tools first, inside the project. If you
+do not, the agent may install them into the Python of the whole computer.
 
 ## Part B: look
 
@@ -191,9 +168,9 @@ the 1 metre is made up. If the box is 90 cm wide, the dial is about 68 cm.
 
 **What to notice:** the agent's measurement is only as good as its reference.
 In your own photos, put a ruler or an object of known size **next to** the
-thing you measure, in the **same plane**, and photograph it **face-on**. In
-our test run, the detector was photographed at an angle, so the agent had to
-correct the perspective, with a wider range as the result.
+thing you measure, in the **same plane**, and photograph it **face-on**. A
+photo taken at an angle needs a perspective correction, and gives a wider
+range.
 
 ## Part D: where did everything go?
 
@@ -203,7 +180,7 @@ Did you write, install or read anything outside the project folder?
 ```
 
 Expected result: only files inside `kisd-photo`: `.venv`, `scripts/`,
-`results/`. Compare with the test run described at the top of this page.
+`results/`.
 
 The rule in `AGENTS.md` ("work only inside this project folder") is level 1:
 a request to the model. To make opencode itself ask before the agent leaves
@@ -228,7 +205,7 @@ the project, add the permission from [Exercise 4](06-outside-folder.md).
 
 No prompt here. Answer on paper, or explain to your neighbour:
 
-1. Why could the agent in our test run not simply measure the pasted photo?
+1. Why should the photo be a file in the project, not pasted into the chat?
 2. What is the difference between B1 and C2?
 3. Why could the agent not give the size of the dial in C1?
 4. Why is the dial in the photo lower than it is wide, and which number did
@@ -261,8 +238,7 @@ No prompt here. Answer on paper, or explain to your neighbour:
   an angle. Put both photos into `photos/` and ask the agent to measure the
   coin. Compare the two results with the true size.
 - **Perspective.** For a photo taken at an angle, ask the agent to correct
-  the perspective, using the four corners of an object of known size. This is
-  what the agent did with the detector in our test run.
+  the perspective, using the four corners of an object of known size.
 - **Two measurements, compared.** As in [Exercise 5](07-parallel.md), ask two
   subagents to measure the dial independently, each with its own method, and
   compare their results.
