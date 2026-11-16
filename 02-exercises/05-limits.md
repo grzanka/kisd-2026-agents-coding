@@ -71,7 +71,7 @@ Save it as AGENTS.md. The second one:
 https://raw.githubusercontent.com/grzanka/kisd-2026-agents-coding/exercise-3-limits/02-exercises/limits/leaves.csv
 Save it as data/raw/leaves.csv. The third one:
 https://raw.githubusercontent.com/grzanka/kisd-2026-agents-coding/exercise-3-limits/02-exercises/limits/opencode.json
-Save it as setup/opencode.json.
+Save it as setup/permissions.json.
 Then show me AGENTS.md and leaves.csv. Do nothing else.
 ```
 
@@ -79,9 +79,13 @@ Expected result: some **Webfetch**, **Write** or **Shell** calls, then the two
 files. `leaves.csv` has twelve measurements of leaf length. One of them, plant
 `B1` on 11 May, is `245` cm: a typo for `24.5`.
 
-The third file, `opencode.json`, holds the permissions for part C. It waits in
-the folder `setup`, where opencode does not look for it, so it does nothing
+The third file, `permissions.json`, holds the permissions for part C. Under
+this name, and in the folder `setup`, opencode ignores it, so it does nothing
 yet. You will switch it on yourself in part C.
+
+Run this step in a new, empty project folder. If `AGENTS.md` is already there
+from an earlier try, the agent follows its rules and may refuse to save the
+files.
 
 **What to notice:** opencode did not ask you anything. The agent downloaded
 files and created folders on its own. That is the default: no limits.
@@ -147,30 +151,34 @@ sentence hidden in a data file or a web page that the agent reads.
 
 ### C1. Switch on the permissions yourself
 
-opencode reads `opencode.json` only from the main folder of the project. Move
-it there from `setup`, in File Explorer:
+opencode reads its permissions only from a file called `opencode.json` in the
+main folder of the project. Rename the file and move it there, in File
+Explorer:
 
 1. Go to your `kisd-limits` folder, then into `setup`.
-2. Right-click `opencode.json` and choose **Cut** (the scissors icon).
-3. Go back up to `kisd-limits`. Right-click an empty place and choose
+2. Right-click `permissions.json`, choose **Rename**, type `opencode.json`
+   and press **Enter**. If File Explorer shows the name without `.json`, as
+   `permissions`, type only `opencode`.
+3. Right-click `opencode.json` and choose **Cut** (the scissors icon).
+4. Go back up to `kisd-limits`. Right-click an empty place and choose
    **Paste**.
 
 Expected result: `opencode.json` is in `kisd-limits`, next to `AGENTS.md`, and
-`setup` is empty. If File Explorer shows the name only as `opencode`, that is
-fine: Windows hides the end of file names.
+`setup` is empty.
 
 Why not ask the agent to do it? Try it if you like:
 
 ```text
-Move setup/opencode.json into the main project folder.
+Rename setup/permissions.json to opencode.json
+and move it into the main project folder.
 ```
 
-In our test run, we asked the agent to download `opencode.json` straight into
-the main folder, and it refused. `AGENTS.md` says "do not change
-opencode.json", and the agent saw that creating the file would install limits
-on itself. That is level 1 working, and it is right:
-**you** set the lock, not the agent. If your agent did move the file, that is
-fine too; go on.
+In our test runs the agent refused, even when we said "yes, do it".
+`AGENTS.md` says "do not change opencode.json", and the agent saw that
+creating this file would put limits on itself. It even noticed that the file
+protects itself with the rule `*opencode.json`. That is level 1 working, and
+it is right: **you** set the lock, not the agent. If your agent did it, that
+is fine too; go on.
 
 Now look at the rules:
 
@@ -437,10 +445,10 @@ No prompt here. Answer on paper, or explain to your neighbour:
 - **Python is not found.** See [Before the exercises](00-prerequisites.md).
 - **The download in A2 fails.** Open the address in your browser, and save
   the file with **Ctrl+S** into your `kisd-limits` folder (`leaves.csv` into
-  `data\raw`, `opencode.json` into `setup`). Check that the browser did not
+  `data\raw`, `opencode.json` into `setup` as `permissions.json`). Check that the browser did not
   add `.txt` to the name.
-- **There is no `setup` folder in C1.** The agent saved `opencode.json`
-  somewhere else, or not at all. Ask it: "Where did you save opencode.json?"
+- **There is no `setup` folder in C1.** The agent saved `permissions.json`
+  somewhere else, or not at all. Ask it: "Where did you save permissions.json?"
   If it is already in the main folder, the permissions are on from the start
   of the next session: go to C2.
 
