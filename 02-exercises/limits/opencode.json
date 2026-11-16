@@ -1,0 +1,17 @@
+{
+  "$schema": "https://opencode.ai/config.json",
+  "permissions": [
+    { "action": "shell", "resource": "*", "effect": "ask" },
+    { "action": "shell", "resource": "dir *", "effect": "allow" },
+    { "action": "shell", "resource": "ls *", "effect": "allow" },
+    { "action": "shell", "resource": "Get-ChildItem *", "effect": "allow" },
+    { "action": "shell", "resource": "rm *", "effect": "deny" },
+    { "action": "shell", "resource": "del *", "effect": "deny" },
+    { "action": "shell", "resource": "rmdir *", "effect": "deny" },
+    { "action": "shell", "resource": "Remove-Item *", "effect": "deny" },
+    { "action": "edit", "resource": "*data/raw/*", "effect": "deny" },
+    { "action": "edit", "resource": "*AGENTS.md", "effect": "deny" },
+    { "action": "edit", "resource": "*opencode.json", "effect": "deny" },
+    { "action": "webfetch", "resource": "*", "effect": "ask" }
+  ]
+}

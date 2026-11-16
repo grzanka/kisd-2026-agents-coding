@@ -558,4 +558,4 @@ No prompt here. Answer on paper, or explain to your neighbour:
 
 ---
 
-← Previous: [Learning with an agent](03-learning-with-an-agent.md) · [Exercises overview](README.md) · [Main README](../README.md)
+← Previous: [Learning with an agent](03-learning-with-an-agent.md) · [Exercises overview](README.md) · Next: [Exercise 3 →](05-limits.md)

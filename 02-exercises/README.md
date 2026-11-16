@@ -11,6 +11,7 @@ prompts are ready to copy and paste. You do not need to know Python.
 | 2 | [Exercise 1: your first agent session — measuring *g* with a pendulum](02-pendulum.md) | How an agent differs from a chat: tool calls, the agentic loop, creating and editing files | 30–40 min |
 | 3 | [Learning with an agent: sessions, AGENTS.md and learning mode](03-learning-with-an-agent.md) | Why the agent should explain; what a session is and when to start a new one; what AGENTS.md is | 10 min |
 | 4 | [Exercise 2: twenty years of weather in Katowice](04-meteo.md) | Learning mode, a plan in a file, @ for files, checking messy data, CSV versus Parquet | 100 min |
+| 5 | [Exercise 3: what the agent may and may not do](05-limits.md) | Rules for the model (`AGENTS.md`) versus permissions for the app (`opencode.json`): allow, ask, deny, and their limits | 40 min |
 
 ## Before you start
 
@@ -25,6 +26,7 @@ Do the exercises in order. Each one runs in its own new project folder
 ([how to create one](01-project-folder.md)).
 
 Screenshots for these pages are in [images/](images/README.md). Files that the
-exercises download are in [meteo/](meteo/README.md).
+exercises download are in [meteo/](meteo/README.md) (Exercise 2) and
+[limits/](limits/README.md) (Exercise 3).
 
 [← Back to the main README](../README.md)
