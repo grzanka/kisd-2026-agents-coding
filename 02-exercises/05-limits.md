@@ -493,9 +493,7 @@ No prompt here. Answer on paper, or explain to your neighbour:
   settings file (the one from
   [Configure opencode for llmlab](../01-getting-started/03-configure-llmlab-endpoint.md))
   to apply it everywhere. Project rules are read after it, so they win.
-- **Files outside the project.** Add a rule with the action
-  `external_directory`, resource `*` and effect `ask`. Then opencode asks
-  before the agent reads or writes any file outside the project folder.
+- **Files outside the project.** See [Exercise 4](06-outside-folder.md).
 - **Secrets.** Add a rule with the action `read`, resource `*secret*` and
   effect `deny`. Ask the agent to read a file called `my-secret.txt`.
 - **Read-only file.** In File Explorer, right-click `leaves.csv`,
@@ -509,4 +507,4 @@ No prompt here. Answer on paper, or explain to your neighbour:
 
 ---
 
-← Previous: [Exercise 2](04-meteo.md) · [Exercises overview](README.md) · [Main README](../README.md)
+← Previous: [Exercise 2](04-meteo.md) · [Exercises overview](README.md) · Next: [Exercise 4 →](06-outside-folder.md)

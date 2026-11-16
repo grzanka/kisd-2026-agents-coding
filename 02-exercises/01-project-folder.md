@@ -2,13 +2,20 @@
 
 You may be used to working with **one file at a time**: you open a Word document,
 edit it, save it. An agent works differently. It works with a **whole folder**,
-called the **project**. It can read, create and change every file in that folder,
-and nothing outside it. Over an exercise the agent fills the folder with several
-files: the data, a script, a plot and a report.
+called the **project**. It can read, create and change every file in that folder.
+Over an exercise the agent fills the folder with several files: the data, a
+script, a plot and a report.
+
+The project folder is where the agent works, but it is **not a wall**. With the
+default settings, the agent can also read and change files elsewhere on your
+computer, without asking you. It does so only when a tool call names such a
+file, and every tool call shows in the conversation, so nothing happens
+unseen. [Exercise 4](06-outside-folder.md) shows how to make opencode ask you
+first.
 
 So the rule is: **one project = one folder**. Each exercise gets its own new,
 empty folder. That keeps the files of different exercises apart, and keeps the
-agent away from your other files.
+agent's work in one place.
 
 You create the folder from inside opencode. Here the folder for
 [Exercise 1](02-pendulum.md) is called `kisd-pendulum`. Later exercises tell you

@@ -2,9 +2,11 @@
 
 ## Open a project folder
 
-opencode always works in one folder, called the **project**. It can read and
-change only the files in that folder. You see the current project under the text
-box; right after installing it is **Default Project**.
+opencode always works in one folder, called the **project**. It reads and
+changes the files in that folder. With the default settings it can also reach
+files outside it; [Exercise 4](../02-exercises/06-outside-folder.md) shows how
+to limit that. You see the current project under the text box; right after
+installing it is **Default Project**.
 
 For real work, use a separate folder for each task: one project = one folder.
 Click the project name under the text box (or press **Ctrl+Shift+O**), then
