@@ -46,6 +46,11 @@ Create the folder `kisd-outside` and open it in opencode, as in
 [Create a project folder](01-project-folder.md). Put it in the same place as
 your other exercise folders, for example **Documents**.
 
+Use a **new, empty** folder, not `kisd-limits` from Exercise 3. There, the
+rules in `AGENTS.md` forbid the agent to change `opencode.json`, and the
+permissions of Exercise 3 are already on. The agent would refuse the steps
+below, and the results would mix up the two exercises.
+
 ### A2. Create a data folder outside the project
 
 The data for this exercise lives **next to** the project folder, not in it.
@@ -237,6 +242,9 @@ No prompt here. Answer on paper, or explain to your neighbour:
 
 ## If something goes wrong
 
+- **The agent refuses to download `opencode.json`, and names a rule in
+  `AGENTS.md`.** You are in the folder of Exercise 3. Open the project
+  `kisd-outside` (**Ctrl+Shift+O**), or create it, and start from A1.
 - **In C1 to C4, opencode asks nothing, and everything runs.** opencode has
   not read `opencode.json`. Check that the file is in the main folder of
   `kisd-outside`, and is called exactly `opencode.json`. Close and open
