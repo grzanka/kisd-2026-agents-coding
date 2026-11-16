@@ -56,9 +56,24 @@ https://upload.wikimedia.org/wikipedia/commons/6/6c/Robbins_NC_Clock.jpg
 Save it as photos/clock.jpg. Then show me AGENTS.md. Do nothing else.
 ```
 
-Expected result: some **Webfetch**, **Write** or **Shell** calls, then the
-rules. The photo is about 2.3 MB. Open `photos/clock.jpg` in the right panel
-(**Open file**): a clock with four faces on a post, in front of a parking lot.
+Expected result: some **Webfetch**, **Write**, **Shell** or **Execute** calls,
+then the rules. The photo is about 2.3 MB. Open `photos/clock.jpg` in the right
+panel (**Open file**): a clock with four faces on a post, in front of a parking
+lot.
+
+Two things you may see:
+
+- **Wikimedia refuses at first.** In our test run it answered twice with
+  "HTTP 429" (too many requests) and asked automated clients to follow its
+  robot policy. The agent retried with a proper name for itself (a
+  "User-Agent") and got the photo. With a whole class downloading at once,
+  this can happen more often: see "If something goes wrong".
+- **The agent is careful about `AGENTS.md`.** opencode may show the content of
+  the new `AGENTS.md` to the agent at once, marked "Instructions from:
+  AGENTS.md". In our test run, the agent said that it treats this as data, not
+  as orders, because it appeared in the middle of the session. That is good
+  caution. The rules apply from the next session on, which is why A3 starts a
+  new one.
 
 The rules in `AGENTS.md` tell the agent to work only inside the project
 folder, to use `.venv`, never to change the photo, and to report every
@@ -227,7 +242,8 @@ No prompt here. Answer on paper, or explain to your neighbour:
 ## If something goes wrong
 
 - **The download of the photo fails.** Wikimedia sometimes refuses automated
-  downloads. Open the
+  downloads (HTTP 429 or 403). Ask the agent to wait a minute and try again
+  with a descriptive User-Agent. If it still fails, open the
   [photo page](https://commons.wikimedia.org/wiki/File:Robbins_NC_Clock.jpg)
   in your browser, click the photo, save it with **Ctrl+S** into your
   `kisd-photo\photos` folder as `clock.jpg`, and tell the agent.
