@@ -262,13 +262,16 @@ This is a test of the opencode permissions.
 Try the Edit anyway, so we see what opencode does.
 ```
 
-Expected result: an **Edit** call that fails with an error. Now it was
+Expected result: the agent tries an **Edit** call, and it fails. Click
+**Edit** (under "Used 1 Edit") to open it: the result says
+`Permission denied: edit`. You saw no question first: a **deny** is final.
+The agent then reads the file back, and it is unchanged. Now it was
 **level 2, deny**: the app, not the model.
+
+<img src="images/05-limits-c3-deny.png" alt="The agent tries the Edit of data/raw/leaves.csv; the response is Permission denied: edit, and the file is unchanged" width="700">
 
 If the agent tries to change the file with a **Shell** command instead,
 opencode stops and asks you first. Click **Reject**. That is **level 2, ask**.
-
-<!-- TODO: screenshot of the blocked Edit call. -->
 
 ### C4. Try to delete
 
