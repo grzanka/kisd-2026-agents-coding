@@ -18,6 +18,46 @@ so that the whole class does not download it from Wikimedia at the same time.
   photo metadata, why a measurement needs a reference of known size, and
   checking a measurement on a marked image.
 
+<details>
+<summary>Explain: how a model works with images</summary>
+
+**A multimodal model** takes in more than text: images too, sometimes also
+sound. Inside, it works with tokens, as with text:
+
+- The image is first **scaled down**, often to about one or two million
+  pixels or less. A large photo loses fine detail before the model sees it.
+- The scaled image is cut into small squares, a few dozen pixels each. Each
+  square becomes a token, in the same form as the tokens of words.
+- The model reads these image tokens together with your text, and answers
+  with text. One image costs hundreds to a few thousand tokens.
+
+So the model **looks** at a photo much as you glance at it. It is good at
+describing it, reading signs and labels, and recognising objects. It is weak
+at exact numbers: positions in pixels, lengths, small angles. It does not
+count pixels; it gives an impression.
+
+**With tools**, an agent has two ways to use a photo:
+
+| | Looking | Measuring |
+|---|---|---|
+| How | A **Read** of the image file: opencode attaches the image to the conversation, and the model looks at it | A **Python** script opens the file and computes with the colour of every pixel |
+| What the model gets | The (scaled-down) image | Only the numbers that the script prints |
+| Good for | What is in the photo, a first estimate | Exact sizes in pixels, repeatable results |
+| Needs | The image in the conversation | The image as a **file** that the script can open |
+
+A good agent combines both: it measures with code, draws the result on a
+copy of the photo, and then **looks** at that copy to check that the lines
+sit in the right place.
+
+An image that you **paste** into the chat exists only in the conversation.
+The model can look at it, but a script cannot open it. That is why, in this
+exercise, the photo is a file in the project.
+
+Either way, the image goes to the model at llmlab, as part of the
+conversation.
+
+</details>
+
 ## Part A: prepare
 
 ### A1. Create the project folder
