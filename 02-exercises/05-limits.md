@@ -268,7 +268,7 @@ Expected result: the agent tries an **Edit** call, and it fails. Click
 The agent then reads the file back, and it is unchanged. Now it was
 **level 2, deny**: the app, not the model.
 
-<img src="images/05-limits-c3-deny.png" alt="The agent tries the Edit of data/raw/leaves.csv; the response is Permission denied: edit, and the file is unchanged" width="700">
+<!-- TODO: screenshot of the blocked Edit call. -->
 
 If the agent tries to change the file with a **Shell** command instead,
 opencode stops and asks you first. Click **Reject**. That is **level 2, ask**.

@@ -42,6 +42,5 @@ page that shows it.
 | `02-pendulum-raw-1-user.png` | [Exercise 1](../02-pendulum.md), For experts | The raw JSON of a user message |
 | `02-pendulum-raw-2-assistant.png` | [Exercise 1](../02-pendulum.md), For experts | The raw JSON of an answer, with the reasoning part |
 | `02-pendulum-raw-3-show-me.png` | [Exercise 1](../02-pendulum.md), For experts | The raw JSON of the step 9 prompt and answer |
-| `05-limits-c3-deny.png` | [Exercise 3](../05-limits.md), step C3 | The Edit of data/raw/leaves.csv denied: Permission denied: edit |
 
 [← Back to the exercises](../README.md) · [Main README](../../README.md)
