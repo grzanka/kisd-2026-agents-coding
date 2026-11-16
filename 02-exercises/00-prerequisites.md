@@ -4,8 +4,7 @@ In the exercises the agent writes small **Python** programs and runs them on you
 computer. For that, Python must be installed. You do not need to know Python;
 the agent writes the code.
 
-Do this once, before the first exercise. It takes 2 minutes if Python is already
-there, and about 10 minutes if you need to install it.
+Do this once, before the first exercise.
 
 ## Step 1. Open PowerShell
 

@@ -5,8 +5,6 @@ we change roles: **the agent explains, you learn.** This page explains why, and
 the three things you need for it: sessions, the file `AGENTS.md`, and learning
 mode.
 
-Reading time: about 10 minutes.
-
 ## Why "explain it to me" instead of "do it for me"
 
 An agent can do a whole analysis while you watch. That is fast, but you learn

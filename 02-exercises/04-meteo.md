@@ -14,7 +14,7 @@ This time the agent works in **learning mode**: it explains what it does, and
 you predict, check and change things yourself. Read
 [Learning with an agent](03-learning-with-an-agent.md) first.
 
-- Time: about 100 minutes, in three parts. Each part is a new session.
+- Three parts. Each part is a new session.
 - You need: everything from [Exercise 1](02-pendulum.md), and about 300 MB of
   free disk space.
 - You learn: rules in `AGENTS.md`, a plan in a file, sessions and handover
@@ -36,7 +36,7 @@ ZIP file (16 MB) in this course's
 
 </details>
 
-## Part A: rules and plan (session 1, about 15 minutes)
+## Part A: rules and plan (session 1)
 
 ### A1. Create the project folder
 
@@ -130,7 +130,7 @@ where you stopped?
 
 This session is done.
 
-## Part B: from 1,000 text files to one fast file (session 2, about 50 minutes)
+## Part B: from 1,000 text files to one fast file (session 2)
 
 Start a **new session** (**+** or **Ctrl+T**). It knows nothing about part A,
 except what is in the files.
@@ -282,7 +282,7 @@ Explain the 3 most important lines of the code that reads the files.
 Before the agent finishes, predict: **how many rows will the table have?** Hint:
 there are 48 half-hours in a day, and about 20 years.
 
-Expected result: this step takes longest, often 10–15 minutes. The agent writes
+Expected result: this step takes longest. The agent writes
 a script, runs it, finds new problems in its own output, writes small test
 scripts, and changes its script several times. That is normal: watch how it
 checks its own results. At the end you have a script, a new file
@@ -367,7 +367,7 @@ read about 5 million tokens. That is why part C starts a new session.
 
 This session is done.
 
-## Part C: analysis (session 3, about 30 minutes)
+## Part C: analysis (session 3)
 
 Start a **new session**.
 
@@ -558,4 +558,4 @@ No prompt here. Answer on paper, or explain to your neighbour:
 
 ---
 
-← Previous: [Learning with an agent](03-learning-with-an-agent.md) · [Exercises overview](README.md) · [Main README](../README.md)
+← Previous: [Learning with an agent](03-learning-with-an-agent.md) · [Exercises overview](README.md) · Next: [Exercise 3 →](05-limits.md)
