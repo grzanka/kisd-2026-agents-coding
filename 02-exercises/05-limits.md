@@ -53,7 +53,7 @@ it asks before it reads files named `.env`, which often hold passwords.
 
 </details>
 
-## Part A: set up the project (about 5 minutes)
+## Part A: set up the project
 
 ### A1. Create the project folder
 
@@ -90,7 +90,7 @@ files.
 **What to notice:** opencode did not ask you anything. The agent downloaded
 files and created folders on its own. That is the default: no limits.
 
-## Part B: level 1, rules in AGENTS.md (about 10 minutes)
+## Part B: level 1, rules in AGENTS.md
 
 ### B1. Start a new session, and check the rules
 
@@ -147,7 +147,7 @@ sentence hidden in a data file or a web page that the agent reads.
 
 <!-- TODO: screenshot of the agent giving in, or refusing. -->
 
-## Part C: level 2, permissions in opencode.json (about 15 minutes)
+## Part C: level 2, permissions in opencode.json
 
 ### C1. Switch on the permissions yourself
 
@@ -311,7 +311,7 @@ trace (level 2, **allow**); the Python command was **level 2, ask**.
 It is convenient, but each click makes the lock a bit weaker. A saved
 **Allow always** never overrides a **deny** from `opencode.json`.
 
-## Part D: the gap in the lock (about 10 minutes)
+## Part D: the gap in the lock
 
 The permissions check each **tool**, and the file that the tool names. But a
 shell command can start a program, and the program can do anything that you
@@ -388,7 +388,7 @@ no trouble: the permissions apply to the agent, not to you.
 you remember the old value. With real data, you would not. That is the
 backup from rule 6 of the take-home below.
 
-## Part E: the right way (about 5 minutes)
+## Part E: the right way
 
 First check, in the right panel (**Open file**), that `data/raw/leaves.csv`
 says `245` for `B1` on 11 May. If it says `24.5`, do [D3](#d3-put-the-original-back-yourself)
