@@ -60,21 +60,28 @@ it asks before it reads files named `.env`, which often hold passwords.
 Create the folder `kisd-limits` and open it in opencode, as in
 [Create a project folder](01-project-folder.md).
 
-### A2. Get the rules and the data
+### A2. Get the rules, the data and the permissions
 
 Paste this prompt. The long addresses must stay on one line each:
 
 ```text
-Download two files into the project folder. The first one:
+Download three files into the project folder. The first one:
 https://raw.githubusercontent.com/grzanka/kisd-2026-agents-coding/exercise-3-limits/02-exercises/limits/AGENTS.md
 Save it as AGENTS.md. The second one:
 https://raw.githubusercontent.com/grzanka/kisd-2026-agents-coding/exercise-3-limits/02-exercises/limits/leaves.csv
-Save it as data/raw/leaves.csv. Then show me both files. Do nothing else.
+Save it as data/raw/leaves.csv. The third one:
+https://raw.githubusercontent.com/grzanka/kisd-2026-agents-coding/exercise-3-limits/02-exercises/limits/opencode.json
+Save it as setup/opencode.json.
+Then show me AGENTS.md and leaves.csv. Do nothing else.
 ```
 
 Expected result: some **Webfetch**, **Write** or **Shell** calls, then the two
 files. `leaves.csv` has twelve measurements of leaf length. One of them, plant
 `B1` on 11 May, is `245` cm: a typo for `24.5`.
+
+The third file, `opencode.json`, holds the permissions for part C. It waits in
+the folder `setup`, where opencode does not look for it, so it does nothing
+yet. You will switch it on yourself in part C.
 
 **What to notice:** opencode did not ask you anything. The agent downloaded
 files and created folders on its own. That is the default: no limits.
@@ -138,12 +145,37 @@ sentence hidden in a data file or a web page that the agent reads.
 
 ## Part C: level 2, permissions in opencode.json (about 15 minutes)
 
-### C1. Get the permissions file
+### C1. Switch on the permissions yourself
+
+opencode reads `opencode.json` only from the main folder of the project. Move
+it there from `setup`, in File Explorer:
+
+1. Go to your `kisd-limits` folder, then into `setup`.
+2. Right-click `opencode.json` and choose **Cut** (the scissors icon).
+3. Go back up to `kisd-limits`. Right-click an empty place and choose
+   **Paste**.
+
+Expected result: `opencode.json` is in `kisd-limits`, next to `AGENTS.md`, and
+`setup` is empty. If File Explorer shows the name only as `opencode`, that is
+fine: Windows hides the end of file names.
+
+Why not ask the agent to do it? Try it if you like:
 
 ```text
-Download this file into the project folder as opencode.json:
-https://raw.githubusercontent.com/grzanka/kisd-2026-agents-coding/exercise-3-limits/02-exercises/limits/opencode.json
-Then show me its content. Do nothing else.
+Move setup/opencode.json into the main project folder.
+```
+
+In our test run, we asked the agent to download `opencode.json` straight into
+the main folder, and it refused. `AGENTS.md` says "do not change
+opencode.json", and the agent saw that creating the file would install limits
+on itself. That is level 1 working, and it is right:
+**you** set the lock, not the agent. If your agent did move the file, that is
+fine too; go on.
+
+Now look at the rules:
+
+```text
+Show me the content of opencode.json. Do not change it.
 ```
 
 Expected result: a file with a list of rules. Each rule names a tool
@@ -342,6 +374,7 @@ it ran. The original stays as it was measured.
 | A2 | Downloads, new folders, no questions | Nothing: no limits by default |
 | B2 | The agent refused in words | Level 1: `AGENTS.md` |
 | B3 | Often: the agent gave in and edited the raw file | Nothing: a prompt beat level 1 |
+| C1 | You switched on the permissions; the agent often refuses to | Level 1: `AGENTS.md` protects `opencode.json` |
 | C3 | The Edit call failed with an error | Level 2, deny |
 | C4 | The delete command failed with an error | Level 2, deny |
 | C5 | Listing ran freely; Python waited for your click | Level 2, allow and ask |
@@ -365,7 +398,8 @@ Rules of thumb:
    forgets or gives in.
 2. **deny** what cannot be undone, **ask** for anything that runs code,
    **allow** only what only reads.
-3. **Lock the lock.** Deny edits of `opencode.json` and `AGENTS.md`, or the
+3. **Lock the lock, and set it yourself.** Put `opencode.json` in place
+   yourself, and deny edits of `opencode.json` and `AGENTS.md`. Otherwise the
    agent can change its own rules.
 4. **Read before you click.** An **ask** protects you only if you look at the
    command, and at the script it runs. Never click **Allow always** for
@@ -395,15 +429,20 @@ No prompt here. Answer on paper, or explain to your neighbour:
   work, your opencode version may use an older format of the settings: ask
   your teacher.
 - **opencode shows an error about the settings when it starts.** The file is
-  broken, for example cut short during the download. Delete `opencode.json` in
-  File Explorer and repeat C1.
+  broken, for example cut short during the download. Download it again in your
+  browser, as in the next point.
 - **The agent asks you about every small step.** That is the price of
   **ask**. You can click **Allow always** for commands that only read, for
   example a listing. Do not do it for `python`: any script runs with it.
 - **Python is not found.** See [Before the exercises](00-prerequisites.md).
-- **The download in A2 or C1 fails.** Open the address in your browser, save
-  the file into your `kisd-limits` folder (for `leaves.csv`: into
-  `data\raw`), and tell the agent where it is.
+- **The download in A2 fails.** Open the address in your browser, and save
+  the file with **Ctrl+S** into your `kisd-limits` folder (`leaves.csv` into
+  `data\raw`, `opencode.json` into `setup`). Check that the browser did not
+  add `.txt` to the name.
+- **There is no `setup` folder in C1.** The agent saved `opencode.json`
+  somewhere else, or not at all. Ask it: "Where did you save opencode.json?"
+  If it is already in the main folder, the permissions are on from the start
+  of the next session: go to C2.
 
 <details>
 <summary>Going further</summary>

@@ -7,6 +7,6 @@ do not need to open them here; the agent downloads them for you.
 |---|---|
 | [`AGENTS.md`](AGENTS.md) | Level 1: the rules of the project, written for the model. Never change `data/raw`, fix data with a script |
 | [`leaves.csv`](leaves.csv) | Twelve made-up leaf measurements, with one typo (`245` instead of `24.5`). Goes into `data/raw` |
-| [`opencode.json`](opencode.json) | Level 2: permissions that the opencode app enforces. Blocks edits in `data/raw`, asks before shell commands and downloads |
+| [`opencode.json`](opencode.json) | Level 2: permissions that the opencode app enforces. Blocks edits in `data/raw`, asks before shell commands and downloads. Downloaded into `setup/`; the participant moves it into the project folder in part C |
 
 [← Back to the exercises](../README.md) · [Main README](../../README.md)
