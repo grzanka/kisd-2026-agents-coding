@@ -271,7 +271,7 @@ The agent then reads the file back, and it is unchanged. Now it was
 <!-- TODO: screenshot of the blocked Edit call. -->
 
 If the agent tries to change the file with a **Shell** command instead,
-opencode stops and asks you first. Click **Reject**. That is **level 2, ask**.
+opencode stops and asks you first. Click **Deny**. That is **level 2, ask**.
 
 ### C4. Try to delete
 
@@ -294,13 +294,13 @@ Then count the data rows of leaves.csv with a one-line Python command.
 ```
 
 Expected result: the listing runs without a question (it is allowed). Before
-the Python command, opencode stops and shows you the command, with three
-buttons:
+the Python command, opencode stops and shows a box **Permission required**,
+with the tool (`shell`), the command, and three buttons:
 
 - **Allow once**: run this command, this time only;
 - **Allow always**: run it now, and never ask again for similar commands in
   this project;
-- **Reject**: do not run it. You can add a short message to the agent.
+- **Deny**: do not run it. The agent is told that you refused.
 
 Click **Allow once**. The agent reports 12 rows. The listing passed with no
 trace (level 2, **allow**); the Python command was **level 2, ask**.
@@ -345,11 +345,6 @@ does. Click **Allow once**. Then open `data/raw/leaves.csv`: the value is now
 
 <!-- TODO: screenshot of the question for python fix_raw.py. -->
 
-Put the original value back yourself: in File Explorer, go to your
-`kisd-limits` folder, then `data`, then `raw`. Right-click `leaves.csv`,
-**Open with**, **Notepad**. Change `24.5` back to `245` and save. You have no
-limits: the permissions apply to the agent, not to you.
-
 **What to notice:** the denied Edit in C3 and the script in D2 did the same
 thing. The difference was the tool. Count what was left of each level: level 1
 gave way, because you allowed it in your prompt. The **deny** for `data/raw`
@@ -376,7 +371,28 @@ says "no". Use both.
 
 </details>
 
+### D3. Put the original back, yourself
+
+The raw file is now wrong: it is no longer what was measured. Part E needs
+the original value `245` back, or there is nothing left to fix.
+
+Do not ask the agent: the **deny** for `data/raw` blocks its Edit, and that
+is right. Do it yourself. In File Explorer, go to your `kisd-limits` folder,
+then `data`, then `raw`. Right-click `leaves.csv`, **Open with**,
+**Notepad**. Change `24.5` back to `245` and save.
+
+Expected result: the line for `B1` on `2026-05-11` says `245` again. You had
+no trouble: the permissions apply to the agent, not to you.
+
+**What to notice:** without a backup, you can restore the file only because
+you remember the old value. With real data, you would not. That is the
+backup from rule 6 of the take-home below.
+
 ## Part E: the right way (about 5 minutes)
+
+First check, in the right panel (**Open file**), that `data/raw/leaves.csv`
+says `245` for `B1` on 11 May. If it says `24.5`, do [D3](#d3-put-the-original-back-yourself)
+first. Then:
 
 ```text
 Now fix the typo the way AGENTS.md says.
@@ -402,6 +418,7 @@ it ran. The original stays as it was measured.
 | C4 | The delete command failed with an error | Level 2, deny |
 | C5 | Listing ran freely; Python waited for your click | Level 2, allow and ask |
 | D2 | A script changed the raw file | Only you, at the ask question |
+| D3 | You put the original back in Notepad | Nothing: the limits apply to the agent, not to you |
 | E | A script wrote a clean copy; raw data untouched | Both: level 1 guided, level 2 asked |
 
 ## Take home: which rules to use, and when
