@@ -27,6 +27,7 @@ then do the tasks in `02-exercises`, in order.
    4. [Exercise 2: twenty years of weather in Katowice](02-exercises/04-meteo.md)
    5. [Exercise 3: what the agent may and may not do](02-exercises/05-limits.md)
    6. [Exercise 4: files outside the project folder](02-exercises/06-outside-folder.md)
+   7. [Exercise 5: several agents at once](02-exercises/07-parallel.md)
 3. Later, optional: [opencode and Claude Code](01-getting-started/06-opencode-vs-claude-code.md),
    [For experts: other ways to set up](01-getting-started/07-for-experts.md)
 

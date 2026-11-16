@@ -258,4 +258,4 @@ No prompt here. Answer on paper, or explain to your neighbour:
 
 ---
 
-← Previous: [Exercise 3](05-limits.md) · [Exercises overview](README.md) · [Main README](../README.md)
+← Previous: [Exercise 3](05-limits.md) · [Exercises overview](README.md) · Next: [Exercise 5 →](07-parallel.md)
