@@ -14,7 +14,6 @@ them.
 You do **not** need to write or read any Python. You only type prompts and
 watch.
 
-- Time: about 30–40 minutes.
 - You need: the opencode app connected to llmlab (pages 2–4 of
   [Getting started](../01-getting-started/README.md)), Python installed
   ([Before the exercises](00-prerequisites.md)), and an empty project folder

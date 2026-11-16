@@ -30,7 +30,6 @@ Watch the conversation after each prompt. Each level leaves a different trace:
 
 After each step, ask yourself: which of the four was it?
 
-- Time: about 45 minutes, in one project.
 - You need: everything from [Exercise 1](02-pendulum.md). No extra Python
   packages.
 - You learn: the difference between rules for the model and rules for the app,
