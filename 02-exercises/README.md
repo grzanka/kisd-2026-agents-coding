@@ -29,7 +29,7 @@ Do the exercises in order. Each one runs in its own new project folder
 ([how to create one](01-project-folder.md)).
 
 Screenshots for these pages are in [images/](images/README.md). Files that the
-exercises download are in [meteo/](meteo/README.md) (Exercise 2) and
+exercises download are in [meteo/](meteo/README.md) (Exercise 2),
 [limits/](limits/README.md) (Exercise 3), [outside/](outside/README.md)
 (Exercise 4), [parallel/](parallel/README.md) (Exercise 5) and [photo/](photo/README.md) (Exercise 6).
 
