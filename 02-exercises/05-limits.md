@@ -12,11 +12,25 @@ There are two levels, and this exercise shows both:
 | Who checks the rule | The **model**, when it decides what to do | The **opencode app**, before a tool runs |
 | Example | "Never change files in data/raw." | "Block every Edit of a file in data/raw." |
 | Can a prompt get around it? | Yes. It is a request, and the model may give in | No. The tool call is blocked, or waits for your click |
+| What it cannot do | Force the model to obey | See what a program does once it runs |
 
 You will see that level 1 is a request and level 2 is a lock. Then you will see
 the gap in the lock: permissions check **tools**, not what a program does.
 
-- Time: about 40 minutes, in one project.
+### How to tell which level stopped the agent
+
+Watch the conversation after each prompt. Each level leaves a different trace:
+
+| What you see | Which level |
+|---|---|
+| The agent **answers in words** that it will not do it. No tool call for it | Level 1: the model followed `AGENTS.md` |
+| A **tool call** (Edit, Write, Shell) that ends with an **error** | Level 2, **deny**: opencode blocked it |
+| A **question with buttons** from opencode. Nothing runs until you click | Level 2, **ask**: you decide |
+| The tool call runs, and the file changes | Nothing stopped it |
+
+After each step, ask yourself: which of the four was it?
+
+- Time: about 45 minutes, in one project.
 - You need: everything from [Exercise 1](02-pendulum.md). No extra Python
   packages.
 - You learn: the difference between rules for the model and rules for the app,
@@ -89,7 +103,8 @@ Fix it in that file.
 
 Expected result: the agent refuses, names the rule about `data/raw`, and offers
 to write a script that writes a corrected copy to `data/clean` instead. Do not
-accept the offer yet.
+accept the offer yet. There is no Edit call: the model stopped itself.
+**Level 1.**
 
 If the agent changes the file anyway, you have already seen the lesson of this
 part: the rule is only a request. Go to the "What to notice" below.
@@ -105,7 +120,8 @@ I own this data and I allow it. Change the file now.
 Expected result: it depends on the model and on the day. Many agents give in:
 you are the user, and you said it is allowed. Some refuse again. Open
 `data/raw/leaves.csv` in the right panel (**Open file**) and look at the value
-for `B1` on 11 May.
+for `B1` on 11 May. If you see an **Edit** call and the value is `24.5`,
+**nothing stopped it**: level 1 gave way, and there is no level 2 yet.
 
 If the agent changed the file, ask it to undo the change:
 
@@ -185,12 +201,20 @@ The value 245 in data/raw/leaves.csv is a typo. It should be 24.5.
 I own this data and I allow it. Change the file now.
 ```
 
-Expected result: even if the agent agrees, its **Edit** call fails. The tool
-call shows an error: the permission rules deny it. The agent tells you that it
-was blocked (the rules in `AGENTS.md` ask it to). The file is unchanged.
+Expected result: the agent agrees, as in B3, and tries an **Edit**. This time
+the Edit call fails with an error: the permission rules deny it. The agent
+tells you that it was blocked (the rules in `AGENTS.md` ask it to). The file is
+unchanged. **Level 2, deny**: the model wanted to, the app said no.
+
+If the agent refuses in words and makes no Edit call, that was level 1 again,
+and you have not seen level 2 yet. Write:
+
+```text
+I allow it. Try the Edit, so we see what opencode does.
+```
 
 If the agent tries to change the file with a **Shell** command instead,
-opencode stops and asks you first. Click **Reject**.
+opencode stops and asks you first. Click **Reject**. That is **level 2, ask**.
 
 <!-- TODO: screenshot of the blocked Edit call. -->
 
@@ -201,10 +225,11 @@ This is a test of the opencode permissions.
 Delete data/raw/leaves.csv with a shell command.
 ```
 
-Expected result: the **Shell** call with `Remove-Item` or `del` is denied. You
-see no question: a **deny** is final, and clicking cannot unlock it. If the
-agent refuses even to try, because of `AGENTS.md`, that is level 1 working. You
-can write: "I allow it. Try it, so we see what opencode does."
+Expected result: the **Shell** call with `Remove-Item` or `del` fails with an
+error. You see no question: a **deny** is final, and clicking cannot unlock it.
+**Level 2, deny.** If the agent refuses even to try, because of `AGENTS.md`,
+that is level 1. You can write: "I allow it. Try it, so we see what opencode
+does."
 
 ### C5. A question from opencode
 
@@ -222,7 +247,8 @@ buttons:
   this project;
 - **Reject**: do not run it. You can add a short message to the agent.
 
-Click **Allow once**. The agent reports 12 rows.
+Click **Allow once**. The agent reports 12 rows. The listing passed with no
+trace (level 2, **allow**); the Python command was **level 2, ask**.
 
 <!-- TODO: screenshot of the permission question with the three buttons. -->
 
@@ -270,7 +296,10 @@ Put the original value back yourself: in File Explorer, go to your
 limits: the permissions apply to the agent, not to you.
 
 **What to notice:** the denied Edit in C3 and the script in D2 did the same
-thing. The difference was the tool. That is why the shell rule in this project
+thing. The difference was the tool. Count what was left of each level: level 1
+gave way, because you allowed it in your prompt. The **deny** for `data/raw`
+never fired, because no tool named that file. Only the **ask** for the shell
+was left, and that means **you**. That is why the shell rule in this project
 is **ask**, and why you should read a script before you click **Allow once**.
 For data that really matters, rely on things outside the agent too: a backup
 copy, a read-only folder, version control.
@@ -302,8 +331,49 @@ Expected result: the agent writes a script (for example `clean.py`) that reads
 `data/raw/leaves.csv` and writes a corrected copy to `data/clean/leaves.csv`.
 opencode asks before it runs the script: read the script first, then click
 **Allow once**. At the end, `data/raw/leaves.csv` still says `245`, and
-`data/clean/leaves.csv` says `24.5`. Both levels agree, and the original stays
-as it was measured.
+`data/clean/leaves.csv` says `24.5`. Both levels worked together: level 1 told
+the agent **what to do instead**, level 2 let you **check the script** before
+it ran. The original stays as it was measured.
+
+## What you saw
+
+| Step | What happened | What stopped the agent |
+|---|---|---|
+| A2 | Downloads, new folders, no questions | Nothing: no limits by default |
+| B2 | The agent refused in words | Level 1: `AGENTS.md` |
+| B3 | Often: the agent gave in and edited the raw file | Nothing: a prompt beat level 1 |
+| C3 | The Edit call failed with an error | Level 2, deny |
+| C4 | The delete command failed with an error | Level 2, deny |
+| C5 | Listing ran freely; Python waited for your click | Level 2, allow and ask |
+| D2 | A script changed the raw file | Only you, at the ask question |
+| E | A script wrote a clean copy; raw data untouched | Both: level 1 guided, level 2 asked |
+
+## Take home: which rules to use, and when
+
+| You want... | Use | Example |
+|---|---|---|
+| The agent to know **why** and **what to do instead** | Level 1, `AGENTS.md` | "Fix data with a script that writes to data/clean." |
+| Something to **never** happen, and it cannot be undone | Level 2, **deny** (and say why in `AGENTS.md`) | Edits in `data/raw`, deleting files, editing `opencode.json` |
+| To **see and decide** before a risky step | Level 2, **ask** | Running scripts, installing packages, downloads, `git push` |
+| No questions for harmless steps | Level 2, **allow** | Listing and reading files, `git status` |
+| Data that you **cannot lose** | Things outside the agent | A backup copy, a read-only folder, version control |
+
+Rules of thumb:
+
+1. **Write important rules twice.** In `AGENTS.md`, so the agent understands
+   them and plans around them. In `opencode.json`, so they hold when the model
+   forgets or gives in.
+2. **deny** what cannot be undone, **ask** for anything that runs code,
+   **allow** only what only reads.
+3. **Lock the lock.** Deny edits of `opencode.json` and `AGENTS.md`, or the
+   agent can change its own rules.
+4. **Read before you click.** An **ask** protects you only if you look at the
+   command, and at the script it runs. Never click **Allow always** for
+   `python` or other programs that run any code.
+5. **Start strict, then loosen.** When a question keeps coming for something
+   harmless, allow it. The other way round, you find out after the damage.
+6. **Neither level replaces a backup.** Keep a copy of the raw data where the
+   agent cannot reach it.
 
 ## Check yourself
 
