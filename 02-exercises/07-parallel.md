@@ -319,4 +319,4 @@ No prompt here. Answer on paper, or explain to your neighbour:
 
 ---
 
-← Previous: [Exercise 4](06-outside-folder.md) · [Exercises overview](README.md) · [Main README](../README.md)
+← Previous: [Exercise 4](06-outside-folder.md) · [Exercises overview](README.md) · Next: [Exercise 6 →](08-photo.md)

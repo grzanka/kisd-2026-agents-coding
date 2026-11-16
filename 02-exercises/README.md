@@ -14,6 +14,7 @@ prompts are ready to copy and paste. You do not need to know Python.
 | 5 | [Exercise 3: what the agent may and may not do](05-limits.md) | Rules for the model (`AGENTS.md`) versus permissions for the app (`opencode.json`): allow, ask, deny, and their limits |
 | 6 | [Exercise 4: files outside the project folder](06-outside-folder.md) | What the agent can reach outside the project; read-only access to a data folder; keeping private files out of reach |
 | 7 | [Exercise 5: several agents at once](07-parallel.md) | Subagents in parallel: preparing shared things first, one output folder per task, what it costs, checking what no agent compared |
+| 8 | [Exercise 6: measuring things in a photo](08-photo.md) | A photo as a file, looking versus measuring, photo metadata, a reference of known size, checking a marked image |
 
 ## Before you start
 
@@ -29,7 +30,7 @@ Do the exercises in order. Each one runs in its own new project folder
 
 Screenshots for these pages are in [images/](images/README.md). Files that the
 exercises download are in [meteo/](meteo/README.md) (Exercise 2) and
-[limits/](limits/README.md) (Exercise 3) and [outside/](outside/README.md)
-(Exercise 4) and [parallel/](parallel/README.md) (Exercise 5).
+[limits/](limits/README.md) (Exercise 3), [outside/](outside/README.md)
+(Exercise 4), [parallel/](parallel/README.md) (Exercise 5) and [photo/](photo/README.md) (Exercise 6).
 
 [← Back to the main README](../README.md)
