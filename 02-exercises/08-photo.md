@@ -289,4 +289,4 @@ No prompt here. Answer on paper, or explain to your neighbour:
 
 ---
 
-← Previous: [Exercise 5](07-parallel.md) · [Exercises overview](README.md) · [Main README](../README.md)
+← Previous: [Exercise 5](07-parallel.md) · [Exercises overview](README.md) · Next: [Exercise 7 →](09-literature.md)

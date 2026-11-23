@@ -42,5 +42,8 @@ page that shows it.
 | `02-pendulum-raw-1-user.png` | [Exercise 1](../02-pendulum.md), For experts | The raw JSON of a user message |
 | `02-pendulum-raw-2-assistant.png` | [Exercise 1](../02-pendulum.md), For experts | The raw JSON of an answer, with the reasoning part |
 | `02-pendulum-raw-3-show-me.png` | [Exercise 1](../02-pendulum.md), For experts | The raw JSON of the step 9 prompt and answer |
+| `09-literature-1-table-i.png` | [Exercise 7](../09-literature.md), E3 | Table I of Galton (1886), page 248 of the scan from galton.org (public domain) |
+| `09-literature-2-plate-ix.png` | [Exercise 7](../09-literature.md), E4 | Plate IX, Fig. (a), of Galton (1886): Rate of Regression in Hereditary Stature |
+| `09-literature-3-plate-ix-marked.png` | [Exercise 7](../09-literature.md), E4 | Plate IX with the nine digitized points (red) and the Table I medians (blue), from a test run |
 
 [← Back to the exercises](../README.md) · [Main README](../../README.md)
