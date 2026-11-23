@@ -693,4 +693,4 @@ No prompt here. Answer on paper, or explain to your neighbour:
 
 ---
 
-← Previous: [Exercise 6](08-photo.md) · [Exercises overview](README.md) · [Main README](../README.md)
+← Previous: [Exercise 6](08-photo.md) · [Exercises overview](README.md) · Next: [Exercise 8 →](10-wiki.md)

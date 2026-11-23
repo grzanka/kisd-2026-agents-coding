@@ -16,6 +16,11 @@ prompts are ready to copy and paste. You do not need to know Python.
 | 7 | [Exercise 5: several agents at once](07-parallel.md) | Subagents in parallel: preparing shared things first, one output folder per task, what it costs, checking what no agent compared |
 | 8 | [Exercise 6: measuring things in a photo](08-photo.md) | A photo as a file, looking versus measuring, photo metadata, a reference of known size, checking a marked image |
 | 9 | [Exercise 7: where does the word "regression" come from?](09-literature.md) | Literature research: memory versus sources, Wikipedia and arXiv with subagents, checking references, paywalls, reading a scanned paper from your own folder, transcribing a table and digitizing a plot |
+| 10 | [Exercise 8: a wiki that the agent keeps](10-wiki.md) | Karpathy's LLM wiki: raw sources versus a compiled wiki, ingest, query and lint, a new session that starts from files |
+| 11 | [Exercise 9: facts with a source](11-registry.md) | Demo of a research project's registry; the labels *basis* and *checked*, a document is not a check, generated files |
+| 12 | [Exercise 10: a second opinion](12-second-opinion.md) | A read-only checker subagent, citations checked page by page, two models compared |
+| 13 | [Exercise 11: rules that run](13-guardrails.md) | Demo of tests, skills and worktrees in Claude Code; request, permission and check; a check script for the wiki |
+| 14 | [Exercise 12: the agent interviews you](14-interview.md) | Interview mode on your own project: answers kept verbatim, open questions, draft rules to take home |
 
 ## Before you start
 
@@ -32,7 +37,8 @@ Do the exercises in order. Each one runs in its own new project folder
 Screenshots for these pages are in [images/](images/README.md). Files that the
 exercises download are in [meteo/](meteo/README.md) (Exercise 2),
 [limits/](limits/README.md) (Exercise 3), [outside/](outside/README.md)
-(Exercise 4), [parallel/](parallel/README.md) (Exercise 5), [photo/](photo/README.md) (Exercise 6)
-and [literature/](literature/README.md) (Exercise 7).
+(Exercise 4), [parallel/](parallel/README.md) (Exercise 5), [photo/](photo/README.md) (Exercise 6),
+[literature/](literature/README.md) (Exercise 7), [wiki/](wiki/README.md) (Exercises 8 to 11),
+[review/](review/README.md) (Exercise 10) and [interview/](interview/README.md) (Exercise 12).
 
 [← Back to the main README](../README.md)
