@@ -33,6 +33,11 @@ then do the tasks in `02-exercises`, in order.
    7. [Exercise 5: several agents at once](02-exercises/07-parallel.md)
    8. [Exercise 6: measuring things in a photo](02-exercises/08-photo.md)
    9. [Exercise 7: where does the word "regression" come from?](02-exercises/09-literature.md)
+   10. [Exercise 8: a wiki that the agent keeps](02-exercises/10-wiki.md)
+   11. [Exercise 9: facts with a source](02-exercises/11-registry.md)
+   12. [Exercise 10: a second opinion](02-exercises/12-second-opinion.md)
+   13. [Exercise 11: rules that run](02-exercises/13-guardrails.md)
+   14. [Exercise 12: the agent interviews you](02-exercises/14-interview.md)
 3. Later, optional: [opencode and Claude Code](01-getting-started/06-opencode-vs-claude-code.md),
    [For experts: other ways to set up](01-getting-started/07-for-experts.md)
 
